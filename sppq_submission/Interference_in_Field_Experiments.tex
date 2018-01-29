@@ -211,12 +211,10 @@ A p-value for testing the hypothesized parameter values in the model of effects 
 %%%%
 
 In this section, we offer a novel set of recommendations regarding theoretical considerations that can be drawn upon by researchers when they design experiments in which they plan to test for interference and/or specify tests to be conducted on data from field experiments that have already been conducted on legislatures. One of the virtues of controlled experiments, in which treatment allocation is randomized, is that the randomization design can be used as the basis for inference in statistical tests (i.e., design-based or randomization-based inference) \citep{little2000causal}. Testing using the Bowers et al. framework still relies on design-based inference, as the stochastic nature of the outcomes is assumed to arise from the distribution based on which the treatment was randomized. However, the hypothesis being tested is formulated as a model of causal direct and spillover effects. As these models of effects are more complicated than the conventional form of effects considered in experiments, researchers must put more thought into the functional forms that describe the relationship between the treatment and outcome vectors. It is not possible to enumerate all of the choices available in specifying the model of effects, but we discuss a few salient dimensions below. 
-\begin{itemize}
 
-\item \textbf{Network selection}:
-First, we need to determine the network (or networks) through which the interference effects are transmitted. Consider the case of legislative networks, and the variety of networks discussed in this domain by \citet{kirkland2014measurement} and \cite{desmarais2015measuring}. Example legislative networks that have been studied include similarity in roll call voting \citep{kim2012comparing}, bill cosponsorship \citep{fowler2006connecting}, overlapping committee membership \citep{porter2005network}, collaboration in press events \citep{desmarais2015measuring}, co-membership in caucuses \citep{victor2009social}, the proximity of members of Congress' DC offices \citep{rogowski2012estimating}, and connections between legislative staffers \citep{ringe2013keeping}. Given a set of prospective networks, such as these, researchers must consider which single network, or combination of networks, through which spillover will occur. This choice may depend on availability of data. In an experiment involving Facebook users, several types of connections can be gathered directly from the social media platform (e.g., friendship, co-tagging in photos, replies to posts). However, in studying the spreading of a treatment encouraging citizens to vote in an election via a mail or door-to-door GOTV campaign, it is difficult to gather reliable social network information without administering a questionnaire in conjunction with the experiment.
 
-In our re-analysis of experiments on state legislators, we will illustrate these choices by considering the following networks:
+ \subsection{Network selection}
+First, we need to determine the network (or networks) through which the interference effects are transmitted. Consider the case of legislative networks, and the variety of networks discussed in this domain by \citet{kirkland2014measurement} and \cite{desmarais2015measuring}. Example legislative networks that have been studied include similarity in roll call voting \citep{kim2012comparing}, bill cosponsorship \citep{fowler2006connecting}, overlapping committee membership \citep{porter2005network}, collaboration in press events \citep{desmarais2015measuring}, co-membership in caucuses \citep{victor2009social}, the proximity of members of Congress' DC offices \citep{rogowski2012estimating}, follower-followee connections among members of Congress on Twitter \citep{peng2016follower}, the similarity of campaign contributions received by candidates for state legislature \citep{masket2015polarization}, a survey to measure collaboration and social networks among members of the Brazilian national legislature \citep{wojcik2017legislative}, and connections between legislative staffers \citep{ringe2013keeping}.  In Table \ref{legislative.netws}, we list the different networks that researchers might consider when investigating interference in legislative networks. This list is drawn directly from the literature. Given a set of prospective networks, such as these, researchers must consider which single network, or combination of networks, through which spillover will occur. In our re-analysis of experiments on state legislators, we will illustrate these choices by considering the following networks:
 \begin{itemize}
 \item Ideological networks: Using ideological scores calculated based on roll call data
 \item Committee networks: Using information about legislative committees on which pairs of legislators have served together
@@ -224,7 +222,33 @@ In our re-analysis of experiments on state legislators, we will illustrate these
 \end{itemize}
 
 
-\item \textbf{Neighborhood specification}:
+\begin{table}[h]
+\centering
+\begin{tabular}{l}
+\hline \hline
+ Networks in Legislative Politics\\
+\hline
+Roll call voting similarity\\
+Bill cosponsorship\\
+Overlapping committee membership\\
+Collaboration in press events\\
+Ideal point similarity \\
+Co-membership in legislative caucuses\\
+Legislative staff sharing \\
+Spatial proximity of legislative offices \\
+Relationships in online social networks (e.g., Twitter) \\
+Similarity in legislators' campaign contributions \\
+Social network surveys administered to legislators \\
+\hline \hline
+\end{tabular}
+
+\caption{List of legislative networks drawn from past research.}
+\label{tab:legislative.nets}
+\end{table}
+
+
+
+\subsection{Neighborhood specification}:
 Once the researcher decides which network---or combination of networks---to use in analysis, it is important to determine the neighborhood within which the effects of the treatment can be transmitted. For example, \cite{Bond:2012} find that Facebook users' voter turnout, as expressed on their Facebook walls, influences not only their Facebook friends' turnout decisions, but also turnout of the friends of their friends. This means that the effects of of a Facebook user's turnout decision spread within a neighborhood of two hops through the friendship network. This specification decision becomes more complicated when the network is weighted (i.e., ties can take on many values rather than just being binary tie/no tie), as in the legislative networks that we consider in our applications. In the weighted network case transmission is likely a function of connection strength, but may also disappear at some threshold (e.g., the level of ideological distance that indicates opposition between two legislators).  In our consideration of state legislative networks, we specify the neighborhood in two ways when using the ideological similarity networks:
 \begin{itemize}
 \item Entire network: Treatment effect can propagate through the entire network---proportional to ideological similarity---to affect the outcome of control units. 
@@ -234,16 +258,19 @@ Once the researcher decides which network---or combination of networks---to use 
 The definition of neighborhood depends on substantive knowledge about the interaction in a certain network. For example, a state legislature is relatively small and internally familiar community. As such, everyone may potentially communicate with everyone else regarding major legislative tasks and actions. However in looking at interpersonal political communication networks among regular citizens, even the closest of friends may fail to communicate about an election or other major political event.
 
 
-\item \textbf{Diffusion model specification}:
+ \subsection{Diffusion model specification}:
 The above two specifications---selecting the network and the neighborhood---determine which units play a role in the interference reflected in the hypothesized model. Diffusion model specification involves defining how the treatment effect spreads through the network. We highlight two considerations---the way in which treated and untreated neighbors factor into the interference effects, and the linearity of the interference model. 
 
 The first consideration regards whether a control unit influenced by the number of treated units with which it interacts (e.g., as in an epidemic network), or by the balance or proportion of its neighbors that are treated (e.g., as we would assume in a voting or opinion-spreading network). \citet{bowers2012reasoning} specification assumes treatment spreads as a function of the number of treated neighbors. Alternatively, the Voter Model---a classic mode of opinion dynamics in networks---assumes that the proportion of treated neighbors is the relevant quantity \citep{valentini2014self}. This specification choice likely comes down to whether the researcher assumes that the treatment and the lack of it are equally powerful forces, or whether change in the outcome can only result from exposure to treated units. If untreated neighbors can offset the effects of treated neighbors, it is likely the proportion that matters. If units are influenced only by treated neighbors, it is likely the raw count of treated neighbors that is relevant. 
 
 Though a very familiar consideration in quantitative social science, functional form assumptions are also relevant in the specification of a model of network effects. It is important to determine whether the functional form of the propagation of treatment effect should be linear or non-linear. Does the second treated neighbor have the same effect on a node's outcome as the first treated neighbor, or does the effect diminish? Or, alternatively, is it a threshold effect that only manifests when the number of treated neighbors reaches a critical level (e.g., a model in which a unit adopts the majority opinion among its neighbors)? \citet{coppock2014information} adopts a linear functional form in specifying the way in which legislators learning about their districts' opinions effects the votes of ideologically similar legislators. Alternatively, the classic susceptible-infected-recovered (SIR) model in epidemiology assumes a model in which the probability of transmission increases at a decreasing rate with the number of exposed neighbors to which a unit is exposed \citep{dodds2004universal}.
 
-\end{itemize}
 
 %\item \textbf{Test statistics selection}: To evaluate differences across experimental conditions using the framework of \citet{bowers2012reasoning}, the researcher must select a test statistic to evaluate the differences in terms of the hypothesized model of effects. As discussed earlier, \citet{bowers2012reasoning} uses the KS test statistics, which is problematic for categorical responses, especially those with three or more experimental categories. The test statistic used by  \citet{coppock2014information}---the sum of squared errors from a linear probability model of the binary outcome---is an option for managing categorical outcomes. The Anderson-Darling test is an alternative to the KS test with multiple experimental categories \citep{anderson1954test}. Other possible tests include the Mann-Whitney U and Control Median tests \citep{rosenbaum2012interference}.
+
+
+
+
 
 
 %%%%

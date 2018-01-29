@@ -158,6 +158,12 @@ Little, Roderick~J \harvardand\ Donald~B Rubin. 2000.
   potential outcomes: concepts and analytical approaches.'' {\em Annual review
   of public health} 21(1):121--145.
 
+\harvarditem{Masket \harvardand\ Shor}{2015}{masket2015polarization}
+Masket, Seth \harvardand\ Boris Shor. 2015.
+\newblock ``Polarization without parties: Term limits and legislative
+  partisanship in Nebraska’s Unicameral Legislature.'' {\em State Politics \&
+  Policy Quarterly} 15(1):67--90.
+
 \harvarditem[Muchnik, Aral \harvardand\ Taylor]{Muchnik, Aral \harvardand\
   Taylor}{2013}{muchnik2013}
 Muchnik, Lev, Sinan Aral \harvardand\ Sean~J Taylor. 2013.
@@ -182,6 +188,13 @@ Paluck, Elizabeth~Levy. 2011.
   examining social network change.'' {\em Journal of Experimental Social
   Psychology} 47(2):350--358.
 
+\harvarditem[Peng et~al.]{Peng, Liu, Wu \harvardand\
+  Liu}{2016}{peng2016follower}
+Peng, Tai-Quan, Mengchen Liu, Yingcai Wu \harvardand\ Shixia Liu. 2016.
+\newblock ``Follower-followee network, communication networks, and vote
+  agreement of the US members of congress.'' {\em Communication Research}
+  43(7):996--1024.
+
 \harvarditem[Porter et~al.]{Porter, Mucha, Newman \harvardand\
   Warmbrand}{2005}{porter2005network}
 Porter, Mason~A, Peter~J Mucha, Mark~EJ Newman \harvardand\ Casey~M Warmbrand.
@@ -201,11 +214,6 @@ Ringe, Nils, Jennifer~Nicoll Victor \harvardand\ Justin~H Gross. 2013.
 Rogowski, Jon~C \harvardand\ Betsy Sinclair. 2012.
 \newblock ``Estimating the causal effects of social interaction with endogenous
   networks.'' {\em Political Analysis} 20(3):316--328.
-
-\harvarditem{Rosenbaum}{2012}{rosenbaum2012interference}
-Rosenbaum, Paul~R. 2012.
-\newblock ``Interference between units in randomized experiments.'' {\em
-  Journal of the American Statistical Association} .
 
 \harvarditem{Sekhon}{2008}{sekhon2008}
 Sekhon, Jasjeet~S. 2008.
@@ -233,5 +241,10 @@ Victor, Jennifer~Nicoll \harvardand\ Nils Ringe. 2009.
 \newblock ``The social utility of informal institutions: Caucuses as networks
   in the 110th US House of Representatives.'' {\em American Politics Research}
   37(5):742--766.
+
+\harvarditem{Wojcik}{2017}{wojcik2017legislative}
+Wojcik, Stefan. 2017.
+\newblock ``Why Legislative Networks? Analyzing Legislative Network
+  Formation.'' {\em Political Science Research and Methods} pp.~1--18.
 
 \end{thebibliography}

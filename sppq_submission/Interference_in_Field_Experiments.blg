@@ -3,53 +3,57 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Interference_in_Field_Experiments.aux
 The style file: apsr.bst
 Database file #1: interference.bib
-Repeated entry---line 1116 of file interference.bib
+Repeated entry---line 1158 of file interference.bib
  : @article{fowler2006connecting
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1138 of file interference.bib
+Repeated entry---line 1180 of file interference.bib
  : @article{victor2009social
  :                          ,
 I'm skipping whatever remains of this entry
-You've used 38 entries,
+Repeated entry---line 1730 of file interference.bib
+ : @article{coppock2016information
+ :                                ,
+I'm skipping whatever remains of this entry
+You've used 40 entries,
             2874 wiz_defined-function locations,
-            878 strings with 12256 characters,
-and the built_in function-call counts, 175128 in all, are:
-= -- 28762
-> -- 2122
+            890 strings with 12623 characters,
+and the built_in function-call counts, 183514 in all, are:
+= -- 30106
+> -- 2256
 < -- 0
-+ -- 13580
-- -- 744
-* -- 15086
-:= -- 34800
-add.period$ -- 154
-call.type$ -- 38
-change.case$ -- 494
-chr.to.int$ -- 38
-cite$ -- 38
-duplicate$ -- 632
-empty$ -- 1356
-format.name$ -- 781
-if$ -- 31552
++ -- 14208
+- -- 790
+* -- 15816
+:= -- 36473
+add.period$ -- 162
+call.type$ -- 40
+change.case$ -- 520
+chr.to.int$ -- 40
+cite$ -- 40
+duplicate$ -- 667
+empty$ -- 1437
+format.name$ -- 830
+if$ -- 33069
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 38
-newline$ -- 158
-num.names$ -- 445
-pop$ -- 126
+missing$ -- 40
+newline$ -- 166
+num.names$ -- 468
+pop$ -- 132
 preamble$ -- 1
-purify$ -- 570
+purify$ -- 600
 quote$ -- 0
-skip$ -- 590
+skip$ -- 623
 stack$ -- 0
-substring$ -- 40751
-swap$ -- 134
-text.length$ -- 532
+substring$ -- 42635
+swap$ -- 142
+text.length$ -- 560
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 152
+type$ -- 160
 warning$ -- 0
-while$ -- 920
+while$ -- 971
 width$ -- 0
-write$ -- 529
-(There were 2 error messages)
+write$ -- 557
+(There were 3 error messages)

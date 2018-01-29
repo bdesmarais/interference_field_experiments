@@ -1,10 +1,13 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{A Design-Based Test for Network Effects Models}{}% 2
 \BOOKMARK [1][-]{section.3}{Considerations in Testing for Interference}{}% 3
-\BOOKMARK [1][-]{section.4}{Research Design}{}% 4
-\BOOKMARK [1][-]{section.5}{Replication Analyses}{}% 5
-\BOOKMARK [2][-]{subsection.5.1}{butler2011can}{section.5}% 6
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Results for butler2011can data}{subsection.5.1}% 7
-\BOOKMARK [2][-]{subsection.5.2}{bergan2015call}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.3}{broockman2013black }{section.5}% 9
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Network selection}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Neighborhood specification}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Diffusion model specification}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Research Design}{}% 7
+\BOOKMARK [1][-]{section.5}{Replication Analyses}{}% 8
+\BOOKMARK [2][-]{subsection.5.1}{butler2011can}{section.5}% 9
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Results for butler2011can data}{subsection.5.1}% 10
+\BOOKMARK [2][-]{subsection.5.2}{bergan2015call}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{broockman2013black }{section.5}% 12
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 13
