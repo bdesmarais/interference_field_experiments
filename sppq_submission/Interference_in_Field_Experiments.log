@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 13:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1014,6 +1014,10 @@ Overfull \hbox (4.59474pt too wide) in paragraph at lines 221--222
  []
 
 
+Package natbib Warning: Citation `napierala2012bonferroni' on page 9 undefined 
+on input line 249.
+
+
 Package natbib Warning: Citation `grose2015explainin' on page 9 undefined on in
 put line 249.
 
@@ -1308,7 +1312,7 @@ sed on input line 513.
  [28 <./images/pval_plot_broockman_demvotepct.pdf> <./images/pval_plot_broockma
 n_blackpct.pdf>] [29 <./images/pval_plot_broockman_demvotepct_blackpct.pdf>]
 (./Interference_in_Field_Experiments.bbl [30] [31] [32] [33] [34]
-Underfull \hbox (badness 1152) in paragraph at lines 201--205
+Underfull \hbox (badness 1152) in paragraph at lines 205--209
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
@@ -1324,7 +1328,12 @@ See the caption package documentation for explanation.
 [36]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 578.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 578.
- (./Interference_in_Field_Experiments.aux)
+ (./Interference_in_Field_Experiments.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 578.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 578.
 Package rerunfilecheck Info: File `Interference_in_Field_Experiments.out' has n
@@ -1337,13 +1346,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 578.
  ) 
 Here is how much of TeX's memory you used:
- 21595 strings out of 492995
- 394876 string characters out of 6132704
+ 21599 strings out of 492995
+ 394997 string characters out of 6132704
  463067 words of memory out of 5000000
- 24609 multiletter control sequences out of 15000+600000
+ 24612 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,54p,1999b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,13n,54p,2307b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1353,11 +1362,11 @@ e/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (36 pages, 335215 bytes
+Output written on Interference_in_Field_Experiments.pdf (36 pages, 335573 bytes
 ).
 PDF statistics:
- 680 PDF objects out of 1000 (max. 8388607)
- 574 compressed objects within 6 object streams
- 116 named destinations out of 1000 (max. 500000)
+ 681 PDF objects out of 1000 (max. 8388607)
+ 575 compressed objects within 6 object streams
+ 117 named destinations out of 1000 (max. 500000)
  197 words of extra memory for PDF output out of 10000 (max. 10000000)
 
