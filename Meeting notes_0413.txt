@@ -1,0 +1,23 @@
+- A motivation for why spillover effect should be considered when using social data
+
+    - Review papers that have interference that was not considered
+
+
+- A model that works and things to consider when building a spillover model (network and spillover)
+
+    - Finalize Coppock (Priority: high and low support; could it be an issue of how the data was presented, communication literature indicating percentages sends mixed messages)
+    - Work on Bergan
+
+
+
+(Sequence: high low with committee and ideology for Coppock, then Bergan and then geographical on Coppock)
+
+
+- GitHub repository for codes
+
+\item Upfront mention of possible attenuation bias? (Reference: email dated 11/11/15 with subject line 'attenuation')
+
+
+* Not for the poster, but what do we see with committees if we use the number of shared committees in place of ideological similarity? Also, we should re-run the analysis differentiating by level of support in the district, like Coppock did in the JEPS paper.
+
+

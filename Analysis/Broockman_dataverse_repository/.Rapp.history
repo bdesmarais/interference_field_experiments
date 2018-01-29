@@ -1,0 +1,29 @@
+seq(from=-0.5, to=0.5, by=.05)
+seq(from=-0.5, to=0.5, length.out=21)
+############################################################
+##### This code reads .RData matrix of saved p-values ######
+#### Prepares a table of results for reporting purpose #####
+############################################################
+#
+## This is the folder where .RData file is saved#
+setwd("~/Dropbox/Interference_in_Field_Experiments/Analysis/Broockman_dataverse repository")#
+#
+## Load the matrix of pvalues#
+## Loaded object will have name 'pvals'#
+load("pvals_broockman_demvotepct_blackpct.RData")#
+#
+## betas must be
+############################################################
+##### This code reads .RData matrix of saved p-values ######
+#### Prepares a table of results for reporting purpose #####
+############################################################
+#
+## This is the folder where .RData file is saved#
+setwd("~/Dropbox/Interference_in_Field_Experiments/Analysis/Broockman_dataverse repository")#
+#
+## Load the matrix of pvalues#
+## Loaded object will have name 'pvals'#
+load("pvals_broockman_demvotepct_blackpct_raw.RData")
+dim(pvals)
+dim(pvals)[1]
+is.numeric(dim(pvals)[1])

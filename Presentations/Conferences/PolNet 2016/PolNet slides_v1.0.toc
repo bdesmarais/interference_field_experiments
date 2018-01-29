@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\beamer@sectionintoc {3}{Methodology}{7}{0}{2}
+\beamer@sectionintoc {4}{Applications}{9}{0}{3}
+\beamer@sectionintoc {5}{Final remarks}{13}{0}{4}

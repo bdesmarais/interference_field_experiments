@@ -1,0 +1,13 @@
+#PBS -A bbd5087-himem_collab
+#PBS -l nodes=1:ppn=20
+#PBS -l mem=64gb
+#PBS -j oe
+#PBS -l walltime=48:00:00
+#PBS -mae ssp5208@psu.edu
+#PBS -N broockman_demvotepct_raw_log
+
+cd ~/Phadke_Desmarais_paper/broockman_analysis/
+
+module load R/3.2.0
+
+R CMD BATCH broockman_demvotepct_raw_c.R

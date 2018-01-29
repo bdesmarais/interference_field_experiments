@@ -1,0 +1,2 @@
+broockman_intrinsic_motivation.do (text/x-stata-syntax; charset=US-ASCII) 4661 bytes.
+broockman_intrinsic_motivation_1.tab (text/tab-separated-values) 1239093 bytes.

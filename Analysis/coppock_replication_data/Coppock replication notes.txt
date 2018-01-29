@@ -1,0 +1,13 @@
+Problems with Coppock replication:
+
+- Could not work with the packages spdep and maptools (in case if I need them)
+
+- Assuming sb24 to be the y_observed column
+
+- Used earlier code to generate similarity scores
+
+- Considering the similarity score matrix to be the adjacency matrix. Basically ideological similarity determines network adjacency
+
+- Randomization is already taking place within the expected exposure calculation. Then what is the meaning of the randomizations we conduct within our permutation testing?
+
+- Implementing the test statistic calculation

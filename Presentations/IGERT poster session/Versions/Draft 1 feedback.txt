@@ -1,0 +1,27 @@
+How would we expct the treatment to affect untreated units? Caption for figure 2
+
+Non-parametric testing method for interference effects
+
+Coppock implementation/application
+Just Bowers method with different choices for diffusion model and the test statistic
+
+BOlded bullets: Diffusion/interference model specification, neighborhood specification, network selection, statistic selection
+
+2X2 table in extenson section showing dimensions (definition of neighborhood coppock or discrete and linear v/s nonlinear spreading effect (proportion of number in the neighborhood
+
+Extensions through specifications of dimensions
+-
+
+High p-value is a good thing! Support for those values of effects
+
+Future direction/next steps: other application, apply all the extension ideas
+
+
+Keep an example ready in your mind
+
+As the neighborhood grows, we would expect a robust result. It is moving when we go to 12, so maybe that's not true
+
+
+
+
+Committee network:

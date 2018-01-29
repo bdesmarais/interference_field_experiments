@@ -1,0 +1,20 @@
+% latex table generated in R 3.1.2 by xtable 1.8-0 package
+% Wed Nov 11 07:21:25 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+  \hline
+ & Treatment & Control & p-value \\ 
+  \hline
+Republican &  &  & 1 \\ 
+  Constituent support for spending &  &  & 0.8 \\ 
+  Constituent support for health care &  &  & 0.34 \\ 
+  Bush vote-share 04 &  &  & 0.59 \\ 
+  Member vote-share 06 &  &  & 0.86 \\ 
+  Running for re-election &  &  & 0.69 \\ 
+  Running unopposed &  &  & 0.92 \\ 
+  Supported prior health care bill &  &  & 0.81 \\ 
+   \hline
+\end{tabular}
+\caption{Table 1: Randomization checks} 
+\end{table}

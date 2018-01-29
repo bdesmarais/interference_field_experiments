@@ -1,0 +1,13 @@
+Useful links for working with clustered standard errors.
+
+https://cran.r-project.org/web/packages/clusterSEs/clusterSEs.pdf
+
+
+http://www.r-bloggers.com/easy-clustered-standard-errors-in-r/
+
+
+http://www.richard-bluhm.com/clustered-ses-in-r-and-stata-2/
+
+
+https://cran.r-project.org/web/packages/multiwayvcov/multiwayvcov.pdf
+

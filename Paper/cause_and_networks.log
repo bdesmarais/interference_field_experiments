@@ -1,0 +1,22 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdftex 2016.2.18)  15 MAY 2016 21:04
+entering extended mode
+**D:/Dropbox/Interference_in_Field_Experiments/Paper/cause_and_networks.bib
+(D:/Dropbox/Interference_in_Field_Experiments/Paper/cause_and_networks.bib
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.3 @book{Anderson_
+                   Population_1982,
+? 
+! Emergency stop.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.3 @book{Anderson_
+                   Population_1982,
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

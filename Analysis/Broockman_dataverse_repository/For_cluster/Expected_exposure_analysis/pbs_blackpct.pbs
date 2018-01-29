@@ -1,0 +1,13 @@
+#PBS -A bbd5087-himem_collab [The allocation being used]
+#PBS -l nodes=1:ppn=40 [Nodes, which is typically one; and threads per node]
+#PBS -l mem=64gb [Memory]
+#PBS -j oe [An unknown thing which was in the reference code I received, and I thought best not to remove]
+#PBS -l walltime=96:00:00 [Walltime; which is 24 hours for open allocation, I think. But Bruce had 96. You should check for yours]
+#PBS -mae ssp5208@psu.edu [The email ID on which you’d like to receive an email confirmation for your job]
+#PBS -N broockman_blackpct_log [Name for the log file, user created]
+
+cd ~/Phadke_Desmarais_paper/broockman_analysis/ [Directory]
+
+module load R/3.2.0 [The version of R you’d like to use]
+
+R CMD BATCH broockman_blackpct_c.R [The code itself!]
