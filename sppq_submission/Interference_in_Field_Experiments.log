@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 11:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 12:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1013,231 +1013,235 @@ Overfull \hbox (4.59474pt too wide) in paragraph at lines 221--222
 -tors who have co-sponsored
  []
 
-[9]
-Overfull \hbox (22.51039pt too wide) in paragraph at lines 254--255
+
+Package natbib Warning: Citation `grose2015explainin' on page 9 undefined on in
+put line 249.
+
+[9] [10]
+Overfull \hbox (22.51039pt too wide) in paragraph at lines 256--257
 []\T1/ptm/m/n/12 Entire net-work: Treat-ment ef-fect can prop-a-gate through th
 e en-tire network---proportional
  []
 
-[10]
-Overfull \hbox (9.88483pt too wide) in paragraph at lines 261--263
+[11]
+Overfull \hbox (9.88483pt too wide) in paragraph at lines 263--265
 []\T1/ptm/m/n/12 : The above two specifications---selecting the net-work and th
 e neighborhood---determine
  []
 
-[11] [12] [13]
+[12] [13] [14]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 290.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 290.
+(hyperref)                removing `\begingroup' on input line 292.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 290.
+(hyperref)                removing `\let' on input line 292.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 290.
+(hyperref)                removing `\<let>-command' on input line 292.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 290.
+(hyperref)                removing `\NAT@ctype' on input line 292.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 290.
+(hyperref)                removing `\z@' on input line 292.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 290.
-
-[14] [15] [16]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 314.
+(hyperref)                removing `\let' on input line 292.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 314.
+(hyperref)                removing `\new@ifnextchar' on input line 292.
+
+[15] [16] [17]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\begingroup' on input line 316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 314.
+(hyperref)                removing `\let' on input line 316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 314.
+(hyperref)                removing `\<let>-command' on input line 316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 314.
+(hyperref)                removing `\NAT@ctype' on input line 316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 314.
+(hyperref)                removing `\z@' on input line 316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 314.
+(hyperref)                removing `\let' on input line 316.
 
-<./images/pval_plot_coppock_replication.pdf, id=317, 505.89pt x 505.89pt>
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on input line 316.
+
+<./images/pval_plot_coppock_replication.pdf, id=333, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_replication.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_replication.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_replication.pdf used on inp
-ut line 321.
+ut line 323.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [17]
-<./images/pval_plot_coppock_ideo_3nn.pdf, id=326, 505.89pt x 505.89pt>
+ [18]
+<./images/pval_plot_coppock_ideo_3nn.pdf, id=342, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_3nn.pdf used on input 
-line 333.
+line 335.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_5nn.pdf, id=327, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_5nn.pdf, id=343, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_5nn.pdf used on input 
-line 334.
+line 336.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_8nn.pdf, id=328, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_8nn.pdf, id=344, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_8nn.pdf used on input 
-line 335.
+line 337.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_12nn.pdf, id=329, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_12nn.pdf, id=345, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_12nn.pdf used on input
- line 336.
+ line 338.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 332--338
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 334--340
  [][] 
  []
 
-[18 <./images/pval_plot_coppock_replication.pdf>]
+[19 <./images/pval_plot_coppock_replication.pdf>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 342.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 344.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 342.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 344.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 342.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 344.
 
-<./images/pval_plot_coppock_committee_1ormore.pdf, id=346, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_committee_1ormore.pdf, id=363, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_committee_1ormore.pdf Graphic file (type pdf)
 <use ./images/pval_plot_coppock_committee_1ormore.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_committee_1ormore.pdf used 
-on input line 347.
+on input line 349.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_committee_2ormore.pdf, id=347, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_committee_2ormore.pdf, id=364, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_committee_2ormore.pdf Graphic file (type pdf)
 <use ./images/pval_plot_coppock_committee_2ormore.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_committee_2ormore.pdf used 
-on input line 348.
+on input line 350.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 346--350
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 348--352
  [][] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 399.
+(hyperref)                removing `\begingroup' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 399.
+(hyperref)                removing `\let' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 399.
+(hyperref)                removing `\<let>-command' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 399.
+(hyperref)                removing `\NAT@ctype' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 399.
+(hyperref)                removing `\z@' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 399.
+(hyperref)                removing `\let' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 399.
+(hyperref)                removing `\new@ifnextchar' on input line 401.
 
-[19] [20 <./images/pval_plot_coppock_ideo_3nn.pdf> <./images/pval_plot_coppock_
+[20] [21 <./images/pval_plot_coppock_ideo_3nn.pdf> <./images/pval_plot_coppock_
 ideo_5nn.pdf> <./images/pval_plot_coppock_ideo_8nn.pdf> <./images/pval_plot_cop
-pock_ideo_12nn.pdf>] [21 <./images/pval_plot_coppock_committee_1ormore.pdf> <./
+pock_ideo_12nn.pdf>] [22 <./images/pval_plot_coppock_committee_1ormore.pdf> <./
 images/pval_plot_coppock_committee_2ormore.pdf>]
-<./images/pval_plot_bergan_main.pdf, id=420, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_main.pdf, id=436, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_main.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_main.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_main.pdf used on input line 
-409.
+411.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_3nn.pdf, id=427, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_3nn.pdf, id=443, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_3nn.pdf used on input l
-ine 420.
+ine 422.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_5nn.pdf, id=428, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_5nn.pdf, id=444, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_5nn.pdf used on input l
-ine 421.
+ine 423.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_8nn.pdf, id=429, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_8nn.pdf, id=445, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_8nn.pdf used on input l
-ine 422.
+ine 424.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_12nn.pdf, id=430, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_12nn.pdf, id=446, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_12nn.pdf used on input 
-line 423.
+line 425.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 419--425
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 421--427
  [][] 
  []
 
-[22 <./images/pval_plot_bergan_main.pdf>] [23 <./images/pval_plot_bergan_ideo_3
+[23 <./images/pval_plot_bergan_main.pdf>] [24 <./images/pval_plot_bergan_ideo_3
 nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
 o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>]
-<./images/pval_plot_bergan_cospon.pdf, id=475, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_cospon.pdf, id=491, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_cospon.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_cospon.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_cospon.pdf used on input lin
-e 434.
+e 436.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
 
@@ -1245,105 +1249,101 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 481.
+(hyperref)                removing `\begingroup' on input line 483.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 481.
+(hyperref)                removing `\let' on input line 483.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 481.
+(hyperref)                removing `\<let>-command' on input line 483.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 481.
+(hyperref)                removing `\NAT@ctype' on input line 483.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 481.
+(hyperref)                removing `\z@' on input line 483.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 481.
+(hyperref)                removing `\let' on input line 483.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 481.
+(hyperref)                removing `\new@ifnextchar' on input line 483.
 
-[24 <./images/pval_plot_bergan_cospon.pdf>] [25]
-<./images/pval_plot_broockman_demvotepct.pdf, id=509, 505.89pt x 505.89pt>
+[25 <./images/pval_plot_bergan_cospon.pdf>] [26]
+<./images/pval_plot_broockman_demvotepct.pdf, id=525, 505.89pt x 505.89pt>
 File: ./images/pval_plot_broockman_demvotepct.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_broockman_demvotepct.pdf>
 Package pdftex.def Info: ./images/pval_plot_broockman_demvotepct.pdf used on in
-put line 503.
+put line 505.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_broockman_blackpct.pdf, id=510, 505.89pt x 505.89pt>
+<./images/pval_plot_broockman_blackpct.pdf, id=526, 505.89pt x 505.89pt>
 File: ./images/pval_plot_broockman_blackpct.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_broockman_blackpct.pdf>
 Package pdftex.def Info: ./images/pval_plot_broockman_blackpct.pdf used on inpu
-t line 504.
+t line 506.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 502--506
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 504--508
  [][] 
  []
 
-[26]
-<./images/pval_plot_broockman_demvotepct_blackpct.pdf, id=522, 505.89pt x 505.8
+[27]
+<./images/pval_plot_broockman_demvotepct_blackpct.pdf, id=538, 505.89pt x 505.8
 9pt>
 File: ./images/pval_plot_broockman_demvotepct_blackpct.pdf Graphic file (type p
 df)
  <use ./images/pval_plot_broockman_demvotepct_blackpct.pdf>
 Package pdftex.def Info: ./images/pval_plot_broockman_demvotepct_blackpct.pdf u
-sed on input line 511.
+sed on input line 513.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [27 <./images/pval_plot_broockman_demvotepct.pdf> <./images/pval_plot_broockma
-n_blackpct.pdf>] [28 <./images/pval_plot_broockman_demvotepct_blackpct.pdf>]
-(./Interference_in_Field_Experiments.bbl [29] [30] [31] [32] [33]
-Underfull \hbox (badness 1152) in paragraph at lines 193--197
+ [28 <./images/pval_plot_broockman_demvotepct.pdf> <./images/pval_plot_broockma
+n_blackpct.pdf>] [29 <./images/pval_plot_broockman_demvotepct_blackpct.pdf>]
+(./Interference_in_Field_Experiments.bbl [30] [31] [32] [33] [34]
+Underfull \hbox (badness 1152) in paragraph at lines 201--205
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[34])
+[35])
+
+Package natbib Warning: There were undefined citations.
+
 
 Package caption Warning: Unused \captionsetup[subfloat] on input line 77.
 See the caption package documentation for explanation.
 
-[35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 576.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 576.
+[36]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 578.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 578.
  (./Interference_in_Field_Experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 576.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 576.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 578.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 578.
+Package rerunfilecheck Info: File `Interference_in_Field_Experiments.out' has n
+ot changed.
+(rerunfilecheck)             Checksum: C73923FE53396F1D68919B606C88E3CC;860.
 
-
-Package rerunfilecheck Warning: File `Interference_in_Field_Experiments.out' ha
-s changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Interference_in_Field_Experiments.o
-ut':
-(rerunfilecheck)             Before: 4ABEB45E4F312DE71E332252E70E4DE3;638
-(rerunfilecheck)             After:  C73923FE53396F1D68919B606C88E3CC;860.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 576.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 578.
  ) 
 Here is how much of TeX's memory you used:
- 21585 strings out of 492995
- 394684 string characters out of 6132704
- 463001 words of memory out of 5000000
- 24601 multiletter control sequences out of 15000+600000
+ 21595 strings out of 492995
+ 394876 string characters out of 6132704
+ 463067 words of memory out of 5000000
+ 24609 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,54p,1914b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,13n,54p,1999b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1353,11 +1353,11 @@ e/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (35 pages, 332995 bytes
+Output written on Interference_in_Field_Experiments.pdf (36 pages, 335215 bytes
 ).
 PDF statistics:
- 663 PDF objects out of 1000 (max. 8388607)
- 558 compressed objects within 6 object streams
- 114 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 680 PDF objects out of 1000 (max. 8388607)
+ 574 compressed objects within 6 object streams
+ 116 named destinations out of 1000 (max. 500000)
+ 197 words of extra memory for PDF output out of 10000 (max. 10000000)
 
