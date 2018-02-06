@@ -253,11 +253,11 @@ The determination regarding which network(s) to consider in any particular appli
 
 
 
-\subsection{Interference Model Formulation}:
+\subsection{Interference Model Formulation}
 
 The interference model is a function that takes as its input a treatment regime (i.e., a vector that indicates the control/treatment status of each node (e.g., legislator) in the network), a network structure, and the outcomes under the uniformity trial (i.e., the outcome values in the case where each node is assigned to control), and outputs a vector of node outcomes that are conditioned on the treatment regime via the network. In other words, the interference model transforms the uniformity trial into a vector of outcomes using the network and treatment regime. For a given focal node the two components of the model that shape the change that results from the experiment include (1) the set of other nodes whose treatment status could influence the focal node via the network, and (2) the mathematical form of the function through which those other nodes' treatment statuses affect the focal node. Given these two components, it is possible to calculate how any given treatment regime would affect a focal node's outcome. We discuss two important considerations in formulating the interference model to be tested. First, we discuss the specification of the neighborhood, as defined on the network structure, of nodes whose treatment status may affect a focal node (e.g., a node's outcome depends on the treatment statuses of all nodes that are at most two hops away). Second, we discuss the specification of the functional form through which neighbors affect a focal node (e.g., the outcome of a node is a linear function of the proportion of neighbors allocated to treatment).
 
-In Figure 1....  
+In Table \ref{tab:fourmodels} we illustrate how varying the interference model can result in different effects on a focal node. We depict two definitions of the neighborhood---one in which all nodes within two hops of the focal node affect the focal node, and one in which all nodes within three hops of a focal node affect the focal node. We also depict two definitions of the functional form of the interference effects. In one definition, all nodes in the neighborhood affect the node equally. In the other functional form, the effect of neighbors on the focal node decays with the neighbors' distance from the focal node. Combining these two dimensions results in four alternative interference models.
 
 \begin{table}[h]
 \centering
@@ -270,8 +270,8 @@ Decaying effect &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 1
 \hline 
 \end{tabular}
 
-\caption{List of legislative networks drawn from past research.}
-\label{tab:legislative.nets}
+\caption{Alternative models of affects, focusing on a single focal node. The red triangle represents the focal node, on which the other nodes have various effects under each model. Square nodes are treated. The circle is a control node. The darker the node's shading, the larger the effect it has on the focal node.}
+\label{tab:fourmodels}
 \end{table}
 
 \subsubsection{Neighborhood selection}
