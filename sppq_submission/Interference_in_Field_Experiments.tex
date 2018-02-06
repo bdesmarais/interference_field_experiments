@@ -3,6 +3,7 @@
 %==============Packages & Commands==============
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\usepackage{array}
 \usepackage{tikz}
 %%%<
 \usepackage{listings}
@@ -254,27 +255,19 @@ The determination regarding which network(s) to consider in any particular appli
 
 \subsection{Interference Model Formulation}:
 
-We discuss two important considerations in formulating the interference model to be tested. First [] this paragraph.
+The interference model is a function that takes as its input a treatment regime (i.e., a vector that indicates the control/treatment status of each node (e.g., legislator) in the network), a network structure, and the outcomes under the uniformity trial (i.e., the outcome values in the case where each node is assigned to control), and outputs a vector of node outcomes that are conditioned on the treatment regime via the network. In other words, the interference model transforms the uniformity trial into a vector of outcomes using the network and treatment regime. For a given focal node the two components of the model that shape the change that results from the experiment include (1) the set of other nodes whose treatment status could influence the focal node via the network, and (2) the mathematical form of the function through which those other nodes' treatment statuses affect the focal node. Given these two components, it is possible to calculate how any given treatment regime would affect a focal node's outcome. We discuss two important considerations in formulating the interference model to be tested. First, we discuss the specification of the neighborhood, as defined on the network structure, of nodes whose treatment status may affect a focal node (e.g., a node's outcome depends on the treatment statuses of all nodes that are at most two hops away). Second, we discuss the specification of the functional form through which neighbors affect a focal node (e.g., the outcome of a node is a linear function of the proportion of neighbors allocated to treatment).
+
+In Figure 1....  
 
 \begin{table}[h]
 \centering
-\begin{tabular}{lccc}
-\hline \hline
- Networks in Legislative Politics\\
+\begin{tabular}{|>{\centering\arraybackslash}m{2.75cm}|>{\centering\arraybackslash}m{5.5cm}|>{\centering\arraybackslash}m{5.5cm}|}
+\hline 
+& Two-hop Neighborhood & Three-hop Neighborhood \\
 \hline
-Roll call voting similarity\\
-Bill cosponsorship\\
-Overlapping committee membership\\
-Collaboration in press events\\
-Ideal point similarity \\
-Co-membership in legislative caucuses\\
-Legislative staff sharing \\
-Spatial proximity of legislative offices \\
-Relationships in online social networks (e.g., Twitter) \\
-Similarity in legislators' campaign contributions \\
-Social network surveys administered to legislators \\
-Similarity in constituency demographics \\
-\hline \hline
+Constant effect  & \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_constant_twohops} &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_constant_threehops} \\ \hline 
+Decaying effect &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_decay_twohops} &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_decay_threehops} \\
+\hline 
 \end{tabular}
 
 \caption{List of legislative networks drawn from past research.}

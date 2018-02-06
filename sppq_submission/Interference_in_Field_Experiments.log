@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  29 JAN 2018 14:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  5 FEB 2018 20:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -68,14 +68,22 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 \FV@StepNumber=\count90
 \FV@OutFile=\write3
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen105
+\extrarowheight=\dimen106
+\NC@list=\toks15
+\extratabsurround=\skip43
+\backup@length=\skip44
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks15
-\pgfutil@tempdima=\dimen105
-\pgfutil@tempdimb=\dimen106
+\pgfutil@everybye=\toks16
+\pgfutil@tempdima=\dimen107
+\pgfutil@tempdimb=\dimen108
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
 sts.tex))
@@ -93,30 +101,30 @@ Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks16
-\pgfkeys@temptoks=\toks17
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
-\pgfkeys@tmptoks=\toks18
+\pgfkeys@tmptoks=\toks19
 ))
-\pgf@x=\dimen107
-\pgf@y=\dimen108
-\pgf@xa=\dimen109
-\pgf@ya=\dimen110
-\pgf@xb=\dimen111
-\pgf@yb=\dimen112
-\pgf@xc=\dimen113
-\pgf@yc=\dimen114
+\pgf@x=\dimen109
+\pgf@y=\dimen110
+\pgf@xa=\dimen111
+\pgf@ya=\dimen112
+\pgf@xb=\dimen113
+\pgf@yb=\dimen114
+\pgf@xc=\dimen115
+\pgf@yc=\dimen116
 \w@pgf@writea=\write4
 \r@pgf@reada=\read2
 \c@pgf@counta=\count91
 \c@pgf@countb=\count92
 \c@pgf@countc=\count93
 \c@pgf@countd=\count94
-\t@pgf@toka=\toks19
-\t@pgf@tokb=\toks20
-\t@pgf@tokc=\toks21
+\t@pgf@toka=\toks20
+\t@pgf@tokb=\toks21
+\t@pgf@tokc=\toks22
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
@@ -163,12 +171,12 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen115
+\pgfmath@dimen=\dimen117
 \pgfmath@count=\count97
 \pgfmath@box=\box28
-\pgfmath@toks=\toks22
-\pgfmath@stack@operand=\toks23
-\pgfmath@stack@operation=\toks24
+\pgfmath@toks=\toks23
+\pgfmath@stack@operand=\toks24
+\pgfmath@stack@operation=\toks25
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
@@ -194,32 +202,32 @@ erarithmetics.code.tex)))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen116
-\pgf@picmaxx=\dimen117
-\pgf@picminy=\dimen118
-\pgf@picmaxy=\dimen119
-\pgf@pathminx=\dimen120
-\pgf@pathmaxx=\dimen121
-\pgf@pathminy=\dimen122
-\pgf@pathmaxy=\dimen123
-\pgf@xx=\dimen124
-\pgf@xy=\dimen125
-\pgf@yx=\dimen126
-\pgf@yy=\dimen127
-\pgf@zx=\dimen128
-\pgf@zy=\dimen129
+\pgf@picminx=\dimen118
+\pgf@picmaxx=\dimen119
+\pgf@picminy=\dimen120
+\pgf@picmaxy=\dimen121
+\pgf@pathminx=\dimen122
+\pgf@pathmaxx=\dimen123
+\pgf@pathminy=\dimen124
+\pgf@pathmaxy=\dimen125
+\pgf@xx=\dimen126
+\pgf@xy=\dimen127
+\pgf@yx=\dimen128
+\pgf@yy=\dimen129
+\pgf@zx=\dimen130
+\pgf@zy=\dimen131
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen130
-\pgf@path@lasty=\dimen131
+\pgf@path@lastx=\dimen132
+\pgf@path@lasty=\dimen133
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen132
-\pgf@shorten@start@additional=\dimen133
+\pgf@shorten@end@additional=\dimen134
+\pgf@shorten@start@additional=\dimen135
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
@@ -232,14 +240,14 @@ File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen134
+\pgflinewidth=\dimen136
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen135
-\pgf@pt@y=\dimen136
-\pgf@pt@temp=\dimen137
+\pgf@pt@x=\dimen137
+\pgf@pt@y=\dimen138
+\pgf@pt@temp=\dimen139
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -256,12 +264,12 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen138
+\pgfarrowsep=\dimen140
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen139
+\pgf@max=\dimen141
 \pgf@sys@shading@range@num=\count100
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
@@ -297,8 +305,8 @@ File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen140
-\pgf@nodesepend=\dimen141
+\pgf@nodesepstart=\dimen142
+\pgf@nodesepend=\dimen143
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -313,10 +321,10 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen142
-\pgffor@skip=\dimen143
-\pgffor@stack=\toks25
-\pgffor@toks=\toks26
+\pgffor@iter=\dimen144
+\pgffor@skip=\dimen145
+\pgffor@stack=\toks26
+\pgffor@toks=\toks27
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -326,14 +334,14 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \pgf@plot@mark@count=\count101
-\pgfplotmarksize=\dimen144
+\pgfplotmarksize=\dimen146
 )
-\tikz@lastx=\dimen145
-\tikz@lasty=\dimen146
-\tikz@lastxsaved=\dimen147
-\tikz@lastysaved=\dimen148
-\tikzleveldistance=\dimen149
-\tikzsiblingdistance=\dimen150
+\tikz@lastx=\dimen147
+\tikz@lasty=\dimen148
+\tikz@lastxsaved=\dimen149
+\tikz@lastysaved=\dimen150
+\tikzleveldistance=\dimen151
+\tikzsiblingdistance=\dimen152
 \tikz@figbox=\box34
 \tikz@figbox@bg=\box35
 \tikz@tempbox=\box36
@@ -359,16 +367,16 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count110
 \lst@gtempboxa=\box38
-\lst@token=\toks27
+\lst@token=\toks28
 \lst@length=\count111
-\lst@currlwidth=\dimen151
+\lst@currlwidth=\dimen153
 \lst@column=\count112
 \lst@pos=\count113
-\lst@lostspace=\dimen152
-\lst@width=\dimen153
+\lst@lostspace=\dimen154
+\lst@width=\dimen155
 \lst@newlines=\count114
 \lst@lineno=\count115
-\lst@maxwidth=\dimen154
+\lst@maxwidth=\dimen156
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
@@ -397,19 +405,19 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@cnth=\count118
 \Gm@cntv=\count119
 \c@Gm@tempcnt=\count120
-\Gm@bindingoffset=\dimen155
-\Gm@wd@mp=\dimen156
-\Gm@odd@mp=\dimen157
-\Gm@even@mp=\dimen158
-\Gm@layoutwidth=\dimen159
-\Gm@layoutheight=\dimen160
-\Gm@layouthoffset=\dimen161
-\Gm@layoutvoffset=\dimen162
-\Gm@dimlist=\toks28
+\Gm@bindingoffset=\dimen157
+\Gm@wd@mp=\dimen158
+\Gm@odd@mp=\dimen159
+\Gm@even@mp=\dimen160
+\Gm@layoutwidth=\dimen161
+\Gm@layoutheight=\dimen162
+\Gm@layouthoffset=\dimen163
+\Gm@layoutvoffset=\dimen164
+\Gm@dimlist=\toks29
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2016/11/05 v2.16a AMS math features
-\@mathmargin=\skip43
+\@mathmargin=\skip45
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -417,12 +425,12 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks29
-\ex@=\dimen163
+\@emptytoks=\toks30
+\ex@=\dimen165
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen164
+\pmbraise@=\dimen166
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
@@ -439,7 +447,7 @@ LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box40
 \strutbox@=\box41
-\big@size=\dimen165
+\big@size=\dimen167
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count126
@@ -447,21 +455,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \dotsspace@=\muskip10
 \c@parentequation=\count128
 \dspbrk@lvl=\count129
-\tag@help=\toks30
+\tag@help=\toks31
 \row@=\count130
 \column@=\count131
 \maxfields@=\count132
-\andhelp@=\toks31
-\eqnshift@=\dimen166
-\alignsep@=\dimen167
-\tagshift@=\dimen168
-\tagwidth@=\dimen169
-\totwidth@=\dimen170
-\lineht@=\dimen171
-\@envbody=\toks32
-\multlinegap=\skip44
-\multlinetaggap=\skip45
-\mathdisplay@stack=\toks33
+\andhelp@=\toks32
+\eqnshift@=\dimen168
+\alignsep@=\dimen169
+\tagshift@=\dimen170
+\tagwidth@=\dimen171
+\totwidth@=\dimen172
+\lineht@=\dimen173
+\@envbody=\toks33
+\multlinegap=\skip46
+\multlinetaggap=\skip47
+\mathdisplay@stack=\toks34
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
@@ -482,7 +490,7 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
 code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen172
+\arrowsize=\dimen174
 )) (/usr/local/texlive/2017/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
@@ -498,8 +506,8 @@ Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip46
-\bibsep=\skip47
+\bibhang=\skip48
+\bibsep=\skip49
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count133
 )
@@ -513,23 +521,23 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen173
-\lightrulewidth=\dimen174
-\cmidrulewidth=\dimen175
-\belowrulesep=\dimen176
-\belowbottomsep=\dimen177
-\aboverulesep=\dimen178
-\abovetopsep=\dimen179
-\cmidrulesep=\dimen180
-\cmidrulekern=\dimen181
-\defaultaddspace=\dimen182
+\heavyrulewidth=\dimen175
+\lightrulewidth=\dimen176
+\cmidrulewidth=\dimen177
+\belowrulesep=\dimen178
+\belowbottomsep=\dimen179
+\aboverulesep=\dimen180
+\abovetopsep=\dimen181
+\cmidrulesep=\dimen182
+\cmidrulekern=\dimen183
+\defaultaddspace=\dimen184
 \@cmidla=\count136
 \@cmidlb=\count137
-\@aboverulesep=\dimen183
-\@belowrulesep=\dimen184
+\@aboverulesep=\dimen185
+\@belowrulesep=\dimen186
 \@thisruleclass=\count138
 \@lastruleclass=\count139
-\@thisrulewidth=\dimen185
+\@thisrulewidth=\dimen187
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/floatrow/floatrow.sty
 Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
@@ -537,49 +545,49 @@ Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
 (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen186
-\captionmargin@=\dimen187
-\captionwidth=\dimen188
-\caption@tempdima=\dimen189
-\caption@indent=\dimen190
-\caption@parindent=\dimen191
-\caption@hangindent=\dimen192
+\captionmargin=\dimen188
+\captionmargin@=\dimen189
+\captionwidth=\dimen190
+\caption@tempdima=\dimen191
+\caption@indent=\dimen192
+\caption@parindent=\dimen193
+\caption@hangindent=\dimen194
 )
 \c@float@type=\count140
-\float@exts=\toks34
+\float@exts=\toks35
 \float@box=\box42
 \@floatcapt=\box43
 Package floatrow Info: Modified float package code loaded on input line 455.
 Package floatrow Info: Modified rotfloat package code loaded on input line 473.
 
-\FR@everyfloat=\toks35
+\FR@everyfloat=\toks36
 \flrow@foot=\insert199
-\FB@wd=\dimen193
-\FBo@wd=\dimen194
-\FBc@wd=\dimen195
-\FBo@ht=\skip48
-\FBc@ht=\skip49
-\FBf@ht=\skip50
-\FBo@max=\skip51
-\FBc@max=\skip52
-\FBf@max=\skip53
+\FB@wd=\dimen195
+\FBo@wd=\dimen196
+\FBc@wd=\dimen197
+\FBo@ht=\skip50
+\FBc@ht=\skip51
+\FBf@ht=\skip52
+\FBo@max=\skip53
+\FBc@max=\skip54
+\FBf@max=\skip55
 \c@FBl@b=\count141
 \floatbox@depth=\count142
 \c@FRobj=\count143
 \c@FRsobj=\count144
-\Xhsize=\skip54
-\sXhsize=\skip55
-\Zhsize=\skip56
-\sZhsize=\skip57
+\Xhsize=\skip56
+\sXhsize=\skip57
+\Zhsize=\skip58
+\sZhsize=\skip59
 \flrow@rowbox=\box44
-\FR@Zunitlength=\dimen196
+\FR@Zunitlength=\dimen198
 \c@FBcnt=\count145
 \FPOScnt=\count146
-\LTleft=\skip58
-\LTright=\skip59
 \LTleft=\skip60
 \LTright=\skip61
-\flrow@types=\toks36
+\LTleft=\skip62
+\LTright=\skip63
+\flrow@types=\toks37
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
@@ -588,29 +596,21 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \c@r@tfl@t=\count147
-\rotFPtop=\skip62
-\rotFPbot=\skip63
+\rotFPtop=\skip64
+\rotFPbot=\skip65
 \rot@float@box=\box45
-\rot@mess@toks=\toks37
+\rot@mess@toks=\toks38
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
-\multirow@colwidth=\skip64
+\multirow@colwidth=\skip66
 \multirow@cntb=\count148
-\multirow@dima=\skip65
-\bigstrutjot=\dimen197
+\multirow@dima=\skip67
+\bigstrutjot=\dimen256
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tools/dcolumn.sty
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
-Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
-\col@sep=\dimen198
-\extrarowheight=\dimen256
-\NC@list=\toks38
-\extratabsurround=\skip66
-\backup@length=\skip67
-))
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/comment/comment.sty
 \CommentStream=\write5
 
@@ -801,26 +801,29 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip82
 )
-(./Interference_in_Field_Experiments.aux)
+(./Interference_in_Field_Experiments.aux
+
+LaTeX Warning: Label `tab:legislative.nets' multiply defined.
+
+)
 \openout1 = `Interference_in_Field_Experiments.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 139.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 140.
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -901,7 +904,7 @@ Package: fr-subfig 2007/12/24 v0.1g (beta) floatrow: additions for subfig
 \FBso@max=\skip84
 )
 \AtBeginShipoutBox=\box47
-Package hyperref Info: Link coloring ON on input line 139.
+Package hyperref Info: Link coloring ON on input line 140.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -911,9 +914,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count174
 )
-LaTeX Info: Redefining \ref on input line 139.
-LaTeX Info: Redefining \pageref on input line 139.
-LaTeX Info: Redefining \nameref on input line 139.
+LaTeX Info: Redefining \ref on input line 140.
+LaTeX Info: Redefining \pageref on input line 140.
+LaTeX Info: Redefining \nameref on input line 140.
 
 (./Interference_in_Field_Experiments.out)
 (./Interference_in_Field_Experiments.out)
@@ -921,94 +924,94 @@ LaTeX Info: Redefining \nameref on input line 139.
 \openout6 = `Interference_in_Field_Experiments.out'.
 
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 14
-1.
+2.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 14
-1.
+2.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 14
-1.
+2.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 14
-1.
+2.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 141.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 142.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 141.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 141.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 141.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
 
 
 LaTeX Warning: No \author given.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 146.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 147.
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
  []
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 161.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 162.
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2] [3] [4] [5]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 199.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 200.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 199.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 200.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 199.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 200.
  [6] [7]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 216.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 218.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 217.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 219.
 
 
 LaTeX Warning: Reference `legislative.netws' on page 8 undefined on input line 
-217.
+219.
 
 [8]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 219.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 221.
 
  (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 219.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 221.
 
-Overfull \hbox (4.59474pt too wide) in paragraph at lines 221--222
+Overfull \hbox (4.59474pt too wide) in paragraph at lines 223--224
 []\T1/ptm/m/n/12 Co-sponsorship net-work: Us-ing in-for-ma-tion about leg-is-la
 -tors who have co-sponsored
  []
@@ -1018,50 +1021,72 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package natbib Warning: Citation `grose2015explainin' on page 9 undefined on in
-put line 250.
+put line 252.
 
-[9] [10]
-Overfull \hbox (22.51039pt too wide) in paragraph at lines 257--258
+[9] [10] [11]
+<./images/effect_constant_twohops.pdf, id=256, 1445.4pt x 722.7pt>
+File: ./images/effect_constant_twohops.pdf Graphic file (type pdf)
+
+<use ./images/effect_constant_twohops.pdf>
+Package pdftex.def Info: ./images/effect_constant_twohops.pdf used on input lin
+e 268.
+(pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
+
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 268--268
+ []|[]| 
+ []
+
+<./images/effect_constant_threehops.pdf, id=258, 1445.4pt x 722.7pt>
+File: ./images/effect_constant_threehops.pdf Graphic file (type pdf)
+
+<use ./images/effect_constant_threehops.pdf>
+Package pdftex.def Info: ./images/effect_constant_threehops.pdf used on input l
+ine 268.
+(pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
+
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 268--268
+ []|[]| 
+ []
+
+<./images/effect_decay_twohops.pdf, id=260, 1445.4pt x 722.7pt>
+File: ./images/effect_decay_twohops.pdf Graphic file (type pdf)
+
+<use ./images/effect_decay_twohops.pdf>
+Package pdftex.def Info: ./images/effect_decay_twohops.pdf used on input line 2
+69.
+(pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
+
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 269--269
+ []|[]| 
+ []
+
+<./images/effect_decay_threehops.pdf, id=262, 1445.4pt x 722.7pt>
+File: ./images/effect_decay_threehops.pdf Graphic file (type pdf)
+
+<use ./images/effect_decay_threehops.pdf>
+Package pdftex.def Info: ./images/effect_decay_threehops.pdf used on input line
+ 269.
+(pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
+
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 269--270
+ []|[]| 
+ []
+
+[12 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
+pdf> <./images/effect_decay_twohops.pdf> <./images/effect_decay_threehops.pdf>]
+
+Overfull \hbox (22.51039pt too wide) in paragraph at lines 281--282
 []\T1/ptm/m/n/12 Entire net-work: Treat-ment ef-fect can prop-a-gate through th
 e en-tire network---proportional
  []
 
-[11]
-Overfull \hbox (9.88483pt too wide) in paragraph at lines 264--266
+
+Overfull \hbox (9.88483pt too wide) in paragraph at lines 288--290
 []\T1/ptm/m/n/12 : The above two specifications---selecting the net-work and th
 e neighborhood---determine
  []
 
-[12] [13] [14]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 293.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 293.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 293.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 293.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 293.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 293.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 293.
-
-[15] [16] [17]
+[13] [14] [15] [16]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\begingroup' on input line 317.
@@ -1090,72 +1115,101 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 317.
 
-[18] <./images/pval_plot_coppock_replication.pdf, id=347, 505.89pt x 505.89pt>
+[17] [18]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\begingroup' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\let' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\<let>-command' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\NAT@ctype' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\z@' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\let' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on input line 341.
+
+[19] <./images/pval_plot_coppock_replication.pdf, id=379, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_replication.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_replication.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_replication.pdf used on inp
-ut line 324.
+ut line 348.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [19 <./images/pval_plot_coppock_replication.pdf>]
-<./images/pval_plot_coppock_ideo_3nn.pdf, id=364, 505.89pt x 505.89pt>
+ [20]
+<./images/pval_plot_coppock_ideo_3nn.pdf, id=388, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_3nn.pdf used on input 
-line 336.
+line 360.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_5nn.pdf, id=365, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_5nn.pdf, id=389, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_5nn.pdf used on input 
-line 337.
+line 361.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_8nn.pdf, id=366, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_8nn.pdf, id=390, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_8nn.pdf used on input 
-line 338.
+line 362.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_12nn.pdf, id=367, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_12nn.pdf, id=391, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_12nn.pdf used on input
- line 339.
+ line 363.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 335--341
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 359--365
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 345.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 369.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 345.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 369.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 345.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 369.
 
-<./images/pval_plot_coppock_committee_1ormore.pdf, id=373, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_committee_1ormore.pdf, id=397, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_committee_1ormore.pdf Graphic file (type pdf)
 <use ./images/pval_plot_coppock_committee_1ormore.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_committee_1ormore.pdf used 
-on input line 350.
+on input line 374.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_committee_2ormore.pdf, id=374, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_committee_2ormore.pdf, id=398, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_committee_2ormore.pdf Graphic file (type pdf)
 <use ./images/pval_plot_coppock_committee_2ormore.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_committee_2ormore.pdf used 
-on input line 351.
+on input line 375.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 349--353
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 373--377
  [][] 
  []
 
@@ -1164,86 +1218,87 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 402.
+(hyperref)                removing `\begingroup' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 402.
+(hyperref)                removing `\let' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 402.
+(hyperref)                removing `\<let>-command' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 402.
+(hyperref)                removing `\NAT@ctype' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 402.
+(hyperref)                removing `\z@' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 402.
+(hyperref)                removing `\let' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 402.
+(hyperref)                removing `\new@ifnextchar' on input line 426.
 
-[20] [21 <./images/pval_plot_coppock_ideo_3nn.pdf> <./images/pval_plot_coppock_
-ideo_5nn.pdf> <./images/pval_plot_coppock_ideo_8nn.pdf> <./images/pval_plot_cop
-pock_ideo_12nn.pdf>] [22 <./images/pval_plot_coppock_committee_1ormore.pdf> <./
-images/pval_plot_coppock_committee_2ormore.pdf>]
-<./images/pval_plot_bergan_main.pdf, id=445, 505.89pt x 505.89pt>
+[21 <./images/pval_plot_coppock_replication.pdf>] [22 <./images/pval_plot_coppo
+ck_ideo_3nn.pdf> <./images/pval_plot_coppock_ideo_5nn.pdf> <./images/pval_plot_
+coppock_ideo_8nn.pdf> <./images/pval_plot_coppock_ideo_12nn.pdf>] [23 <./images
+/pval_plot_coppock_committee_1ormore.pdf> <./images/pval_plot_coppock_committee
+_2ormore.pdf>]
+<./images/pval_plot_bergan_main.pdf, id=476, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_main.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_main.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_main.pdf used on input line 
-412.
+436.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_3nn.pdf, id=452, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_3nn.pdf, id=483, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_3nn.pdf used on input l
-ine 423.
+ine 447.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_5nn.pdf, id=453, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_5nn.pdf, id=484, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_5nn.pdf used on input l
-ine 424.
+ine 448.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_8nn.pdf, id=454, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_8nn.pdf, id=485, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_8nn.pdf used on input l
-ine 425.
+ine 449.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_12nn.pdf, id=455, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_12nn.pdf, id=486, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_12nn.pdf used on input 
-line 426.
+line 450.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 422--428
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 446--452
  [][] 
  []
 
-[23] <./images/pval_plot_bergan_cospon.pdf, id=465, 505.89pt x 505.89pt>
+[24] <./images/pval_plot_bergan_cospon.pdf, id=496, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_cospon.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_cospon.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_cospon.pdf used on input lin
-e 437.
+e 461.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
 
@@ -1251,105 +1306,108 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 484.
+(hyperref)                removing `\begingroup' on input line 508.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 484.
+(hyperref)                removing `\let' on input line 508.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 484.
+(hyperref)                removing `\<let>-command' on input line 508.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 484.
+(hyperref)                removing `\NAT@ctype' on input line 508.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 484.
+(hyperref)                removing `\z@' on input line 508.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 484.
+(hyperref)                removing `\let' on input line 508.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 484.
+(hyperref)                removing `\new@ifnextchar' on input line 508.
 
-[24 <./images/pval_plot_bergan_main.pdf>] [25 <./images/pval_plot_bergan_ideo_3
+[25 <./images/pval_plot_bergan_main.pdf>] [26 <./images/pval_plot_bergan_ideo_3
 nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
-o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [26 <./images/pval_plot_b
-ergan_cospon.pdf>] [27]
-<./images/pval_plot_broockman_demvotepct.pdf, id=540, 505.89pt x 505.89pt>
+o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [27 <./images/pval_plot_b
+ergan_cospon.pdf>] [28]
+<./images/pval_plot_broockman_demvotepct.pdf, id=572, 505.89pt x 505.89pt>
 File: ./images/pval_plot_broockman_demvotepct.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_broockman_demvotepct.pdf>
 Package pdftex.def Info: ./images/pval_plot_broockman_demvotepct.pdf used on in
-put line 506.
+put line 530.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_broockman_blackpct.pdf, id=541, 505.89pt x 505.89pt>
+<./images/pval_plot_broockman_blackpct.pdf, id=573, 505.89pt x 505.89pt>
 File: ./images/pval_plot_broockman_blackpct.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_broockman_blackpct.pdf>
 Package pdftex.def Info: ./images/pval_plot_broockman_blackpct.pdf used on inpu
-t line 507.
+t line 531.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 505--509
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 529--533
  [][] 
  []
 
 
-<./images/pval_plot_broockman_demvotepct_blackpct.pdf, id=546, 505.89pt x 505.8
+<./images/pval_plot_broockman_demvotepct_blackpct.pdf, id=578, 505.89pt x 505.8
 9pt>
 File: ./images/pval_plot_broockman_demvotepct_blackpct.pdf Graphic file (type p
 df)
  <use ./images/pval_plot_broockman_demvotepct_blackpct.pdf>
 Package pdftex.def Info: ./images/pval_plot_broockman_demvotepct_blackpct.pdf u
-sed on input line 514.
+sed on input line 538.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [28] [29 <./images/pval_plot_broockman_demvotepct.pdf> <./images/pval_plot_bro
+ [29] [30 <./images/pval_plot_broockman_demvotepct.pdf> <./images/pval_plot_bro
 ockman_blackpct.pdf> <./images/pval_plot_broockman_demvotepct_blackpct.pdf>] [3
-0]
-(./Interference_in_Field_Experiments.bbl [31] [32] [33] [34] [35]
+1]
+(./Interference_in_Field_Experiments.bbl [32] [33] [34] [35] [36]
 Underfull \hbox (badness 1152) in paragraph at lines 210--214
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[36])
+[37])
 
 Package natbib Warning: There were undefined citations.
 
 
-Package caption Warning: Unused \captionsetup[subfloat] on input line 77.
+Package caption Warning: Unused \captionsetup[subfloat] on input line 78.
 See the caption package documentation for explanation.
 
-[37]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 579.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 579.
+[38]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 603.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 603.
  (./Interference_in_Field_Experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 579.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 579.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 603.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 603.
 Package rerunfilecheck Info: File `Interference_in_Field_Experiments.out' has n
 ot changed.
-(rerunfilecheck)             Checksum: C73923FE53396F1D68919B606C88E3CC;860.
+(rerunfilecheck)             Checksum: F13A28ACAE4E1057A3BAEC9ADC3563F8;960.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 579.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 603.
  ) 
 Here is how much of TeX's memory you used:
- 21606 strings out of 492995
- 395157 string characters out of 6132704
- 464134 words of memory out of 5000000
- 24617 multiletter control sequences out of 15000+600000
+ 21631 strings out of 492995
+ 395984 string characters out of 6132704
+ 464173 words of memory out of 5000000
+ 24634 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,54p,2308b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,17n,54p,2308b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1359,11 +1417,11 @@ e/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (37 pages, 338436 bytes
+Output written on Interference_in_Field_Experiments.pdf (38 pages, 375457 bytes
 ).
 PDF statistics:
- 700 PDF objects out of 1000 (max. 8388607)
- 593 compressed objects within 6 object streams
- 119 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 733 PDF objects out of 1000 (max. 8388607)
+ 612 compressed objects within 7 object streams
+ 122 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
 
