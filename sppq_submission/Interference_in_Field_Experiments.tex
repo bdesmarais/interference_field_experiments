@@ -148,7 +148,7 @@
 \vspace{.3cm}
 \vspace{.3cm}
 
-\noindent  Recent work on legislative politics has documented complex patterns of interaction and collaboration through the lens of network analysis. In a largely separate vein of research, the field experiment---focused largely on state legislatures---has emerged as an important approach in establishing causal identification in the study of legislative politics. The stable unit treatment value assumption (SUTVA)---the assumption that a unit's outcome is unaffected by other units' treatment statuses---is required in conventional approaches to causal inference with experiments. When SUTVA is violated, a condition termed interference, as in networked social interaction, treatment effects spread to control units through the network structure. We review recently developed methods that can be used to account for interference in the analysis of data from field experiments on state legislatures. The methods we review require the researcher to specify a spillover model, according to which legislators influence each other, and specify the network through which spillover occurs. We discuss these and other specification steps in detail. We find evidence for spillover effects in data from two of three previously published field experiments. These replication analyses illustrate how researchers can use recently developed methods to test for interference effects, and support the case for considering interference effects in experiments on state legislatures.%\footnote{Prepared for presentation at the 2016 Political Networks Conference, Washington University, St. Louis. Work supported in part by National Science Foundation grants SES-1558661, SES-1619644, CISE-1320219, and IGERT Grant DGE-1144860, Big Data Social Science. Any opinions, findings, and conclusions or recommendations are those of the authors and do not necessarily reflect those of the sponsor.} 
+\noindent  Recent work on legislative politics has documented complex patterns of interaction and collaboration through the lens of network analysis. In a largely separate vein of research, the field experiment---focused largely on state legislatures---has emerged as an important approach in establishing causal identification in the study of legislative politics. The stable unit treatment value assumption (SUTVA)---the assumption that a unit's outcome is unaffected by other units' treatment statuses---is required in conventional approaches to causal inference with experiments. When SUTVA is violated, a condition termed interference, as in networked social interaction, treatment effects spread to control units through the network structure. We review recently developed methods that can be used to account for interference in the analysis of data from field experiments on state legislatures. The methods we review require the researcher to specify a spillover model, according to which legislators influence each other, and specify the network through which spillover occurs. We discuss these and other specification steps in detail. We find evidence for spillover effects in data from two previously published field experiments. These replication analyses illustrate how researchers can use recently developed methods to test for interference effects, and support the case for considering interference effects in experiments on state legislatures.%\footnote{Prepared for presentation at the 2016 Political Networks Conference, Washington University, St. Louis. Work supported in part by National Science Foundation grants SES-1558661, SES-1619644, CISE-1320219, and IGERT Grant DGE-1144860, Big Data Social Science. Any opinions, findings, and conclusions or recommendations are those of the authors and do not necessarily reflect those of the sponsor.} 
 \\~\\~\\
 \end{abstract}
 
@@ -249,7 +249,7 @@ Similarity in constituency demographics \\
 \label{tab:legislative.nets}
 \end{table}
 
-The determination regarding which network(s) to consider in any particular application is, of course, best made by the researchers carrying out the application. Selecting which network(s) to test is much like selecting which variables to include when specifying a model---researchers should use a combination of theory and exploration, being careful to adjust for multiple testing bias in hypothesis tests (e.g., via Bonferroni correction \citep{napierala2012bonferroni}). We discuss two dimensions of interference dynamics---exposure and uptake---that should help to inform this determination. Exposure refers to the degree to which the network governs legislators' awareness regarding each others' beliefs or behaviors. Uptake refers to the role of the network in determining which legislators' would adopt each others' beliefs or behaviors if exposed to them. Consider a legislator's position on a major policy issue. It is likely that each legislator in a chamber is aware of each other legislator's opinion on a major issue, so the network does not need to play a major role in exposure to govern interference. However, in order to influence each other on a major policy issue, legislators may need to see each other as closely aligned ideologically. For interference dynamics that do not require exposure through the network, but require uptake, researchers should look for networks that signal ideological similarity such as co-voting on bills. On the other hand, some interference dynamics for which uptake might be highly likely, such as re-use of issue framing in legislators' public statements \citep{lin2016uncovering}, or the adoption of strategies in responding to constituent requests \citep{grose2015explainin}, would require legislators to be exposed to each other through explicit communication channels.  In applications where the network needs to play an important role in signaling exposure, networks such as twitter follower networks and caucus co-membership may be more appropriate. We can also think of networks that would signal both ideological alignment and explicit communication ties, such as co-participation in press events and frequent bill co-sponsorship (especially early-stage, or original cosponsorships).  
+The determination regarding which network(s) to consider in any particular application is, of course, best made by the researchers carrying out the application. Selecting which network(s) to test is much like selecting which variables to include when specifying a model---researchers should use a combination of theory and exploration, being careful to adjust for multiple testing bias in hypothesis tests (e.g., via Bonferroni correction \citep{napierala2012bonferroni}). We discuss two dimensions of interference dynamics---exposure and uptake---that should help to inform this determination. Exposure refers to the degree to which the network governs legislators' awareness regarding each others' beliefs or behaviors. Uptake refers to the role of the network in determining which legislators' would adopt each others' beliefs or behaviors if exposed to them. Consider a legislator's position on a major policy issue. It is likely that each legislator in a chamber is aware of each other legislator's opinion on a major issue, so the network does not need to play a major role in exposure to govern interference. However, in order to influence each other on a major policy issue, legislators may need to see each other as closely aligned ideologically. For interference dynamics that do not require exposure through the network, but require uptake, researchers should look for networks that signal ideological similarity such as co-voting on bills. On the other hand, some interference dynamics for which uptake might be highly likely, such as re-use of issue framing in legislators' public statements \citep{lin2016uncovering}, or the adoption of strategies in responding to constituent requests \citep{grose2015explainin}, would require legislators to be exposed to each other through explicit communication channels.  In applications where the network needs to play an important role in signaling exposure, networks such as twitter follower networks and caucus co-membership may be more appropriate. We can also think of networks that would signal both ideological alignment and explicit communication ties, such as co-participation in press events and frequent bill co-sponsorship (especially early-stage, or original cosponsorships).  Note that there are two categories of processes through which interference can occur---spread of the treatment through a network (e.g., an influential lobbying communication is sent to a legislator, and that legislator forwards the communication to others in their network) and spillover of effects (e.g., a lobbying communication influences a legislator's vote, and others in that legislator's network take cues from their vote). A useful thought experiment in selecting networks to use in tests of interference would be to consider which networks would facilitate the spread of treatments, and which networks would facilitate the spillover of effects.
 
 
 
@@ -304,7 +304,7 @@ Though a very familiar consideration in quantitative social science, functional 
 \section{Replication Analyses: Testing for Network Effects}
 %%%%
 
-To illustrate testing for effects via network models of effects, we re-analyze results from three field experiments on state legislatures. Our application builds directly on \citet{coppock2014information}. Since it is generally infeasible to recruit legislators for lab experiments, field experiments represent the best option for design-based causal identification of effects in research on legislative behavior. The literature offers many recent examples of field experiments in legislative studies \citep[e.g., ][]{bergan2009does,butler2011politicians,butler2012field,broockman2013black,nyhan2015effect,bergan2015call}. In these experiments, the researcher introduces a manipulation (e.g., a communication from a constituent, or information about constituent preferences), and then observes legislators' behavior in terms of casting roll call votes or reacting to the communication on an individual basis. Since legislators regularly communicate and collaborate, it is highly possible that SUTVA is violated in a legislative field experiment. 
+To illustrate testing for effects via network models of effects, we re-analyze results from two field experiments on state legislatures. Our application builds directly on \citet{coppock2014information}. Since it is generally infeasible to recruit legislators for lab experiments, field experiments represent the best option for design-based causal identification of effects in research on legislative behavior. The literature offers many recent examples of field experiments in legislative studies \citep[e.g., ][]{bergan2009does,butler2011politicians,butler2012field,broockman2013black,nyhan2015effect,bergan2015call}. In these experiments, the researcher introduces a manipulation (e.g., a communication from a constituent, or information about constituent preferences), and then observes legislators' behavior in terms of casting roll call votes or reacting to the communication on an individual basis. Since legislators regularly communicate and collaborate, it is highly possible that SUTVA is violated in a legislative field experiment. 
 
 In each of the replications and extensions that follow, we test causal models that include network effects. In order to test these models, we must specify their functional forms and select the data to use in measuring the network. For each replication, we consider multiple definitions of both the network and the neighborhood through which network effects are transmitted, as we do not have strong prior expectations regarding exactly which network or neighborhood should be included in the models of effects. 
 
@@ -501,60 +501,6 @@ Cosponsorship & 0.15 & (0.025, 0.25) & 0.025 & (-0.075, 0.075)\\
 %\end{tabular}
 %\caption{Results from \citet{bergan2015call} data: Raw exposure}
 %\end{table}
-
-
-\subsection{\citet{broockman2013black} }
-
-The final dataset is from a study that aimed to understand whether politicians behave differently based on the expected electoral incentive. The question of whether there exists differential intrinsic motivation to help a constituent based on his or her race is addressed by studying all state legislators in the US serving in mid-November 2010. These 6,928 legislators received an email from an alias---Tyrone Washington---who was seeking help filing for unemployment benefits. Treatment in this case was an indication that Tyrone was from outside the legislator's district. Legislators were block-randomized based on state, party, and race. Analysis of the experiment resulted in an estimate of a 15--30 18.5 percentage point increase in the likelihood of responding to the email when Tyrone was within the legislator's district. The paper also concluded that extrinsic motivation guided response rates from non-black legislators, and the actions of black legislators were less affected by the treatment. We introduce interference effects in the analysis of this experiment by setting up a model similar to the one in \citet{coppock2014information}, where three separate networks are considered.\footnote{We assume that legislators can only be effected by other legislators in the same chamber.}
-
-The Broockman replication presents a tradeoff in terms of the available data. First, the legislators were anonymized in the replication dataset, which means we cannot match them with other legislative data such as ideal point estimates, committee membership, or cosponsorship. On the other hand, the Broockman dataset is by far the largest among our applications---two orders of magnitude larger than our other datasets. We must therefore use what is available in the replication dataset to construct plausible networks among legislators. We stipulate three possible networks through which interference may occur. These depend on two key covariates; Percentage of Democratic vote for president in the district, and Percentage of black population in the district. We create one network for each of the two covariates and a third combining the two. In networks based on individual variables, the similarity score for legislators $i$ and $j$ based on variable $X$ is defined as in Equation (1).
-
-\begin{equation}
-Similarity_{(i,j)} = \frac{2 - |x_i - x_j|}{2}
-\end{equation}
-
-For the network based on two covariates, the network is defined as the Euclidean distance between legislators $i$ and $j$ where the two variables---$X$ and $Y$---are equally weighted, as shown in Equation (2).
-
-\begin{equation}
-Similarity_{(i,j)} = \sqrt{{(x_i - x_j)}^2 + {(y_i - y_j)}^2}
-\end{equation}
-
-In these block-diagonal networks, the neighborhood of any legislator consists of all other legislators in his/her state. The closer any two units are on values of one of these variables, the stronger the tie, and higher the exposure to receiving indirect treatment. Figures 6 and 7 depict results of analyzing the \citet{broockman2013black} data under the combined network and the individual networks respectively. We see that two of these three specifications show evidence of spillover effect. The estimate for the percentage black is negative and marginally statistically significant, indicating that legislators further reduce their responsiveness to a constituent outside their district if other legislators from districts similar in racial composition also receive an outside-the-district contact. The direct effect estimates are robust, and follow the original study. The results are further detailed in Table 5.
-
-
-\begin{figure}
-	\centering
-	\begin{tabular}{cc}
-	\includegraphics[scale=0.45]{./images/pval_plot_broockman_demvotepct.pdf} &
-	\includegraphics[scale=0.45]{./images/pval_plot_broockman_blackpct.pdf} \\ 
-	\end{tabular}
-	\caption{p-values for \citet{broockman2013black} data. Percent democratic vote is on the left, and percent black is on the right.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.45]{./images/pval_plot_broockman_demvotepct_blackpct.pdf}
-\caption{p-values for \citet{broockman2013black} data: Combined network}
-\end{figure}
-
-
-
-\floatsetup[table]{objectset=centering,capposition=top}
-\begin{table}[h]
-\centering
-\begin{tabular}{lcccc}
-\toprule
-\multirow{2}{*}{Model} & \multicolumn{2}{c}{Direct effect} & \multicolumn{2}{c}{Indirect effect} \\
-\cmidrule(l){2-3} \cmidrule(l){4-5}
- & Estimate & 95\% CI & Estimate & 95\% CI \\
-\midrule
-Democratic vote percentage & -0.26 & (-0.3, -0.23) &  0 & (-0.01, 0.02)\\
-Percentage black & -0.27 & (-0.31, -0.22) &  -0.02 & (-0.04, 0)\\
-Mixture network & -0.26 & (-0.33, -0.2) &  0.03 & (-0.01, 0.06)\\
-\bottomrule
-\end{tabular}
-\caption{Results from \citet{broockman2013black} data}
-\end{table}
 
 
 %\subsection{Extensions of Coppock analysis}
@@ -924,3 +870,80 @@ lines(rep(direct.effect.CI.low, nrow(pvals)), beta2s,
 
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{\citet{broockman2013black} }
+
+The final dataset is from a study that aimed to understand whether politicians behave differently based on the expected electoral incentive. The question of whether there exists differential intrinsic motivation to help a constituent based on his or her race is addressed by studying all state legislators in the US serving in mid-November 2010. These 6,928 legislators received an email from an alias---Tyrone Washington---who was seeking help filing for unemployment benefits. Treatment in this case was an indication that Tyrone was from outside the legislator's district. Legislators were block-randomized based on state, party, and race. Analysis of the experiment resulted in an estimate of a 15--30 18.5 percentage point increase in the likelihood of responding to the email when Tyrone was within the legislator's district. The paper also concluded that extrinsic motivation guided response rates from non-black legislators, and the actions of black legislators were less affected by the treatment. We introduce interference effects in the analysis of this experiment by setting up a model similar to the one in \citet{coppock2014information}, where three separate networks are considered.\footnote{We assume that legislators can only be effected by other legislators in the same chamber.}
+
+The Broockman replication presents a tradeoff in terms of the available data. First, the legislators were anonymized in the replication dataset, which means we cannot match them with other legislative data such as ideal point estimates, committee membership, or cosponsorship. On the other hand, the Broockman dataset is by far the largest among our applications---two orders of magnitude larger than our other datasets. We must therefore use what is available in the replication dataset to construct plausible networks among legislators. We stipulate three possible networks through which interference may occur. These depend on two key covariates; Percentage of Democratic vote for president in the district, and Percentage of black population in the district. We create one network for each of the two covariates and a third combining the two. In networks based on individual variables, the similarity score for legislators $i$ and $j$ based on variable $X$ is defined as in Equation (1).
+
+\begin{equation}
+Similarity_{(i,j)} = \frac{2 - |x_i - x_j|}{2}
+\end{equation}
+
+For the network based on two covariates, the network is defined as the Euclidean distance between legislators $i$ and $j$ where the two variables---$X$ and $Y$---are equally weighted, as shown in Equation (2).
+
+\begin{equation}
+Similarity_{(i,j)} = \sqrt{{(x_i - x_j)}^2 + {(y_i - y_j)}^2}
+\end{equation}
+
+In these block-diagonal networks, the neighborhood of any legislator consists of all other legislators in his/her state. The closer any two units are on values of one of these variables, the stronger the tie, and higher the exposure to receiving indirect treatment. Figures 6 and 7 depict results of analyzing the \citet{broockman2013black} data under the combined network and the individual networks respectively. We see that two of these three specifications show evidence of spillover effect. The estimate for the percentage black is negative and marginally statistically significant, indicating that legislators further reduce their responsiveness to a constituent outside their district if other legislators from districts similar in racial composition also receive an outside-the-district contact. The direct effect estimates are robust, and follow the original study. The results are further detailed in Table 5.
+
+
+\begin{figure}
+	\centering
+	\begin{tabular}{cc}
+	\includegraphics[scale=0.45]{./images/pval_plot_broockman_demvotepct.pdf} &
+	\includegraphics[scale=0.45]{./images/pval_plot_broockman_blackpct.pdf} \\ 
+	\end{tabular}
+	\caption{p-values for \citet{broockman2013black} data. Percent democratic vote is on the left, and percent black is on the right.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.45]{./images/pval_plot_broockman_demvotepct_blackpct.pdf}
+\caption{p-values for \citet{broockman2013black} data: Combined network}
+\end{figure}
+
+
+
+\floatsetup[table]{objectset=centering,capposition=top}
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\multirow{2}{*}{Model} & \multicolumn{2}{c}{Direct effect} & \multicolumn{2}{c}{Indirect effect} \\
+\cmidrule(l){2-3} \cmidrule(l){4-5}
+ & Estimate & 95\% CI & Estimate & 95\% CI \\
+\midrule
+Democratic vote percentage & -0.26 & (-0.3, -0.23) &  0 & (-0.01, 0.02)\\
+Percentage black & -0.27 & (-0.31, -0.22) &  -0.02 & (-0.04, 0)\\
+Mixture network & -0.26 & (-0.33, -0.2) &  0.03 & (-0.01, 0.06)\\
+\bottomrule
+\end{tabular}
+\caption{Results from \citet{broockman2013black} data}
+\end{table}
+
+
