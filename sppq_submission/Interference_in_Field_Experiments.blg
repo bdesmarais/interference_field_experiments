@@ -3,39 +3,39 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Interference_in_Field_Experiments.aux
 The style file: apsr.bst
 Database file #1: interference.bib
-Repeated entry---line 1202 of file interference.bib
+Repeated entry---line 1214 of file interference.bib
  : @article{fowler2006connecting
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1224 of file interference.bib
+Repeated entry---line 1236 of file interference.bib
  : @article{victor2009social
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1774 of file interference.bib
+Repeated entry---line 1786 of file interference.bib
  : @article{coppock2016information
  :                                ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "grose2015explainin"
 You've used 43 entries,
             2874 wiz_defined-function locations,
-            907 strings with 13170 characters,
-and the built_in function-call counts, 195589 in all, are:
-= -- 32068
+            907 strings with 13138 characters,
+and the built_in function-call counts, 193913 in all, are:
+= -- 31764
 > -- 2412
 < -- 0
-+ -- 15125
++ -- 14973
 - -- 845
-* -- 16852
-:= -- 38908
+* -- 16694
+:= -- 38604
 add.period$ -- 174
 call.type$ -- 43
 change.case$ -- 559
 chr.to.int$ -- 43
 cite$ -- 43
 duplicate$ -- 712
-empty$ -- 1542
+empty$ -- 1543
 format.name$ -- 887
-if$ -- 35235
+if$ -- 34932
 int.to.chr$ -- 5
 int.to.str$ -- 0
 missing$ -- 43
@@ -47,7 +47,7 @@ purify$ -- 645
 quote$ -- 0
 skip$ -- 663
 stack$ -- 0
-substring$ -- 45398
+substring$ -- 44942
 swap$ -- 148
 text.length$ -- 602
 text.prefix$ -- 0
