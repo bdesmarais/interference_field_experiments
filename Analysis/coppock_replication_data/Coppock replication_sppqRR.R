@@ -143,16 +143,17 @@ indirect.treatment <- function(permutation, adj.mat,expected.exp0,expected.exp1)
 
 #### We now model the uniformity trial transformation
 
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat,expected.exp0,expected.exp1){
+z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support){
   # outcome: vector of direct treatment outcomes
   # beta1: direct treatment effect parameter
   # beta2: indirect treatment effect parameter
   # permutation: vector of a permutation of z (can be z itself)
   # adj.mat: adjacency matrix
   
-  exposure <- indirect.treatment(permutation, adj.mat)
+  exposure_low <- indirect.treatment(permutation*low_support, adj.mat,expected.exp0.low,expected.exp1.low)
+  exposure_high <- indirect.treatment(permutation*(1-low_support), adj.mat,expected.exp0.high,expected.exp1.high)
   # This is equation 5
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure_high) - beta3*exposure_low
+  h.yz.0 <- outcome - (beta1*permutation*low_support) -(beta2*permutation*high_support) - (beta3*exposure_high) - beta4*exposure_low
   return(h.yz.0)
 }
 
@@ -163,9 +164,10 @@ beta1s <- seq(from=-0.5, to=0.5, by=.025)
 beta2s <- seq(from=-0.5, to=0.5, by=.025)
 beta3s <- seq(from=-0.5, to=0.5, by=.025)
 
-# beta1: direct effect of treatment
-# beta2: indirect effect of high-support treated
-# beta3: indirect effect of low-support treated
+# beta1: direct effect of treatment for low
+# beta2: direct effect of treatment for high
+# beta3: indirect effect of high-support treated
+# beta4: indirect effect of low-support treated
 
 pvals <- matrix(NA, length(beta1s), length(beta2s))
 
