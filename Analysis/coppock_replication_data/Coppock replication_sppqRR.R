@@ -75,11 +75,11 @@ get.similarity <- function(x, y){
   return((2-abs(x-y))/2)
 }
 
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata") #BD
-load("D:/Dropbox/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata") #SP
+load("./Original archival/CoppockJEPS.rdata") #BD
 
 dwnom_scores <- CoppockJEPS$dwnom_scores
 
+low_support <- CoppockJEPS$lowsupport
 
 ## Create an adjacency/similarity matrix using ideology
 S.ideo <- matrix(NA, ncol=70, nrow=70)
@@ -98,6 +98,10 @@ perm <- replicate(perms, permute.within.categories(data$match_category,z))
 
 expected.exp0 <- rep(0, n)
 expected.exp1 <- rep(0, n)
+expected.exp0.low <- rep(0, n)
+expected.exp1.low <- rep(0, n)
+expected.exp0.high <- rep(0, n)
+expected.exp1.high <- rep(0, n)
 
 for(p in 1:ncol(perm)){
 	#zp <- permute.within.categories(data$match_category,z)
@@ -105,9 +109,13 @@ for(p in 1:ncol(perm)){
 	for(i in 1:n){
 		if (zp[i] == 1){
 				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)
+				expected.exp1.low[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp*low_support)
+				expected.exp1.high[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp*(1-low_support))
 			}
 			else{
 				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)
+				expected.exp0.low[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp*low_support)
+				expected.exp0.high[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp*(1-low_support))
 			}
 	}
 }
@@ -121,12 +129,12 @@ expected.exp0 <- expected.exp0/num_control
 #### Generate expected and net exposure
 #### This is the spillover effect model
 
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used
+indirect.treatment <- function(permutation, adj.mat,expected.exp0,expected.exp1){ #any treatment assignment vector and adjacency matrix can be used
  # permutation: can be the initial treatment assignment or a permutation
- raw.exp <- rep(NA, n)
- for (i in 1:n){
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)
-   }
+ #for (i in 1:n){
+  # raw.exp[i] <- sum(adj.mat[i,]*permutation)
+  # }
+ raw.exp <- c(adj.mat%*%permutation)
  net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)
  standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect
  return(standard.exp)
@@ -135,7 +143,7 @@ indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment 
 
 #### We now model the uniformity trial transformation
 
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){
+z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat,expected.exp0,expected.exp1){
   # outcome: vector of direct treatment outcomes
   # beta1: direct treatment effect parameter
   # beta2: indirect treatment effect parameter
@@ -144,7 +152,7 @@ z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){
   
   exposure <- indirect.treatment(permutation, adj.mat)
   # This is equation 5
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)
+  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure_high) - beta3*exposure_low
   return(h.yz.0)
 }
 
@@ -153,10 +161,15 @@ z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){
 
 beta1s <- seq(from=-0.5, to=0.5, by=.025)
 beta2s <- seq(from=-0.5, to=0.5, by=.025)
+beta3s <- seq(from=-0.5, to=0.5, by=.025)
+
+# beta1: direct effect of treatment
+# beta2: indirect effect of high-support treated
+# beta3: indirect effect of low-support treated
 
 pvals <- matrix(NA, length(beta1s), length(beta2s))
 
-cl <- makeCluster(8) #Setup for parallel computing
+cl <- makeCluster(2) #Setup for parallel computing
 registerDoParallel(cl)
 
 pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {

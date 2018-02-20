@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 FEB 2018 11:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  20 FEB 2018 05:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1053,11 +1053,13 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 264--265
  []|[]| 
  []
 
-[11 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
-pdf> <./images/effect_decay_twohops.pdf> <./images/effect_decay_threehops.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11]
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 276.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
@@ -1068,7 +1070,9 @@ Overfull \hbox (22.51039pt too wide) in paragraph at lines 276--277
 e en-tire network---proportional
  []
 
-[12]
+[12 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
+pdf> <./images/effect_decay_twohops.pdf> <./images/effect_decay_threehops.pdf>]
+
 Overfull \hbox (9.88483pt too wide) in paragraph at lines 283--285
 []\T1/ptm/m/n/12 : The above two specifications---selecting the net-work and th
 e neighborhood---determine
@@ -1132,14 +1136,14 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 334.
 
-<./images/pval_plot_coppock_replication.pdf, id=370, 505.89pt x 505.89pt>
+[19] <./images/pval_plot_coppock_replication.pdf, id=375, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_replication.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_replication.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_replication.pdf used on inp
 ut line 341.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [19] [20 <./images/pval_plot_coppock_replication.pdf>]
+ [20 <./images/pval_plot_coppock_replication.pdf>]
 <./images/pval_plot_coppock_ideo_3nn.pdf, id=391, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_3nn.pdf Graphic file (type pdf)
 
@@ -1202,6 +1206,9 @@ Overfull \hbox (49.29216pt too wide) in paragraph at lines 366--370
  []
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\begingroup' on input line 419.
 
@@ -1233,7 +1240,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 ideo_5nn.pdf> <./images/pval_plot_coppock_ideo_8nn.pdf> <./images/pval_plot_cop
 pock_ideo_12nn.pdf>] [23 <./images/pval_plot_coppock_committee_1ormore.pdf> <./
 images/pval_plot_coppock_committee_2ormore.pdf>]
-<./images/pval_plot_bergan_main.pdf, id=473, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_main.pdf, id=472, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_main.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_main.pdf>
@@ -1241,7 +1248,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_main.pdf used on input line
 429.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_3nn.pdf, id=480, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_3nn.pdf, id=479, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_3nn.pdf>
@@ -1249,7 +1256,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_ideo_3nn.pdf used on input l
 ine 440.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_5nn.pdf, id=481, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_5nn.pdf, id=480, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_5nn.pdf>
@@ -1257,7 +1264,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_ideo_5nn.pdf used on input l
 ine 441.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_8nn.pdf, id=482, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_8nn.pdf, id=481, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_8nn.pdf>
@@ -1265,7 +1272,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_ideo_8nn.pdf used on input l
 ine 442.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_12nn.pdf, id=483, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_12nn.pdf, id=482, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_12nn.pdf>
@@ -1277,10 +1284,7 @@ Overfull \hbox (49.29216pt too wide) in paragraph at lines 439--445
  [][] 
  []
 
-[24 <./images/pval_plot_bergan_main.pdf>] [25 <./images/pval_plot_bergan_ideo_3
-nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
-o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>]
-<./images/pval_plot_bergan_cospon.pdf, id=529, 505.89pt x 505.89pt>
+[24] <./images/pval_plot_bergan_cospon.pdf, id=492, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_cospon.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_cospon.pdf>
@@ -1291,14 +1295,17 @@ e 454.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[26 <./images/pval_plot_bergan_cospon.pdf>] [27] [28]
-(./Interference_in_Field_Experiments.bbl [29] [30] [31] [32] [33]
+[25 <./images/pval_plot_bergan_main.pdf>] [26 <./images/pval_plot_bergan_ideo_3
+nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
+o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [27 <./images/pval_plot_b
+ergan_cospon.pdf>] [28] (./Interference_in_Field_Experiments.bbl [29] [30]
+[31] [32] [33]
 Underfull \hbox (badness 1152) in paragraph at lines 227--231
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[34])
+[34] [35])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1306,7 +1313,7 @@ Package natbib Warning: There were undefined citations.
 Package caption Warning: Unused \captionsetup[subfloat] on input line 78.
 See the caption package documentation for explanation.
 
-[35]
+[36]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 545.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 545.
  (./Interference_in_Field_Experiments.aux)
@@ -1319,16 +1326,19 @@ ot changed.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 545.
  ) 
 Here is how much of TeX's memory you used:
- 21618 strings out of 492995
- 395547 string characters out of 6132704
- 465557 words of memory out of 5000000
+ 21619 strings out of 492995
+ 395554 string characters out of 6132704
+ 465556 words of memory out of 5000000
  24632 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,17n,54p,2963b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,17n,54p,2963b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -1337,11 +1347,11 @@ ve/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (35 pages, 329770 bytes
+Output written on Interference_in_Field_Experiments.pdf (36 pages, 330603 bytes
 ).
 PDF statistics:
- 664 PDF objects out of 1000 (max. 8388607)
- 560 compressed objects within 6 object streams
- 114 named destinations out of 1000 (max. 500000)
+ 671 PDF objects out of 1000 (max. 8388607)
+ 566 compressed objects within 6 object streams
+ 115 named destinations out of 1000 (max. 500000)
  218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
