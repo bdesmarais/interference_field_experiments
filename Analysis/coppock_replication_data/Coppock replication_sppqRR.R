@@ -129,15 +129,18 @@ expected.exp0 <- expected.exp0/num_control
 #### Generate expected and net exposure
 #### This is the spillover effect model
 
-indirect.treatment <- function(permutation, adj.mat,expected.exp0,expected.exp1){ #any treatment assignment vector and adjacency matrix can be used
+indirect.treatment <- function(permutation, adj.mat,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support){ #any treatment assignment vector and adjacency matrix can be used
  # permutation: can be the initial treatment assignment or a permutation
  #for (i in 1:n){
   # raw.exp[i] <- sum(adj.mat[i,]*permutation)
   # }
- raw.exp <- c(adj.mat%*%permutation)
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect
- return(standard.exp)
+ raw.exp.low <- c(adj.mat%*%(permutation*low_support))
+ raw.exp.high <- c(adj.mat%*%(permutation*(1-low_support)))
+ net.exp.low <- raw.exp.low - (permutation*expected.exp1.low + (1-permutation)*expected.exp0.low)
+ net.exp.high <- raw.exp.high - (permutation*expected.exp1.high + (1-permutation)*expected.exp0.high)
+ standard.exp.low <- (net.exp.low - mean(net.exp.low))/sd(net.exp.low) #this is the spillover or indirect effect
+ standard.exp.high <- (net.exp.high - mean(net.exp.high))/sd(net.exp.high) #this is the spillover or indirect effect
+ return(list(standard.exp.low,standard.exp.high,raw.exp.low,raw.exp.high))
 }
 
 
@@ -150,10 +153,12 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
   # permutation: vector of a permutation of z (can be z itself)
   # adj.mat: adjacency matrix
   
-  exposure_low <- indirect.treatment(permutation*low_support, adj.mat,expected.exp0.low,expected.exp1.low)
-  exposure_high <- indirect.treatment(permutation*(1-low_support), adj.mat,expected.exp0.high,expected.exp1.high)
+  exposures <- indirect.treatment(permutation, adj.mat,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
+  
+  exposure_low <- exposures[[3]]
+  exposure_high <- exposures[[4]]
   # This is equation 5
-  h.yz.0 <- outcome - (beta1*permutation*low_support) -(beta2*permutation*high_support) - (beta3*exposure_high) - beta4*exposure_low
+  h.yz.0 <- outcome - (beta1*permutation*low_support) -(beta2*permutation*(1-low_support)) - (beta3*exposure_low) - beta4*exposure_high
   return(h.yz.0)
 }
 
@@ -163,29 +168,28 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
 beta1s <- seq(from=-0.5, to=0.5, by=.025)
 beta2s <- seq(from=-0.5, to=0.5, by=.025)
 beta3s <- seq(from=-0.5, to=0.5, by=.025)
+beta4s <- seq(from=-0.5, to=0.5, by=.025)
+
+parameters <- expand.grid(beta1s,beta2s,beta3s,beta4s)
 
 # beta1: direct effect of treatment for low
 # beta2: direct effect of treatment for high
 # beta3: indirect effect of high-support treated
 # beta4: indirect effect of low-support treated
 
-pvals <- matrix(NA, length(beta1s), length(beta2s))
+pvals <- numeric(nrow(parameters))
 
-cl <- makeCluster(2) #Setup for parallel computing
-registerDoParallel(cl)
+#cl <- makeCluster(2) #Setup for parallel computing
+#registerDoParallel(cl)
 
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {
-  abc <- foreach (j = 1:length(beta2s)) %do% {
- 
-    # Calculate the outcome vector after taking away the effect of treatment
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)
-    
-    # Calculate observed test statistic
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)
-    
-    perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))
-    perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]
+# Calculate observed test statistic
+exposures <- indirect.treatment(permutation = z, adj.mat = S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
+test.stat <- sum((lm(y.z ~ eval(z*low_support)+eval(z*(1-low_support)) + exposures[[3]]+exposures[[4]], na.action = na.omit)$resid)^2)
+
+
+for(i in 1:10){
+   
+    perm.y.0 <- z.to.unif(outcome=y.z, beta1=parameters[i,1], beta2=parameters[i,2], beta3=parameters[i,3], beta4=parameters[i,4], permutation=z, adj.mat=S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
     #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)
     
     # Calculate a vector of test statistic using permutations
