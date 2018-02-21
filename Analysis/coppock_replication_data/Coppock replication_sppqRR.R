@@ -55,7 +55,7 @@ y.z <- data$sb24 #observed outcome
 n <- length(y.z) #number of observations
 t <- length(z[z==1]) #number of treated units
 perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 5000 #number of permutations used in testing
+perms.test <- 500 #number of permutations used in testing
 
 
 # #### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)
@@ -165,10 +165,10 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
 
 #### Testing and p-value calculation
 
-beta1s <- seq(from=-0.5, to=0.5, by=.025)
-beta2s <- seq(from=-0.5, to=0.5, by=.025)
-beta3s <- seq(from=-0.5, to=0.5, by=.025)
-beta4s <- seq(from=-0.5, to=0.5, by=.025)
+beta1s <- seq(from=-0.5, to=0.5, by=.1)
+beta2s <- seq(from=-0.5, to=0.5, by=.1)
+beta3s <- seq(from=-0.5, to=0.5, by=.1)
+beta4s <- seq(from=-0.5, to=0.5, by=.1)
 
 parameters <- expand.grid(beta1s,beta2s,beta3s,beta4s)
 
@@ -186,34 +186,40 @@ pvals <- numeric(nrow(parameters))
 exposures <- indirect.treatment(permutation = z, adj.mat = S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
 test.stat <- sum((lm(y.z ~ eval(z*low_support)+eval(z*(1-low_support)) + exposures[[3]]+exposures[[4]], na.action = na.omit)$resid)^2)
 
+pval <- numeric(nrow(parameters))
 
-for(i in 1:10){
+for(i in 1:nrow(parameters)){
    
     perm.y.0 <- z.to.unif(outcome=y.z, beta1=parameters[i,1], beta2=parameters[i,2], beta3=parameters[i,3], beta4=parameters[i,4], permutation=z, adj.mat=S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
     #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)
     
     # Calculate a vector of test statistic using permutations
     
-    results <- foreach (k = 1:perms.test) %dopar% {
-      require(permute)
+    beta1 <- parameters[i,1]
+    beta2 <- parameters[i,2]
+    beta3 <- parameters[i,3]
+    beta4 <- parameters[i,4]
+    
+    perm.test.stats <- numeric(perms.test)
+    
+    for(k in 1:perms.test){
       #perm.z <- Z_block[,sample(1:10000, 1)]
       perm.z <- perm[,sample(1:perms, 1)]
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)
-      
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)
+      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
+      exposure_low <- perm.exposure[[3]]
+      exposure_high <- perm.exposure[[4]]
+      y.sim <- perm.y.0+beta1*perm.z*low_support + beta2*perm.z*(1-low_support) + beta3*exposure_low + beta4*exposure_high
+      perm.test.stats[k] <- sum((lm(y.sim ~ eval(perm.z*low_support)+eval(perm.z*(1-low_support))+exposure_low+exposure_high , na.action = na.omit)$resid)^2)
       }
-    
-    # A vector of test statistics
-    all.test.stat.vals <- as.numeric(unlist(results))
-    
+
     # Calculating p-value
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test
-  }
-  as.numeric(unlist(abc))
+    pval[i] <- sum(perm.test.stats < test.stat)/perms.test
+    
+    if(i/100==round(i/100)) save(list=c("pval","parameters"),file="CoppockSPPQRRresults.RData")
 }
 
-stopCluster(cl)
+
+
 
 for (i in 1:length(beta1s)){
   pvals[i,] <- unlist(pvalues.ideology[i])
