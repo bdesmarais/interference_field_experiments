@@ -91,6 +91,7 @@ for (i in 1:70){
 diag(S.ideo) <- 0
 S.ideo[is.na(S.ideo)==T] <- 0
 
+# Limit to 30% most similar
 
 #### Generate expected exposure
 perm <- replicate(perms, permute.within.categories(data$match_category,z))
@@ -165,10 +166,10 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
 
 #### Testing and p-value calculation
 
-beta1s <- seq(from=-0.5, to=0.5, by=.05)
-beta2s <- seq(from=-0.5, to=0.5, by=.05)
-beta3s <- seq(from=-0.5, to=0.5, by=.05)
-beta4s <- seq(from=-0.5, to=0.5, by=.05)
+beta1s <- seq(from=-0.5, to=0.5, by=.1)
+beta2s <- seq(from=-0.5, to=0.5, by=.1)
+beta3s <- seq(from=-0.5, to=0.5, by=.1)
+beta4s <- seq(from=-0.5, to=0.5, by=.1)
 
 parameters <- expand.grid(beta1s,beta2s,beta3s,beta4s)
 
