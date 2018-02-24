@@ -126,6 +126,7 @@ for(p in 1:ncol(perm)){
   }
 }
 
+
 num_treat <- apply(perm,1,sum)
 num_control <- apply(1-perm,1,sum)
 expected.exp1 <- expected.exp1/num_treat
