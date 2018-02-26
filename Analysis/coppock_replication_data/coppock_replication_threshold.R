@@ -20,13 +20,13 @@ rm(list=ls())
 gc()
 set.seed(231)
 
-library(doParallel)
-library(fields)
-library(foreach)
-library(kSamples)
-library(network)
+#library(doParallel)
+#library(fields)
+#library(foreach)
+#library(kSamples)
+#library(network)
 library(permute)
-library(wnominate)
+#library(wnominate)
 
 permute.within.categories <- function(categories,z){
   ucategories <- unique(categories)
@@ -858,10 +858,10 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
 
 #### Testing and p-value calculation
 
-beta1s <- seq(from=-0.5, to=0.5, by=.1)
-beta2s <- seq(from=-0.5, to=0.5, by=.1)
-beta3s <- seq(from=-0.5, to=0.5, by=.1)
-beta4s <- seq(from=-0.5, to=0.5, by=.1)
+beta1s <- seq(from=-0.5, to=0.5, by=.05)
+beta2s <- seq(from=-0.5, to=0.5, by=.05)
+beta3s <- seq(from=-0.5, to=0.5, by=.05)
+beta4s <- seq(from=-0.5, to=0.5, by=.05)
 
 parameters <- expand.grid(beta1s,beta2s,beta3s,beta4s)
 

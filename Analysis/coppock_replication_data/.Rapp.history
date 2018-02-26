@@ -1,6 +1,4 @@
 optim(c(0,0),var_yz,method="BFGS")
-optim(c(0,0),var_yz,method="BFGS")
-optim(c(0,0),var_yz,method="BFGS")
 var_yz <- function(tau){#
 require(sna)#
 nsim <- 1000	#
@@ -21,31 +19,6 @@ evar[i] <- -as.numeric(var(yze))#
 }#
 mean(evar)#
 }
-var_yz <- function(tau){#
-require(sna)#
-nsim <- 1000	#
-evar <- numeric(nsim)#
-amat <- matrix(0,5,5)#
-amat[1,5] <- amat[5,1] <- 1#
-amat[3,5] <- amat[5,3] <- 1#
-amat[2,5] <- amat[5,2] <- 1#
-amat[4,5] <- amat[5,4] <- 1#
-amat[2,4] <- amat[4,2] <- 1#
-p <- plogis(tau[1]+tau[2]*degree(amat)/2)#
-b1 <- 2#
-b2 <- 1#
-for(i in 1:nsim){#
-trt <- p > runif(5)#
-yze <- t(t(trt)%*%amat)*b2 + trt*b1#
-evar[i] <- -as.numeric(var(yze))#
-}#
-mean(evar)#
-}
-optim(c(0,0),var_yz,method="BFGS")
-optim(c(0,0),var_yz,method="BFGS")
-optim(c(0,0),var_yz,method="BFGS")
-optim(c(0,0),var_yz,method="BFGS")
-optim(c(0,0),var_yz,method="BFGS")
 optim(c(0,0),var_yz,method="BFGS")
 load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/pvals_coppock_replication.RData")
 rm(list=ls())
@@ -594,75 +567,6 @@ install.packages("maptools")
 install.packages("spdep")
 #butler <- read.dta("nm.replication.dta")#
 butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)
-#### Public Opinion Replication#
-#### Butler, Daniel M., and David W. Nickerson. 2011. #
-#### “Can Learning Constituency Opinion Affect How Legislators Vote? Results from a Field Experiment.” #
-#### Quarterly Journal of Political Science 6(1): 55–83. DOI: 10.1561/100.00011019#
-rm(list=ls())#
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block
 #### Public Opinion Replication#
 #### Butler, Daniel M., and David W. Nickerson. 2011. #
 #### “Can Learning Constituency Opinion Affect How Legislators Vote? Results from a Field Experiment.” #
