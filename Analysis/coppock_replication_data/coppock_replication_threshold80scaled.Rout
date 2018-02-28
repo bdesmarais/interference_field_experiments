@@ -23,7 +23,7 @@ Type 'q()' to quit R.
 > gc()
          used (Mb) gc trigger (Mb) max used (Mb)
 Ncells 254101 13.6     940480 50.3   940480 50.3
-Vcells 445818  3.5    6912572 52.8  6811771 52.0
+Vcells 445810  3.5    6860152 52.4  6811747 52.0
 > set.seed(231)
 > 
 > 
@@ -145,7 +145,7 @@ Vcells 445818  3.5    6912572 52.8  6811771 52.0
 +   net.exp.high <- raw.exp.high - (permutation*expected.exp1.high + (1-permutation)*expected.exp0.high)
 +   standard.exp.low <- (net.exp.low - mean(net.exp.low))/sd(net.exp.low) #this is the spillover or indirect effect
 +   standard.exp.high <- (net.exp.high - mean(net.exp.high))/sd(net.exp.high) #this is the spillover or indirect effect
-+   return(list(standard.exp.low,standard.exp.high,raw.exp.low,raw.exp.high))
++   return(list(standard.exp.low,standard.exp.high,standard.exp.low,standard.exp.high))
 + }
 > 
 > 
@@ -221,7 +221,7 @@ downloaded 352 KB
 * DONE (foreach)
 
 The downloaded source packages are in
-	'/tmp/RtmpR605SJ/downloaded_packages'
+	'/tmp/RtmpJ4Oc1V/downloaded_packages'
 > install.packages("doParallel", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/" )
 trying URL 'https://cran.cnr.berkeley.edu/src/contrib/doParallel_1.0.11.tar.gz'
 Content type 'application/x-gzip' length 172885 bytes (168 KB)
@@ -246,7 +246,7 @@ downloaded 168 KB
 * DONE (doParallel)
 
 The downloaded source packages are in
-	'/tmp/RtmpR605SJ/downloaded_packages'
+	'/tmp/RtmpJ4Oc1V/downloaded_packages'
 > library(foreach,lib.loc=Sys.getenv("R_LIBS_USER"))
 > library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
 Loading required package: iterators
@@ -288,4 +288,4 @@ Loading required package: parallel
 > 
 > proc.time()
       user     system    elapsed 
-405984.614      2.817  37305.369 
+411987.519      9.479  41596.021 

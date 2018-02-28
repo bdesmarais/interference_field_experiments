@@ -34,7 +34,7 @@ y.z <- data$sb24 #observed outcome
 n <- length(y.z) #number of observations
 t <- length(z[z==1]) #number of treated units
 perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 500 #number of permutations used in testing
+perms.test <- 1000 #number of permutations used in testing
 
 
 # #### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)
