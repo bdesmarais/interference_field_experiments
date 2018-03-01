@@ -61,7 +61,7 @@ cohort_copart_amat_weighted <- matrix(NA, nrow(data), nrow(data))
 for (i in 1:nrow(data)){
   for (j in 1:nrow(data)){
     if (data$party[i] == data$party[j]){
-      cohort_copart_amat_weighted[i,j] <- abs(data$cohort[i] - data$cohort[j])
+      cohort_copart_amat_weighted[i,j] <- 1/(1+abs(data$cohort[i] - data$cohort[j]))
     } else {
       cohort_copart_amat_weighted[i,j] <- 0
     }
