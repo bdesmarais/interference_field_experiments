@@ -5,4 +5,4 @@
 #PBS -M bdesmarais@psu.edu
 cd /gpfs/group/bbd5087/default/coppock_replication_data
 
-R CMD BATCH coppock_replication_threshold80unscaled.R
+R CMD BATCH coppock_replication_binary_coparty_cohort.R
