@@ -57,16 +57,16 @@ for (i in 1:nrow(data)){
 save(cohort_copart_amat, file = "cohort_copart_network.RData")
 
 ## Cohort distance plus copart network
-cohort_copart_amat <- matrix(NA, nrow(data), nrow(data))
+cohort_copart_amat_weighted <- matrix(NA, nrow(data), nrow(data))
 for (i in 1:nrow(data)){
   for (j in 1:nrow(data)){
     if (data$party[i] == data$party[j]){
-      cohort_copart_amat[i,j] <- abs(data$cohort[i] - data$cohort[j])
+      cohort_copart_amat_weighted[i,j] <- abs(data$cohort[i] - data$cohort[j])
     } else {
-      cohort_copart_amat[i,j] <- 0
+      cohort_copart_amat_weighted[i,j] <- 0
     }
   }
 }
 
-save(cohort_copart_amat, file = "cohort_copart_network.RData")
+save(cohort_copart_amat_weighted, file = "cohort_copart_network_weighted.RData")
 
