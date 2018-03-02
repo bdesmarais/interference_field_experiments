@@ -17,6 +17,13 @@ threshold80_scaled_results <- do.call('rbind',BFP.results)[,1]
 load("CoppockSPPQRRresults_threshold80_unscaled.RData")
 threshold80_unscaled_results <- do.call('rbind',BFP.results)[,1]
 
+load("CoppockSPPQRRresults_copartisan_cohort_binary.RData")
+copartisan_cohort_binary_results <- do.call('rbind',BFP.results)[,1]
+
+load("CoppockSPPQRRresults_copartisan_cohort_weighted.RData")
+copartisan_cohort_weighted_results <- do.call('rbind',BFP.results)[,1]
+
+
 
 BFP.results.summary <- function(parameters,p.values,level=0.95){
   threshold <- 1-level
@@ -38,9 +45,10 @@ BFP.results.summary <- function(parameters,p.values,level=0.95){
 
 summary.copartisan_committee_binary <- BFP.results.summary(parameters,copartisan_committee_binary_results)
 summary.copartisan_committee_weighted <- BFP.results.summary(parameters,copartisan_committee_weighted_results)
-summary.threshold60_scaled <- BFP.results.summary(parameters,threshold60_scaled_results,level=1-0.0085124)
+summary.threshold60_scaled <- BFP.results.summary(parameters,threshold60_scaled_results)
 summary.threshold80_scaled <- BFP.results.summary(parameters,threshold80_scaled_results)
 summary.threshold60_unscaled <- BFP.results.summary(parameters,threshold60_unscaled_results)
-summary.threshold80_unscaled <- BFP.results.summary(parameters,threshold80_unscaled_results,level=1-0.0085124)
-
+summary.threshold80_unscaled <- BFP.results.summary(parameters,threshold80_unscaled_results)
+summary.copartisan_cohort_binary <- BFP.results.summary(parameters, copartisan_cohort_binary_results,level=0.9)
+summary.copartisan_cohort_weighted <- BFP.results.summary(parameters, copartisan_cohort_weighted_results)
 

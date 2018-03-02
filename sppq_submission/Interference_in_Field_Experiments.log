@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  20 FEB 2018 05:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  2 MAR 2018 15:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -364,10 +364,15 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+\everycr=\toks28
+\minrowclearance=\skip45
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count110
 \lst@gtempboxa=\box38
-\lst@token=\toks28
+\lst@token=\toks29
 \lst@length=\count111
 \lst@currlwidth=\dimen153
 \lst@column=\count112
@@ -413,11 +418,11 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutheight=\dimen162
 \Gm@layouthoffset=\dimen163
 \Gm@layoutvoffset=\dimen164
-\Gm@dimlist=\toks29
+\Gm@dimlist=\toks30
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2016/11/05 v2.16a AMS math features
-\@mathmargin=\skip45
+\@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -425,7 +430,7 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks30
+\@emptytoks=\toks31
 \ex@=\dimen165
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -455,21 +460,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \dotsspace@=\muskip10
 \c@parentequation=\count128
 \dspbrk@lvl=\count129
-\tag@help=\toks31
+\tag@help=\toks32
 \row@=\count130
 \column@=\count131
 \maxfields@=\count132
-\andhelp@=\toks32
+\andhelp@=\toks33
 \eqnshift@=\dimen168
 \alignsep@=\dimen169
 \tagshift@=\dimen170
 \tagwidth@=\dimen171
 \totwidth@=\dimen172
 \lineht@=\dimen173
-\@envbody=\toks33
-\multlinegap=\skip46
-\multlinetaggap=\skip47
-\mathdisplay@stack=\toks34
+\@envbody=\toks34
+\multlinegap=\skip47
+\multlinetaggap=\skip48
+\mathdisplay@stack=\toks35
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
@@ -506,8 +511,8 @@ Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip48
-\bibsep=\skip49
+\bibhang=\skip49
+\bibsep=\skip50
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count133
 )
@@ -554,40 +559,40 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@hangindent=\dimen194
 )
 \c@float@type=\count140
-\float@exts=\toks35
+\float@exts=\toks36
 \float@box=\box42
 \@floatcapt=\box43
 Package floatrow Info: Modified float package code loaded on input line 455.
 Package floatrow Info: Modified rotfloat package code loaded on input line 473.
 
-\FR@everyfloat=\toks36
+\FR@everyfloat=\toks37
 \flrow@foot=\insert199
 \FB@wd=\dimen195
 \FBo@wd=\dimen196
 \FBc@wd=\dimen197
-\FBo@ht=\skip50
-\FBc@ht=\skip51
-\FBf@ht=\skip52
-\FBo@max=\skip53
-\FBc@max=\skip54
-\FBf@max=\skip55
+\FBo@ht=\skip51
+\FBc@ht=\skip52
+\FBf@ht=\skip53
+\FBo@max=\skip54
+\FBc@max=\skip55
+\FBf@max=\skip56
 \c@FBl@b=\count141
 \floatbox@depth=\count142
 \c@FRobj=\count143
 \c@FRsobj=\count144
-\Xhsize=\skip56
-\sXhsize=\skip57
-\Zhsize=\skip58
-\sZhsize=\skip59
+\Xhsize=\skip57
+\sXhsize=\skip58
+\Zhsize=\skip59
+\sZhsize=\skip60
 \flrow@rowbox=\box44
 \FR@Zunitlength=\dimen198
 \c@FBcnt=\count145
 \FPOScnt=\count146
-\LTleft=\skip60
-\LTright=\skip61
-\LTleft=\skip62
-\LTright=\skip63
-\flrow@types=\toks37
+\LTleft=\skip61
+\LTright=\skip62
+\LTleft=\skip63
+\LTright=\skip64
+\flrow@types=\toks38
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
@@ -596,16 +601,16 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \c@r@tfl@t=\count147
-\rotFPtop=\skip64
-\rotFPbot=\skip65
+\rotFPtop=\skip65
+\rotFPbot=\skip66
 \rot@float@box=\box45
-\rot@mess@toks=\toks38
+\rot@mess@toks=\toks39
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
-\multirow@colwidth=\skip66
+\multirow@colwidth=\skip67
 \multirow@cntb=\count148
-\multirow@dima=\skip67
+\multirow@dima=\skip68
 \bigstrutjot=\dimen256
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tools/dcolumn.sty
@@ -631,30 +636,30 @@ Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 )
 \c@KVtest=\count150
-\sf@farskip=\skip68
+\sf@farskip=\skip69
 \sf@captopadj=\dimen257
-\sf@capskip=\skip69
-\sf@nearskip=\skip70
+\sf@capskip=\skip70
+\sf@nearskip=\skip71
 \c@subfigure=\count151
 \c@subfigure@save=\count152
 \c@lofdepth=\count153
 \c@subtable=\count154
 \c@subtable@save=\count155
 \c@lotdepth=\count156
-\sf@top=\skip71
-\sf@bottom=\skip72
+\sf@top=\skip72
+\sf@bottom=\skip73
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip73
-\f@ncyO@elh=\skip74
-\f@ncyO@erh=\skip75
-\f@ncyO@olh=\skip76
-\f@ncyO@orh=\skip77
-\f@ncyO@elf=\skip78
-\f@ncyO@erf=\skip79
-\f@ncyO@olf=\skip80
-\f@ncyO@orf=\skip81
+\fancy@headwidth=\skip74
+\f@ncyO@elh=\skip75
+\f@ncyO@erh=\skip76
+\f@ncyO@olh=\skip77
+\f@ncyO@orh=\skip78
+\f@ncyO@elf=\skip79
+\f@ncyO@erf=\skip80
+\f@ncyO@olf=\skip81
+\f@ncyO@orf=\skip82
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/times.sty
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
@@ -799,26 +804,26 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip82
+\Hy@SectionHShift=\skip83
 )
 (./Interference_in_Field_Experiments.aux)
 \openout1 = `Interference_in_Field_Experiments.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 140.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 141.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -830,12 +835,12 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 \scratchbox=\box46
 \nofMPsegments=\count168
 \nofMParguments=\count169
-\everyMPshowfont=\toks39
+\everyMPshowfont=\toks40
 \MPscratchCnt=\count170
 \MPscratchDim=\dimen263
 \MPnumerator=\count171
 \makeMPintoPDFobject=\count172
-\everyMPtoPDFconversion=\toks40
+\everyMPtoPDFconversion=\toks41
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -897,11 +902,11 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/floatrow/fr-subfig.sty
 Package: fr-subfig 2007/12/24 v0.1g (beta) floatrow: additions for subfig
-\FBsc@max=\skip83
-\FBso@max=\skip84
+\FBsc@max=\skip84
+\FBso@max=\skip85
 )
 \AtBeginShipoutBox=\box47
-Package hyperref Info: Link coloring ON on input line 140.
+Package hyperref Info: Link coloring ON on input line 141.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -911,9 +916,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count174
 )
-LaTeX Info: Redefining \ref on input line 140.
-LaTeX Info: Redefining \pageref on input line 140.
-LaTeX Info: Redefining \nameref on input line 140.
+LaTeX Info: Redefining \ref on input line 141.
+LaTeX Info: Redefining \pageref on input line 141.
+LaTeX Info: Redefining \nameref on input line 141.
 
 (./Interference_in_Field_Experiments.out)
 (./Interference_in_Field_Experiments.out)
@@ -921,287 +926,306 @@ LaTeX Info: Redefining \nameref on input line 140.
 \openout6 = `Interference_in_Field_Experiments.out'.
 
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 14
-2.
+3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 14
-2.
+3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 14
-2.
+3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 14
-2.
+3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 142.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 143.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
 
 
 LaTeX Warning: No \author given.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 147.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 148.
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--153
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--153
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--153
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
 
  []
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 162.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 163.
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2] [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 200.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 200.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 200.
- [4] [5] [6]
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 218.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
+ [4] [5] <./images/BFPIllustration.pdf, id=168, 505.89pt x 505.89pt>
+File: ./images/BFPIllustration.pdf Graphic file (type pdf)
+
+<use ./images/BFPIllustration.pdf>
+Package pdftex.def Info: ./images/BFPIllustration.pdf used on input line 208.
+(pdftex.def)             Requested size: 196.03902pt x 82.22827pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 219.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 213.
+ [6 <./images/BFPIllustration.pdf>] [7]
+Overfull \hbox (1.85152pt too wide) in paragraph at lines 260--261
+ [][] 
+ []
 
 
-LaTeX Warning: Reference `legislative.netws' on page 7 undefined on input line 
-219.
+LaTeX Warning: Reference `tab:ninet' on page 8 undefined on input line 265.
 
-[7]
+[8] [9]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 277.
 
-Package natbib Warning: Citation `grose2015explainin' on page 8 undefined on in
-put line 247.
 
-[8] [9] [10]
-<./images/effect_constant_twohops.pdf, id=247, 1445.4pt x 722.7pt>
+LaTeX Warning: Reference `legislative.netws' on page 10 undefined on input line
+ 278.
+
+[10]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package natbib Warning: Citation `grose2015explainin' on page 11 undefined on i
+nput line 306.
+
+[11] [12] [13]
+<./images/effect_constant_twohops.pdf, id=273, 1445.4pt x 722.7pt>
 File: ./images/effect_constant_twohops.pdf Graphic file (type pdf)
 
 <use ./images/effect_constant_twohops.pdf>
 Package pdftex.def Info: ./images/effect_constant_twohops.pdf used on input lin
-e 263.
+e 322.
 (pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
 
-Overfull \hbox (2.28017pt too wide) in paragraph at lines 263--263
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 322--322
  []|[]| 
  []
 
-<./images/effect_constant_threehops.pdf, id=249, 1445.4pt x 722.7pt>
+<./images/effect_constant_threehops.pdf, id=275, 1445.4pt x 722.7pt>
 File: ./images/effect_constant_threehops.pdf Graphic file (type pdf)
 
 <use ./images/effect_constant_threehops.pdf>
 Package pdftex.def Info: ./images/effect_constant_threehops.pdf used on input l
-ine 263.
+ine 322.
 (pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
 
-Overfull \hbox (2.28017pt too wide) in paragraph at lines 263--263
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 322--322
  []|[]| 
  []
 
-<./images/effect_decay_twohops.pdf, id=251, 1445.4pt x 722.7pt>
+<./images/effect_decay_twohops.pdf, id=277, 1445.4pt x 722.7pt>
 File: ./images/effect_decay_twohops.pdf Graphic file (type pdf)
 
 <use ./images/effect_decay_twohops.pdf>
-Package pdftex.def Info: ./images/effect_decay_twohops.pdf used on input line 2
-64.
+Package pdftex.def Info: ./images/effect_decay_twohops.pdf used on input line 3
+23.
 (pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
 
-Overfull \hbox (2.28017pt too wide) in paragraph at lines 264--264
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 323--323
  []|[]| 
  []
 
-<./images/effect_decay_threehops.pdf, id=253, 1445.4pt x 722.7pt>
+<./images/effect_decay_threehops.pdf, id=279, 1445.4pt x 722.7pt>
 File: ./images/effect_decay_threehops.pdf Graphic file (type pdf)
 
 <use ./images/effect_decay_threehops.pdf>
 Package pdftex.def Info: ./images/effect_decay_threehops.pdf used on input line
- 264.
+ 323.
 (pdftex.def)             Requested size: 158.77031pt x 34.57095pt.
 
-Overfull \hbox (2.28017pt too wide) in paragraph at lines 264--265
+Overfull \hbox (2.28017pt too wide) in paragraph at lines 323--324
  []|[]| 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 276.
+[14]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 335.
 
  (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 276.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 335.
 
-Overfull \hbox (22.51039pt too wide) in paragraph at lines 276--277
+Overfull \hbox (22.51039pt too wide) in paragraph at lines 335--336
 []\T1/ptm/m/n/12 Entire net-work: Treat-ment ef-fect can prop-a-gate through th
 e en-tire network---proportional
  []
 
-[12 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
+[15 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
 pdf> <./images/effect_decay_twohops.pdf> <./images/effect_decay_threehops.pdf>]
 
-Overfull \hbox (9.88483pt too wide) in paragraph at lines 283--285
+Overfull \hbox (9.88483pt too wide) in paragraph at lines 342--344
 []\T1/ptm/m/n/12 : The above two specifications---selecting the net-work and th
 e neighborhood---determine
  []
 
-[13] [14] [15]
+[16] [17] [18] [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 310.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 310.
+(hyperref)                removing `\begingroup' on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 310.
+(hyperref)                removing `\let' on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 310.
+(hyperref)                removing `\<let>-command' on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 310.
+(hyperref)                removing `\NAT@ctype' on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 310.
+(hyperref)                removing `\z@' on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 310.
-
-[16] [17] [18]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 334.
+(hyperref)                removing `\let' on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 334.
+(hyperref)                removing `\new@ifnextchar' on input line 369.
+
+[20] [21] [22]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\begingroup' on input line 399.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 334.
+(hyperref)                removing `\let' on input line 399.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 334.
+(hyperref)                removing `\<let>-command' on input line 399.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 334.
+(hyperref)                removing `\NAT@ctype' on input line 399.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 334.
+(hyperref)                removing `\z@' on input line 399.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 334.
+(hyperref)                removing `\let' on input line 399.
 
-[19] <./images/pval_plot_coppock_replication.pdf, id=375, 505.89pt x 505.89pt>
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on input line 399.
+
+<./images/pval_plot_coppock_replication.pdf, id=398, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_replication.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_replication.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_replication.pdf used on inp
-ut line 341.
+ut line 406.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [20 <./images/pval_plot_coppock_replication.pdf>]
-<./images/pval_plot_coppock_ideo_3nn.pdf, id=391, 505.89pt x 505.89pt>
+ [23]
+<./images/pval_plot_coppock_ideo_3nn.pdf, id=407, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_3nn.pdf used on input 
-line 353.
+line 418.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_5nn.pdf, id=392, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_5nn.pdf, id=408, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_5nn.pdf used on input 
-line 354.
+line 419.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_8nn.pdf, id=393, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_8nn.pdf, id=409, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_8nn.pdf used on input 
-line 355.
+line 420.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_ideo_12nn.pdf, id=394, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_ideo_12nn.pdf, id=410, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_coppock_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_ideo_12nn.pdf used on input
- line 356.
+ line 421.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 352--358
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 417--423
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 362.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 427.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 362.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 427.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 362.
-
-<./images/pval_plot_coppock_committee_1ormore.pdf, id=400, 505.89pt x 505.89pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 427.
+[24 <./images/pval_plot_coppock_replication.pdf>] [25 <./images/pval_plot_coppo
+ck_ideo_3nn.pdf> <./images/pval_plot_coppock_ideo_5nn.pdf> <./images/pval_plot_
+coppock_ideo_8nn.pdf> <./images/pval_plot_coppock_ideo_12nn.pdf>]
+<./images/pval_plot_coppock_committee_1ormore.pdf, id=458, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_committee_1ormore.pdf Graphic file (type pdf)
 <use ./images/pval_plot_coppock_committee_1ormore.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_committee_1ormore.pdf used 
-on input line 367.
+on input line 432.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_coppock_committee_2ormore.pdf, id=401, 505.89pt x 505.89pt>
+<./images/pval_plot_coppock_committee_2ormore.pdf, id=459, 505.89pt x 505.89pt>
 File: ./images/pval_plot_coppock_committee_2ormore.pdf Graphic file (type pdf)
 <use ./images/pval_plot_coppock_committee_2ormore.pdf>
 Package pdftex.def Info: ./images/pval_plot_coppock_committee_2ormore.pdf used 
-on input line 368.
+on input line 433.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 366--370
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 431--435
  [][] 
  []
 
@@ -1210,115 +1234,113 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 419.
+(hyperref)                removing `\begingroup' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 419.
+(hyperref)                removing `\let' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 419.
+(hyperref)                removing `\<let>-command' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 419.
+(hyperref)                removing `\NAT@ctype' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 419.
+(hyperref)                removing `\z@' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 419.
+(hyperref)                removing `\let' on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 419.
+(hyperref)                removing `\new@ifnextchar' on input line 484.
 
-[21] [22 <./images/pval_plot_coppock_ideo_3nn.pdf> <./images/pval_plot_coppock_
-ideo_5nn.pdf> <./images/pval_plot_coppock_ideo_8nn.pdf> <./images/pval_plot_cop
-pock_ideo_12nn.pdf>] [23 <./images/pval_plot_coppock_committee_1ormore.pdf> <./
-images/pval_plot_coppock_committee_2ormore.pdf>]
-<./images/pval_plot_bergan_main.pdf, id=472, 505.89pt x 505.89pt>
+[26 <./images/pval_plot_coppock_committee_1ormore.pdf> <./images/pval_plot_copp
+ock_committee_2ormore.pdf>]
+<./images/pval_plot_bergan_main.pdf, id=496, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_main.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_main.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_main.pdf used on input line 
-429.
+494.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
-
-<./images/pval_plot_bergan_ideo_3nn.pdf, id=479, 505.89pt x 505.89pt>
+ [27]
+<./images/pval_plot_bergan_ideo_3nn.pdf, id=508, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_3nn.pdf used on input l
-ine 440.
+ine 505.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_5nn.pdf, id=480, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_5nn.pdf, id=509, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_5nn.pdf used on input l
-ine 441.
+ine 506.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_8nn.pdf, id=481, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_8nn.pdf, id=510, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_8nn.pdf used on input l
-ine 442.
+ine 507.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_12nn.pdf, id=482, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_12nn.pdf, id=511, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_12nn.pdf used on input 
-line 443.
+line 508.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 439--445
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 504--510
  [][] 
  []
 
-[24] <./images/pval_plot_bergan_cospon.pdf, id=492, 505.89pt x 505.89pt>
+[28 <./images/pval_plot_bergan_main.pdf>] [29 <./images/pval_plot_bergan_ideo_3
+nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
+o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>]
+<./images/pval_plot_bergan_cospon.pdf, id=556, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_cospon.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_cospon.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_cospon.pdf used on input lin
-e 454.
+e 519.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25 <./images/pval_plot_bergan_main.pdf>] [26 <./images/pval_plot_bergan_ideo_3
-nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
-o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [27 <./images/pval_plot_b
-ergan_cospon.pdf>] [28] (./Interference_in_Field_Experiments.bbl [29] [30]
-[31] [32] [33]
+[30 <./images/pval_plot_bergan_cospon.pdf>] [31] [32]
+(./Interference_in_Field_Experiments.bbl [33] [34] [35] [36] [37]
 Underfull \hbox (badness 1152) in paragraph at lines 227--231
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[34] [35])
+[38])
 
 Package natbib Warning: There were undefined citations.
 
 
-Package caption Warning: Unused \captionsetup[subfloat] on input line 78.
+Package caption Warning: Unused \captionsetup[subfloat] on input line 79.
 See the caption package documentation for explanation.
 
-[36]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 545.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 545.
+[39]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 610.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 610.
  (./Interference_in_Field_Experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 545.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 545.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 610.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 610.
 Package rerunfilecheck Info: File `Interference_in_Field_Experiments.out' has n
 ot changed.
 (rerunfilecheck)             Checksum: 12A398FF97037C8FFDD612B398358879;869.
@@ -1329,29 +1351,30 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 545.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 610.
  ) 
 Here is how much of TeX's memory you used:
- 21619 strings out of 492995
- 395554 string characters out of 6132704
- 465556 words of memory out of 5000000
- 24632 multiletter control sequences out of 15000+600000
+ 21676 strings out of 492995
+ 396384 string characters out of 6132704
+ 483204 words of memory out of 5000000
+ 24678 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,17n,54p,2963b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,2963b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
 ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fo
-nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-urw/times/utmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (36 pages, 330603 bytes
+mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texmf-dist/fon
+ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
+rw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/u
+tmri8a.pfb>
+Output written on Interference_in_Field_Experiments.pdf (39 pages, 346874 bytes
 ).
 PDF statistics:
- 671 PDF objects out of 1000 (max. 8388607)
- 566 compressed objects within 6 object streams
- 115 named destinations out of 1000 (max. 500000)
- 218 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 698 PDF objects out of 1000 (max. 8388607)
+ 586 compressed objects within 6 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 229 words of extra memory for PDF output out of 10000 (max. 10000000)
 

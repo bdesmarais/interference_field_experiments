@@ -5,6 +5,7 @@
 \usepackage{fancyvrb}
 \usepackage{array}
 \usepackage{tikz}
+\usepackage{xcolor,colortbl}
 %%%<
 \usepackage{listings}
 %\usepackage[active,tightpage]{preview}
@@ -197,15 +198,73 @@ Virtually all research on legislative networks is based on observational data, l
 \section{A Design-Based Test for Network Effects Models}
 %%%%
 
-In this section, we review the methodology introduced by \citet{bowers2012reasoning}, which enables the researcher to test for both direct and interference effects, represented by models of effects. The model of effects represents how the vector of treatments allocated to subjects in the experiment effects the outcome under study. In a conventional experimental setting, in which SUTVA is assumed, the model of effects is simply that subject $i$'s outcome depends upon subject $i$'s treatment status, but not the treatment status of any other subject. The model of effects tested with the methodology proposed by  \citet{bowers2012reasoning} can  include separate parameters for direct causal effects of the treatment and spillover effects that depends on how treatments are allocated across subjects situated in a network. 
+In this section, we review the methodology introduced by \citet{bowers2012reasoning} (BFP), which enables the researcher to test for both direct and interference effects, represented by models of effects. The model of effects represents how the vector of treatments allocated to subjects in the experiment effects the outcome under study. In a conventional experimental setting, in which SUTVA is assumed, the model of effects is simply that subject $i$'s outcome depends upon subject $i$'s treatment status, but not the treatment status of any other subject. The model of effects tested with the methodology proposed by  \citet{bowers2012reasoning} can  include separate parameters for direct causal effects of the treatment and spillover effects that depends on how treatments are allocated across subjects situated in a network. 
 
-%To compare a hypothesized model to the sharp null of no effects, the first step is to define a test statistic to be used to compare outcome distributions of units across experimental conditions. \citet{bowers2012reasoning} use the Kolmogorov-Smirnov (KS) test statistics to test for the difference across treatment and control groups. If the sharp null is correct, the test statistic should be small in absolute magnitude---indicating little difference across conditions. However, due to the interference among units, we cannot rely upon conventional notions of the sampling distribution of the test statistic to evaluate the statistical significance of differences across conditions.  
+The testing framework proposed by \citet{bowers2012reasoning} is a randomization test \citep{basu2011randomization} in which the hypotheses are defined with respect to the model of effects specified by the researcher. The null hypothesis in the test is the sharp null of no effects---the hypothesis that the outcomes observed in the experiment are what they would have been if every subject were in the control group (i.e., if treatment had not been allocated). The test is defined through selecting (1) a model of effects, and (2) a test statistic to be used in assessing differences across experimental conditions.  
 
-The testing framework proposed by \citet{bowers2012reasoning} is a randomization test \citep{basu2011randomization} in which the hypotheses are defined with respect to the model of effects specified by the researcher. The null hypothesis in the test is the sharp null of no effects---the hypothesis that the outcomes observed in the experiment are what they would have been if every subject were in the control group (i.e., if treatment had not been allocated). The test is defined through selecting (1) a model of effects, and (2) a test statistic to be used in comparing the outcomes in the experiment to what would have been expected under the sharp null of no effects. We discuss these choices in greater detail below.   
+We illustrate the BFP test with a simple toy example. Consider an experiment in which the population under study is a legislature of nine legislators, connected through a legislative collaboration network. The collaboration network is depicted in Figure \ref{fig:ninenet}. The outcome under study in the experiment is the percentage of the legislation sponsored by a legislator that focuses on a particular policy issue (e.g., auto emissions limits). The treatment in the experiment is a well-studied advocacy campaign that is designed to shift a legislator's attention towards this issue. Suppose we know, through past experimental research, that the direct effect of this treatment is an increase by ten percentage points in the percentage of sponsored legislation that focuses on this issue. We are only interested in studying the interference effects, and so we only randomize one legislator to the treatment to assure that there are some legislators who are isolated from the treatment (i.e., have no neighbors who are treated). 
 
-Once the parameters of the test are defined, it proceeds via randomization inference. Random permutations of the treatment vector are used to construct the sampling distribution of the test statistic under the sharp null.  In each permutation, a new treatment assignment is drawn from the randomization distribution used in the experiment. Based on the re-randomized treatment vector, the hypothesized parameters and model of effects are used to remove the effect of the treatment on all of the subjects in the experiment. \citet{bowers2012reasoning} refer to the outcome vector derived by removing the hypothesized effect of the experiment as the uniformity trial. The test statistic is then calculated to assess the differences across experimental conditions.
+\begin{figure}[htp]
+\includegraphics[scale=.5,clip=true,trim = 2cm 6cm 2cm 6cm]{./images/BFPIllustration}
+\caption{Toy network of nine legislators.}
+\label{fig:ninenet}
+\end{figure}
 
-A p-value for testing the hypothesized parameter values in the model of effects is calculated as the proportion of test statistics under permutation that exceed the observed test statistic value (i.e., the test statistic value when evaluated on the uniformity trial given the observed treatment vector). Given the setup of the test, higher p-values indicate greater support for the hypothesized model and parameter values. The intuition for this reversal in the conventional direction of the p-value is that the correct hypothesis will be more effective than any other hypothesized model at removing the differences across experimental categories.
+We represent the indirect effect as a change in the percentage of sponsored legislation focusing on the issue that is induced when a neighboring legislator is assigned to treatment. We will set the true indirect effect to be a five percentage point increase in the percent of sponsored legislation focusing on the issue. Assume that legislator 5 is assigned to treatment. Legislator 5 is tied to legislators 4, 2, 8, and 6. We present the effects of the experiment in the first few columns of Table \ref{tab:ninenet}. The column Y({\bf 0}) gives the hypothetical outcome that we would observe if the treatment was not administered. Y({\bf Z}) gives the outcome observed under the treatment (i.e., Legislator 5 was treated). The other columns give the implied values that would have been observed if the treatment were not administered, given the hypothesized indirect and know direct effect. 
+
+To use the BFP method we need to define a test statistic that can be used to evaluate whether a hypothesized parameter value explains differences across observations. In the current example we will use the absolute value of a simple $t$-statistic calculated by testing the difference between legislators that were in the control condition and isolated from the treated legislator and legislators that were in the control condition and exposed to the treated legislator. The vector of outcomes used to calculate the test statistic is the vector of outcomes that results after removing the hypothesized effect of the experiment. To give an example of this implied control outcome, consider Legislator 2 and a hypothesized indirect effect of -6 (i.e., a six percentage point reduction in the percent of sponsored legislation focusing on the issue). Legislator 2's true control/baseline value is 10. Legislator 2 was exposed to the treated legislator in the experiment, and we therefore observed the outcome (i.e., Y({\bf Z})) of 15 since the true indirect effect is 5. However, if we hypothesize that the indirect effect is -6, this implies that Legislator 2's control outcome is 21, which we arrive at by subtracting the hypothesized indirect effect (-6) from Legislator 2's observed value (15). 
+
+Using the BFP method, if the hypothesized parameter/effect value is close to the true value, the implied control outcomes will be similar across experimental conditions, since removing the hypothesized effects will adjust the outcomes accurately according to how they were affected by the experiment. As such, under the BFP method, strong evidence for a hypothesized parameter value corresponds to test statistic values that indicate little or no differences across experimental conditions. The evidence for a hypothesized parameter value is quantified by re-randomizing the treatment vector according to the randomization protocol of the experiment (e.g., randomly assign one legislator to receive the treatment). The test statistic is calculated for each re-randomized treatment regime. The evidence for a hypothesis is given by the proportion of test statistics calculated on the randomizations that are larger than the test statistic calculated on the observed data (assuming that larger test statistic values indicate greater differences across experimental conditions). This proportion is the right-tail $p$-value of the observed statistic value evaluated in the distribution of statistic values calculated under randomization. The higher this proportion, the greater the evidence for the hypothesized parameter value. Furthermore, any parameter value for which this proportion is greater than $\alpha$ is included in the 100$\times(1-\alpha)\%$ confidence interval. 
+
+\begin{table}[ht]
+\centering
+\scalebox{.85}{
+\begin{tabular}{rrrrrrrrrrrr}
+\hline \hline
+\multicolumn{12}{c}{Hypothesized Indirect Effect = -6} \\
+  \hline
+Legislator & Y({\bf 0}) & Y({\bf Z}) & Y$_5$({\bf 0}) & Y$_1$({\bf 0})  & Y$_2$({\bf 0})& Y$_3$({\bf 0})& Y$_4$({\bf 0})& Y$_6$({\bf 0})& Y$_7$({\bf 0})& Y$_8$({\bf 0})&Y$_9$({\bf 0})\\ 
+  \hline
+1 & 0.00 & 0.00 & 0.00 & -10.00 & 6.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  2 & 10.00 & 15.00 & 21.00 & 21.00 & 5.00 & 15.00 & 21.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  3 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -10.00 & 6.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  4 & 10.00 & 15.00 & 21.00 & 15.00 & 21.00 & 21.00 & 5.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  5 & 10.00 & 20.00 & 10.00 & 20.00 & 26.00 & 20.00 & 26.00 & 26.00 & 20.00 & 26.00 & 20.00 \\ 
+  6 & 0.00 & 5.00 & 11.00 & 5.00 & 5.00 & 5.00 & 5.00 & -5.00 & 11.00 & 11.00 & 5.00 \\ 
+  7 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 16.00 & 0.00 & 10.00 & 10.00 \\ 
+  8 & 10.00 & 15.00 & 21.00 & 15.00 & 15.00 & 15.00 & 15.00 & 21.00 & 15.00 & 5.00 & 21.00 \\ 
+  9 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 16.00 & 0.00 \\ 
+  \hline
+  \multicolumn{3}{r}{abs($t$-stat)} & {\bf 3.54} & 1.43 & 1.74 & 1.43 & 1.74 & 2.61 & 0.03 & 1.74 & 1.39 \\ 
+
+   \hline
+
+\multicolumn{12}{c}{Hypothesized Indirect Effect = 6} \\
+   
+   \hline
+Legislator & Y({\bf 0}) & Y({\bf Z}) & Y$_5$({\bf 0}) & Y$_1$({\bf 0})  & Y$_2$({\bf 0})& Y$_3$({\bf 0})& Y$_4$({\bf 0})& Y$_6$({\bf 0})& Y$_7$({\bf 0})& Y$_8$({\bf 0})&Y$_9$({\bf 0})\\ 
+  \hline
+1 & 0.00 & 0.00 & 0.00 & -10.00 & -6.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  2 & 10.00 & 15.00 & 9.00 & 9.00 & 5.00 & 15.00 & 9.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  3 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -10.00 & -6.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  4 & 10.00 & 15.00 & 9.00 & 15.00 & 9.00 & 9.00 & 5.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  5 & 10.00 & 20.00 & 10.00 & 20.00 & 14.00 & 20.00 & 14.00 & 14.00 & 20.00 & 14.00 & 20.00 \\ 
+  6 & 0.00 & 5.00 & -1.00 & 5.00 & 5.00 & 5.00 & 5.00 & -5.00 & -1.00 & -1.00 & 5.00 \\ 
+  7 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 4.00 & 0.00 & 10.00 & 10.00 \\ 
+  8 & 10.00 & 15.00 & 9.00 & 15.00 & 15.00 & 15.00 & 15.00 & 9.00 & 15.00 & 5.00 & 9.00 \\ 
+  9 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 4.00 & 0.00 \\ \hline 
+   \multicolumn{3}{r}{abs($t$-stat)}  & {\bf 0.39} & 0.24 & 0.42 & 0.24 & 0.42 & 0.20 & 1.39 & 0.42 & 0.03 \\ 
+\hline \hline
+
+\end{tabular}
+}
+\caption{Data from toy example experiment.  Y({\bf 0}) gives the hypothetical outcome that we would observe if the treatment was not administered. Y({\bf Z}) gives the outcome observed under the treatment (i.e., Legislator 5 was treated). Y$_X$({\bf 0}) gives the hypothesized value of Y({\bf 0}) if treatment was assigned to legislator X.}
+\label{tab:ninenet}
+\end{table}
+
+Considering the example data presented in Table \ref{tab:ninet}, we see that there is very little evidence for the hypothesized effect value of -6. As seen in the Y$_5$({\bf 0}) column, and indicated by the absolute $t$-statistic value of 3.54, removing the hypothesized indirect effect does not remove differences between control legislators who were exposed to the treated legislator and those who were not. The observed test statistic value is not smaller than any of the values calculated when treatment is artificially re-assigned to any of the other nodes, meaning that there is effectively zero evidence for an indirect effect of -6, and that the value -6 would not be included in the confidence interval at any level less than 100\%. On the other hand, the evidence for an indirect effect value of 6 is quite strong. At this value, the test statistic calculated on the observed data is 0.39---less than the values calculated on half of the outcome columns that result from artificially re-assigning treatment to the other legislators. The parameter value 6 would be included in confidence intervals with levels greater than 50\%. Real-world application of the BFP methodology, which we illustrate below, is much more complicated than in this toy example (e.g., we typically do not know the values of any parameters, and test many more than two parameter values), but this toy example illustrates the steps of hypothesizing models of effects and assessing their evidence. 
+
+
 
 %%%%
 \section{Considerations in Testing for Interference}

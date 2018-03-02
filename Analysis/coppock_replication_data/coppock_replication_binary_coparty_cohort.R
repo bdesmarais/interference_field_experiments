@@ -108,6 +108,10 @@ num_treat <- apply(perm,1,sum)
 num_control <- apply(1-perm,1,sum)
 expected.exp1 <- expected.exp1/num_treat
 expected.exp0 <- expected.exp0/num_control
+expected.exp1.low <- expected.exp1.low/num_treat
+expected.exp0.low <- expected.exp0.low/num_control
+expected.exp1.high <- expected.exp1.high/num_treat
+expected.exp0.high <- expected.exp0.high/num_control
 
 
 #### Generate expected and net exposure
@@ -139,8 +143,8 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
   
   exposures <- indirect.treatment(permutation, adj.mat,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
   
-  exposure_low <- exposures[[3]]
-  exposure_high <- exposures[[4]]
+  exposure_low <- exposures[[1]]
+  exposure_high <- exposures[[2]]
   # This is equation 5
   h.yz.0 <- outcome - (beta1*permutation*low_support) -(beta2*permutation*(1-low_support)) - (beta3*exposure_low) - beta4*exposure_high
   return(h.yz.0)
@@ -165,7 +169,7 @@ pvals <- numeric(nrow(parameters))
 
 # Calculate observed test statistic
 exposures <- indirect.treatment(permutation = z, adj.mat = S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
-test.stat <- sum((lm(y.z ~ eval(z*low_support)+eval(z*(1-low_support)) + exposures[[3]]+exposures[[4]], na.action = na.omit)$resid)^2)
+test.stat <- sum((lm(y.z ~ eval(z*low_support)+eval(z*(1-low_support)) + exposures[[1]]+exposures[[2]], na.action = na.omit)$resid)^2)
 
 pval <- numeric(nrow(parameters))
 
@@ -194,8 +198,8 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
     #perm.z <- Z_block[,sample(1:10000, 1)]
     perm.z <- perm[,sample(1:perms, 1)]
     perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo,expected.exp0.low,expected.exp1.low,expected.exp0.high,expected.exp1.high,low_support)
-    exposure_low <- perm.exposure[[3]]
-    exposure_high <- perm.exposure[[4]]
+    exposure_low <- perm.exposure[[1]]
+    exposure_high <- perm.exposure[[2]]
     y.sim <- perm.y.0+beta1*perm.z*low_support + beta2*perm.z*(1-low_support) + beta3*exposure_low + beta4*exposure_high
     perm.test.stats[k] <- sum((lm(y.sim ~ eval(perm.z*low_support)+eval(perm.z*(1-low_support))+exposure_low+exposure_high , na.action = na.omit)$resid)^2)
   }

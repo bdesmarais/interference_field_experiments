@@ -278,8 +278,6 @@ Loading required package: parallel
 +   
 +   # Calculating p-value
 +   c(sum(perm.test.stats < test.stat)/perms.test,1)
-+   
-+ }
 > 
 > stopImplicitCluster()
 > 
@@ -289,4 +287,5 @@ Loading required package: parallel
 > 
 > proc.time()
       user     system    elapsed 
-435406.609     10.834  43936.383 
+815551.452     38.522  83403.495 
+936.383 
