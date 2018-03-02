@@ -1,12 +1,14 @@
-##################################################################
-#### Analyze the Bergan (Michigan) data for spillover effect ####
-##################################################################
-# Cohort network
-# Skip lines 70-84 for raw exposure results
-# Base model replicated from Coppock
+############################
+#### Bergan (Michigan) ####
+############################
+## INCOMPLETE
+# Co-sponsorship network
+# Skip lines 62-76 for raw exposure results
+# 80% thresholded network
+# Reparametrized model
 
 # Authors: Sayali Phadke, Bruce Desmarais
-# Created on: 01/28/2018
+# Created on: 03/02/2018
 # Last edited on: 03/02/2018
 # Last edited by: Sayali
 
@@ -40,15 +42,26 @@ permute.within.categories <- function(categories,z){
 data <- read.dta("bergan.dta", convert.underscore=TRUE)
 data <- data[1:148,]
 
+
 # Fixing the adjacency matrix
-load("w_cohort_network.RData")
-network <- w_cohort_amat
-rm(w_cohort_amat)
+load("Michigan_2011_bills/cosponsorship_network.RData")
+network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
+                                                                             data$name))==FALSE],
+                                 rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
+                                                                             data$name))==FALSE]]
+rm(cosponsorship_network)
+# network[network!="0"] <- 1 #For this iteration, we will work with a binary network
 gc()
+
 
 ## Cleaning it up
 network <- network[-which(data$finalvote < 0), -which(data$finalvote < 0)]
 data <- data[-which(data$finalvote < 0), ]
+
+
+# Limit to 20% most similar
+threshold <- quantile(c(network),0.80)
+network <- 1*(network>=threshold)
 
 
 ## Setting treatment and outcome vector
@@ -58,8 +71,9 @@ perms <- 1000 #number of permutations to use in generating expected exposure
 perms.test <- 500 #number of permutations used in testing
 n <- length(z)
 
-beta1s <- seq(from=-0.5, to=0.5, by=.025)
-beta2s <- seq(from=-0.5, to=0.5, by=.025)
+
+beta1s <- seq(from=-.5, to=0.5, by=.025)
+beta2s <- seq(from=-.5, to=0.5, by=.025)
 
 
 #### Generate expected exposure
@@ -68,21 +82,21 @@ perm <- replicate(perms, permute.within.categories(data$strata,z))
 expected.exp0 <- rep(0, n)
 expected.exp1 <- rep(0, n)
 
-for(p in 1:ncol(perm)){
-  zp <- perm[,p]
-  for(i in 1:n){
-    if (zp[i] == 1){
-      expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
-    }
-    else{
-      expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
-    }
-  }
-}
-num_treat <- apply(perm,1,sum)
-num_control <- apply(1-perm,1,sum)
-expected.exp1 <- expected.exp1/num_treat
-expected.exp0 <- expected.exp0/num_control
+# for(p in 1:ncol(perm)){
+#   zp <- perm[,p]
+#   for(i in 1:n){
+#     if (zp[i] == 1){
+#       expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
+#     }
+#     else{
+#       expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
+#     }
+#   }
+# }
+# num_treat <- apply(perm,1,sum)
+# num_control <- apply(1-perm,1,sum)
+# expected.exp1 <- expected.exp1/num_treat
+# expected.exp0 <- expected.exp0/num_control
 
 
 #### Generate expected and net exposure
@@ -123,7 +137,7 @@ z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){
 
 pvals <- matrix(NA, length(beta1s), length(beta2s))
 
-cl <- makeCluster(4) #Setup for parallel computing
+cl <- makeCluster(8) #Setup for parallel computing
 registerDoParallel(cl)
 
 pvaluenetwork <- foreach (i = 1:length(beta1s)) %do% {
@@ -162,7 +176,7 @@ for (i in 1:length(beta1s)){
   pvals[i,] <- unlist(pvaluenetwork[i])
 }
 
-#pvals #rows are direct effects, columns indirect
+# pvals #rows are direct effects, columns indirect
 
 
 # Saving results
@@ -207,13 +221,13 @@ lines(rep(direct.effect.CI.low, nrow(pvals)), beta2s,
 
 
 # ## Saving the p-value matrix
-# save(pvals, file="pvals_bergan_cohort_raw.RData")
-# write.table(pvals, file="pvals_bergan_cohort_raw.csv",
+# save(pvals, file="pvals_bergan_cospon.RData")
+# write.table(pvals, file="pvals_bergan_cospon.csv",
 #             col.names = beta2s, row.names = beta1s)
 # 
 # 
 # # Save
-# pdf("pval_plot_bergan_cohort_raw.pdf")
+# pdf("pval_plot_bergan_cospon.pdf")
 # image.plot(beta1s, beta2s, pvals,
 #            main = "Plot of p-values",
 #            xlab = "Direct effects", ylab = "Indirect effects")

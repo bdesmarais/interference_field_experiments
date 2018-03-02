@@ -3,12 +3,17 @@
 ##################################################################
 # Co-sponsorship network
 # Skip lines 62-76 for raw exposure results
+# Base model replicated from Coppock
+
+# Authors: Sayali Phadke, Bruce Desmarais
+# Created on: 05/12/2016
+# Last edited on: 03/02/2018
+# Last edited by: Sayali
 
 rm(list=ls())
 gc()
 set.seed(132)
 
-setwd("D:/Dropbox/Interference_in_Field_Experiments/Analysis/Bergan_replication") #SP
 
 library(doParallel)
 library(fields)
@@ -33,24 +38,35 @@ permute.within.categories <- function(categories,z){
 
 ## Importing data
 data <- read.dta("bergan.dta", convert.underscore=TRUE)
-data <- data[data$finalvote >= 0,]
-data <- data[order(data$newtreat),]
-data <- data[1:143,]
+data <- data[1:148,]
+
 
 # Fixing the adjacency matrix
 load("Michigan_2011_bills/cosponsorship_network.RData")
-network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network), data$name))==FALSE], rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network), data$name))==FALSE]]
+network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
+                                                                             data$name))==FALSE],
+                                 rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
+                                                                             data$name))==FALSE]]
 rm(cosponsorship_network)
-network[network!="0"] <- 1 #For this iteration, we will work with a binary network
+# network[network!="0"] <- 1 #For this iteration, we will work with a binary network
 gc()
+
+
+## Cleaning it up
+network <- network[-which(data$finalvote < 0), -which(data$finalvote < 0)]
+data <- data[-which(data$finalvote < 0), ]
 
 
 ## Setting treatment and outcome vector
 y.z <- data$finalvote
 z <- data$anytreat
-perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 5000 #number of permutations used in testing
+perms <- 1000 #number of permutations to use in generating expected exposure
+perms.test <- 500 #number of permutations used in testing
 n <- length(z)
+
+
+beta1s <- seq(from=-.5, to=0.5, by=.025)
+beta2s <- seq(from=-.5, to=0.5, by=.025)
 
 
 #### Generate expected exposure
@@ -59,21 +75,21 @@ perm <- replicate(perms, permute.within.categories(data$strata,z))
 expected.exp0 <- rep(0, n)
 expected.exp1 <- rep(0, n)
 
-for(p in 1:ncol(perm)){
-  zp <- perm[,p]
-  for(i in 1:n){
-    if (zp[i] == 1){
-      expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
-    }
-    else{
-      expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
-    }
-  }
-}
-num_treat <- apply(perm,1,sum)
-num_control <- apply(1-perm,1,sum)
-expected.exp1 <- expected.exp1/num_treat
-expected.exp0 <- expected.exp0/num_control
+# for(p in 1:ncol(perm)){
+#   zp <- perm[,p]
+#   for(i in 1:n){
+#     if (zp[i] == 1){
+#       expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
+#     }
+#     else{
+#       expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
+#     }
+#   }
+# }
+# num_treat <- apply(perm,1,sum)
+# num_control <- apply(1-perm,1,sum)
+# expected.exp1 <- expected.exp1/num_treat
+# expected.exp0 <- expected.exp0/num_control
 
 
 #### Generate expected and net exposure
@@ -111,9 +127,6 @@ z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){
 #########################################
 #### Testing and p-value calculation ####
 #########################################
-
-beta1s <- seq(from=-.5, to=0.5, by=.025)
-beta2s <- seq(from=-.5, to=0.5, by=.025)
 
 pvals <- matrix(NA, length(beta1s), length(beta2s))
 
@@ -156,7 +169,7 @@ for (i in 1:length(beta1s)){
   pvals[i,] <- unlist(pvaluenetwork[i])
 }
 
-pvals #rows are direct effects, columns indirect
+# pvals #rows are direct effects, columns indirect
 
 
 # Saving results
@@ -200,39 +213,39 @@ lines(rep(direct.effect.CI.low, nrow(pvals)), beta2s,
       type = "l", col = "yellow", lty = 2) #direct low
 
 
-## Saving the p-value matrix
-save(pvals, file="pvals_bergan_cospon.RData")
-write.table(pvals, file="pvals_bergan_cospon.csv",
-            col.names = beta2s, row.names = beta1s)
-
-
-# Save
-pdf("pval_plot_bergan_cospon.pdf")
-image.plot(beta1s, beta2s, pvals,
-           main = "Plot of p-values",
-           xlab = "Direct effects", ylab = "Indirect effects")
-
-# Lines for point estimate
-lines(beta1s, rep(indirect.effect.PI, nrow(pvals)),
-      type = "l", col = "yellow", lty = 1) #indirect
-
-lines(rep(direct.effect.PI, nrow(pvals)), beta2s,
-      type = "l", col = "yellow", lty = 1) #direct
-
-# Lines for 95% CI
-lines(beta1s, rep(indirect.effect.CI.low, nrow(pvals)),
-      type = "l", col = "yellow", lty = 2) #indirect low
-
-lines(beta1s, rep(indirect.effect.CI.high, nrow(pvals)),
-      type = "l", col = "yellow", lty = 2) #indirect high
-
-lines(rep(direct.effect.CI.high, nrow(pvals)), beta2s,
-      type = "l", col = "yellow", lty = 2) #direct high
-
-lines(rep(direct.effect.CI.low, nrow(pvals)), beta2s,
-      type = "l", col = "yellow", lty = 2) #direct low
-
-dev.off()
+# ## Saving the p-value matrix
+# save(pvals, file="pvals_bergan_cospon.RData")
+# write.table(pvals, file="pvals_bergan_cospon.csv",
+#             col.names = beta2s, row.names = beta1s)
+# 
+# 
+# # Save
+# pdf("pval_plot_bergan_cospon.pdf")
+# image.plot(beta1s, beta2s, pvals,
+#            main = "Plot of p-values",
+#            xlab = "Direct effects", ylab = "Indirect effects")
+# 
+# # Lines for point estimate
+# lines(beta1s, rep(indirect.effect.PI, nrow(pvals)),
+#       type = "l", col = "yellow", lty = 1) #indirect
+# 
+# lines(rep(direct.effect.PI, nrow(pvals)), beta2s,
+#       type = "l", col = "yellow", lty = 1) #direct
+# 
+# # Lines for 95% CI
+# lines(beta1s, rep(indirect.effect.CI.low, nrow(pvals)),
+#       type = "l", col = "yellow", lty = 2) #indirect low
+# 
+# lines(beta1s, rep(indirect.effect.CI.high, nrow(pvals)),
+#       type = "l", col = "yellow", lty = 2) #indirect high
+# 
+# lines(rep(direct.effect.CI.high, nrow(pvals)), beta2s,
+#       type = "l", col = "yellow", lty = 2) #direct high
+# 
+# lines(rep(direct.effect.CI.low, nrow(pvals)), beta2s,
+#       type = "l", col = "yellow", lty = 2) #direct low
+# 
+# dev.off()
 
 
 

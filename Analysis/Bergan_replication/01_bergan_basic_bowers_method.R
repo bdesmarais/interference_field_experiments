@@ -2,6 +2,7 @@
 #### Analyze the Bergan (Michigan) data for spillover effect ####
 ##################################################################
 #Skip lines 70-84 for raw exposure results
+# Base model replicated from Coppock
 
 rm(list=ls())
 set.seed(132)

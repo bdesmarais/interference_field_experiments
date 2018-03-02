@@ -1,6 +1,7 @@
 ############################################
 #### Bergan extended with knn adjacency ####
 ############################################
+# Base model replicated from Coppock
 
 setwd("~/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/Bergan_replication") # BD
 setwd("D:/Dropbox/Interference_in_Field_Experiments/Analysis/Bergan_replication")

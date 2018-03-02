@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=48:00:00
+#PBS -l mem=8gb
+#PBS -M sphadke@psu.edu
+cd /storage/home/ssp5208/Phadke_Desmarais_paper/bergan_replication
+
+R CMD BATCH 03_bergan_cospon_newmodel.R
+
+
