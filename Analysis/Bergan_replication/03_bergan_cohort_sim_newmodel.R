@@ -1,9 +1,9 @@
 ############################
 #### Bergan (Michigan) ####
 ############################
-# Co-sponsorship network
+# Cohort network
 # Skip lines 62-76 for raw exposure results
-# Weighted network
+# Cohort similarity as weights
 # Reparametrized model
 
 # Authors: Sayali Phadke, Bruce Desmarais
@@ -61,15 +61,10 @@ data <- data[1:148,]
 
 
 # Fixing the adjacency matrix
-load("cosponsorship_network.RData")
-network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
-                                                                             data$name))==FALSE],
-                                 rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
-                                                                             data$name))==FALSE]]
-rm(cosponsorship_network)
-# network[network!="0"] <- 1 #For this iteration, we will work with a binary network
+load("w_cohort_copart_network.RData")
+network <- w_cohort_copart_amat
+rm(w_cohort_copart_amat)
 gc()
-
 
 ## Cleaning it up
 network <- network[-which(data$finalvote < 0), -which(data$finalvote < 0)]
@@ -220,5 +215,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_cospon_weighted_newmodel.RData")
+save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_copartisan_cohort_similarity.RData")
 

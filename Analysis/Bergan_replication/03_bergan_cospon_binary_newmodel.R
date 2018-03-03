@@ -2,8 +2,7 @@
 #### Bergan (Michigan) ####
 ############################
 # Co-sponsorship network
-# Skip lines 62-76 for raw exposure results
-# Weighted network
+# Binary network with tie if MORE THAN ONE bill co-sponsored
 # Reparametrized model
 
 # Authors: Sayali Phadke, Bruce Desmarais
@@ -15,24 +14,16 @@ rm(list=ls())
 gc()
 set.seed(132)
 
-## Packages
-dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
-install.packages("iterators", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
-install.packages("foreign", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
-install.packages("foreach", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
-install.packages("doParallel", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
-library(foreign,lib.loc=Sys.getenv("R_LIBS_USER"))
-library(foreach,lib.loc=Sys.getenv("R_LIBS_USER"))
-library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
 
-# library(doParallel)
-# library(foreach)
-# library(foreign)
-# library(kSamples)
-# library(network)
-# library(permute)
+library(doParallel)
+library(fields)
+library(foreach)
+library(foreign)
+library(kSamples)
+library(network)
+library(permute)
 
-## Functions
+
 permute.within.categories <- function(categories,z){
   ucategories <- unique(categories)
   perm.z <- rep(NA,length(z))
@@ -44,16 +35,6 @@ permute.within.categories <- function(categories,z){
   perm.z
 }
 
-matrix.max <- function(x){
-  # x is the matrix with respect to which you want to find the max cell
-  rowmax <- which.max(apply(x,1,max))
-  colmax <- which.max(x[rowmax,])
-  c(rowmax,colmax)
-}
-
-get.similarity <- function(x, y){
-  return((2-abs(x-y))/2)
-}
 
 ## Importing data
 data <- read.dta("bergan.dta", convert.underscore=TRUE)
@@ -61,13 +42,14 @@ data <- data[1:148,]
 
 
 # Fixing the adjacency matrix
-load("cosponsorship_network.RData")
+load("Michigan_2011_bills/cosponsorship_network.RData")
 network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
                                                                              data$name))==FALSE],
                                  rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
                                                                              data$name))==FALSE]]
 rm(cosponsorship_network)
-# network[network!="0"] <- 1 #For this iteration, we will work with a binary network
+network[network == "1"] <- 0 #no tie if only one bill cosponsored
+network[network != "0"] <- 1
 gc()
 
 
@@ -220,5 +202,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_cospon_weighted_newmodel.RData")
+save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_cospon_binary_newmodel.RData")
 

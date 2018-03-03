@@ -3,12 +3,12 @@
 #PBS -l mem=8gb
 #PBS -j oe
 #PBS -mae sphadke@psu.edu
-#PBS -N cosp_nmod_log
+#PBS -N bin_cosp_nmod
 
 cd ~/Phadke_Desmarais_paper/bergan_replication/
 
 module load R/3.2.0
 
-R CMD BATCH 03_bergan_cospon_newmodel.R
+R CMD BATCH 03_bergan_cospon_binary_newmodel.R
 
 
