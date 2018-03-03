@@ -2,7 +2,7 @@
 #### Bergan (Michigan) ####
 ############################
 # Cohort network
-# Cohort similarity as weights and coparty indicator interacted
+# Cohort AND coparty indicators interacted
 # Reparametrized model
 
 # Authors: Sayali Phadke, Bruce Desmarais
@@ -60,9 +60,9 @@ data <- data[1:148,]
 
 
 # Fixing the adjacency matrix
-load("w_cohort_copart_network.RData")
-network <- w_cohort_copart_amat
-rm(w_cohort_copart_amat)
+load("cohort_copart_network.RData")
+network <- cohort_copart_amat
+rm(cohort_copart_amat)
 gc()
 
 ## Cleaning it up
@@ -214,5 +214,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_copartisan_cohort_similarity.RData")
+save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_copartisan_cohort_binary.RData")
 

@@ -1,0 +1,229 @@
+
+R version 3.4.0 (2017-04-21) -- "You Stupid Darkness"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ############################
+> #### Bergan (Michigan) ####
+> ############################
+> # Cohort network
+> # Cohort AND coparty indicators interacted
+> # Reparametrized model
+> 
+> # Authors: Sayali Phadke, Bruce Desmarais
+> # Created on: 03/02/2018
+> # Last edited on: 03/02/2018
+> # Last edited by: Sayali
+> 
+> rm(list=ls())
+> gc()
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 251974 13.5     460000 24.6   350000 18.7
+Vcells 441739  3.4    1023718  7.9   786431  6.0
+> set.seed(132)
+> 
+> ## Packages
+> dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
+> install.packages("iterators", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/iterators_1.0.9.tar.gz'
+Content type 'application/x-gzip' length 290634 bytes (283 KB)
+==================================================
+downloaded 283 KB
+
+* installing *source* package 'iterators' ...
+** package 'iterators' successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'iterators'
+    finding HTML links ... done
+    iapply                                  html  
+    icount                                  html  
+    idiv                                    html  
+    iread.table                             html  
+    ireadLines                              html  
+    irnorm                                  html  
+    isplit                                  html  
+    iter                                    html  
+    iterators-package                       html  
+    nextElem                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (iterators)
+
+The downloaded source packages are in
+	'/tmp/RtmpJQPKSc/downloaded_packages'
+> install.packages("foreign", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/foreign_0.8-69.tar.gz'
+Content type 'application/x-gzip' length 344394 bytes (336 KB)
+==================================================
+downloaded 336 KB
+
+* installing *source* package 'foreign' ...
+** package 'foreign' successfully unpacked and MD5 sums checked
+** libs
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c R_systat.c -o R_systat.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c Rdbfread.c -o Rdbfread.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c Rdbfwrite.c -o Rdbfwrite.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c SASxport.c -o SASxport.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c avl.c -o avl.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c dbfopen.c -o dbfopen.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c file-handle.c -o file-handle.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c format.c -o format.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c init.c -o init.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c minitab.c -o minitab.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c pfm-read.c -o pfm-read.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c sfm-read.c -o sfm-read.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c spss.c -o spss.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c stataread.c -o stataread.o
+gcc -m64 -std=gnu99 -shared -L/usr/lib64/R/lib -o foreign.so R_systat.o Rdbfread.o Rdbfwrite.o SASxport.o avl.o dbfopen.o file-handle.o format.o init.o minitab.o pfm-read.o sfm-read.o spss.o stataread.o -L/usr/lib64/R/lib -lR
+installing to /storage/home/ssp5208/R/x86_64-redhat-linux-gnu-library/3.4/foreign/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'foreign'
+    finding HTML links ... done
+    lookup.xport                            html  
+    read.S                                  html  
+    read.arff                               html  
+    read.dbf                                html  
+    read.dta                                html  
+    read.epiinfo                            html  
+    read.mtp                                html  
+    read.octave                             html  
+    read.spss                               html  
+    read.ssd                                html  
+    read.systat                             html  
+    read.xport                              html  
+    write.arff                              html  
+    write.dbf                               html  
+    write.dta                               html  
+    write.foreign                           html  
+** building package indices
+** testing if installed package can be loaded
+* DONE (foreign)
+
+The downloaded source packages are in
+	'/tmp/RtmpJQPKSc/downloaded_packages'
+> install.packages("foreach", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/foreach_1.4.4.tar.gz'
+Content type 'application/x-gzip' length 360705 bytes (352 KB)
+==================================================
+downloaded 352 KB
+
+* installing *source* package 'foreach' ...
+** package 'foreach' successfully unpacked and MD5 sums checked
+** R
+** demo
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'foreach'
+    finding HTML links ... done
+    foreach-ext                             html  
+    foreach-package                         html  
+    foreach                                 html  
+    getDoParWorkers                         html  
+    getDoSeqWorkers                         html  
+    registerDoSEQ                           html  
+    setDoPar                                html  
+    setDoSeq                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (foreach)
+
+The downloaded source packages are in
+	'/tmp/RtmpJQPKSc/downloaded_packages'
+> install.packages("doParallel", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/doParallel_1.0.11.tar.gz'
+Content type 'application/x-gzip' length 172885 bytes (168 KB)
+==================================================
+downloaded 168 KB
+
+* installing *source* package 'doParallel' ...
+** package 'doParallel' successfully unpacked and MD5 sums checked
+** R
+** demo
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'doParallel'
+    finding HTML links ... done
+    doParallel-package                      html  
+    registerDoParallel                      html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (doParallel)
+
+The downloaded source packages are in
+	'/tmp/RtmpJQPKSc/downloaded_packages'
+> library(foreign,lib.loc=Sys.getenv("R_LIBS_USER"))
+> library(foreach,lib.loc=Sys.getenv("R_LIBS_USER"))
+> library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
+Loading required package: iterators
+Loading required package: parallel
+> 
+> # library(doParallel)
+> # library(foreach)
+> # library(foreign)
+> # library(kSamples)
+> # library(network)
+> # library(permute)
+> 
+> ## Functions
+> permute.within.categories <- function(categories,z){
++   ucategories <- unique(categories)
++   perm.z <- rep(NA,length(z))
++   for(c in ucategories){
++     z.c <- z[which(categories==c)]
++     perm.z.c <- sample(z.c,length(z.c),rep=F)
++     perm.z[which(categories==c)] <- perm.z.c
++   }
++   perm.z
++ }
+> 
+> matrix.max <- function(x){
++   # x is the matrix with respect to which you want to find the max cell
++   rowmax <- which.max(apply(x,1,max))
++   colmax <- which.max(x[rowmax,])
++   c(rowmax,colmax)
++ }
+> 
+> get.similarity <- function(x, y){
++   return((2-abs(x-y))/2)
++ }
+> 
+> ## Importing data
+> data <- read.dta("bergan.dta", convert.underscore=TRUE)
+> data <- data[1:148,]
+> 
+> 
+> # Fixing the adjacency matrix
+> load("cohort_copart_network.RData")
+Error in readChar(con, 5L, useBytes = TRUE) : cannot open the connection
+Calls: load -> readChar
+In addition: Warning message:
+In readChar(con, 5L, useBytes = TRUE) :
+  cannot open compressed file 'cohort_copart_network.RData', probable reason 'No such file or directory'
+Execution halted

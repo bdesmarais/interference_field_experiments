@@ -67,7 +67,6 @@ network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(row
                                  rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
                                                                              data$name))==FALSE]]
 rm(cosponsorship_network)
-# network[network!="0"] <- 1 #For this iteration, we will work with a binary network
 gc()
 
 

@@ -7,23 +7,32 @@
 
 # Authors: Sayali Phadke, Bruce Desmarais
 # Created on: 03/02/2018
-# Last edited on: 03/02/2018
+# Last edited on: 03/03/2018
 # Last edited by: Sayali
 
 rm(list=ls())
 gc()
 set.seed(132)
 
+#Packages
+dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
+install.packages("iterators", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+install.packages("foreign", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+install.packages("foreach", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+install.packages("doParallel", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+library(foreign,lib.loc=Sys.getenv("R_LIBS_USER"))
+library(foreach,lib.loc=Sys.getenv("R_LIBS_USER"))
+library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
 
-library(doParallel)
-library(fields)
-library(foreach)
-library(foreign)
-library(kSamples)
-library(network)
-library(permute)
+# library(doParallel)
+# library(fields)
+# library(foreach)
+# library(foreign)
+# library(kSamples)
+# library(network)
+# library(permute)
 
-
+# Functions
 permute.within.categories <- function(categories,z){
   ucategories <- unique(categories)
   perm.z <- rep(NA,length(z))
@@ -35,6 +44,17 @@ permute.within.categories <- function(categories,z){
   perm.z
 }
 
+matrix.max <- function(x){
+  # x is the matrix with respect to which you want to find the max cell
+  rowmax <- which.max(apply(x,1,max))
+  colmax <- which.max(x[rowmax,])
+  c(rowmax,colmax)
+}
+
+get.similarity <- function(x, y){
+  return((2-abs(x-y))/2)
+}
+
 
 ## Importing data
 data <- read.dta("bergan.dta", convert.underscore=TRUE)
@@ -42,7 +62,7 @@ data <- data[1:148,]
 
 
 # Fixing the adjacency matrix
-load("Michigan_2011_bills/cosponsorship_network.RData")
+load("cosponsorship_network.RData")
 network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
                                                                              data$name))==FALSE],
                                  rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
