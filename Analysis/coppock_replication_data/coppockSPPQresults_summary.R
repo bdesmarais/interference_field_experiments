@@ -49,6 +49,6 @@ summary.threshold60_scaled <- BFP.results.summary(parameters,threshold60_scaled_
 summary.threshold80_scaled <- BFP.results.summary(parameters,threshold80_scaled_results)
 summary.threshold60_unscaled <- BFP.results.summary(parameters,threshold60_unscaled_results)
 summary.threshold80_unscaled <- BFP.results.summary(parameters,threshold80_unscaled_results)
-summary.copartisan_cohort_binary <- BFP.results.summary(parameters, copartisan_cohort_binary_results,level=0.9)
-summary.copartisan_cohort_weighted <- BFP.results.summary(parameters, copartisan_cohort_weighted_results)
+summary.copartisan_cohort_binary <- BFP.results.summary(parameters, copartisan_cohort_binary_results)
+summary.copartisan_cohort_weighted <- BFP.results.summary(parameters, copartisan_cohort_weighted_results,level=0.9)
 
