@@ -1,5 +1,11 @@
 \begin{thebibliography}{xx}
 
+\harvarditem[Ansari, Koenigsberg \harvardand\ Stahl]{Ansari, Koenigsberg
+  \harvardand\ Stahl}{2011}{ansari2011modeling}
+Ansari, Asim, Oded Koenigsberg \harvardand\ Florian Stahl. 2011.
+\newblock ``Modeling multiple relationships in social networks.'' {\em Journal
+  of Marketing Research} 48(4):713--728.
+
 \harvarditem{Aral \harvardand\ Walker}{2014}{aral2014}
 Aral, Sinan \harvardand\ Dylan Walker. 2014.
 \newblock ``Tie strength, embeddedness, and social influence: A large-scale
@@ -79,24 +85,18 @@ Broockman, David~E. 2013.
   Blacks? interests: A field experiment manipulating political incentives.''
   {\em American Journal of Political Science} 57(3):521--536.
 
-\harvarditem[Butler, Karpowitz \harvardand\ Pope]{Butler, Karpowitz
-  \harvardand\ Pope}{2012}{butler2012field}
-Butler, Daniel~M, Christopher~F Karpowitz \harvardand\ Jeremy~C Pope. 2012.
-\newblock ``A field experiment on legislators? home styles: Service versus
-  policy.'' {\em The Journal of Politics} 74(02):474--486.
-
-\harvarditem{Butler \harvardand\ Broockman}{2011}{butler2011politicians}
-Butler, Daniel~M \harvardand\ David~E Broockman. 2011.
-\newblock ``Do politicians racially discriminate against constituents? A field
-  experiment on state legislators.'' {\em American Journal of Political
-  Science} 55(3):463--477.
-
 \harvarditem[Butler, Nickerson et~al.]{Butler, Nickerson
   et~al.}{2011}{butler2011can}
 Butler, Daniel~M, David~W Nickerson et~al. 2011.
 \newblock ``Can learning constituency opinion affect how legislators vote?
   Results from a field experiment.'' {\em Quarterly Journal of Political
   Science} 6(1):55--83.
+
+\harvarditem{Cabin \harvardand\ Mitchell}{2000}{cabin2000bonferroni}
+Cabin, Robert~J \harvardand\ Randall~J Mitchell. 2000.
+\newblock ``To Bonferroni or not to Bonferroni: when and how are the
+  questions.'' {\em Bulletin of the Ecological Society of America}
+  81(3):246--248.
 
 \harvarditem{Coppock}{2014}{coppock2014information}
 Coppock, Alexander. 2014.
@@ -209,12 +209,6 @@ Nyhan, Brendan \harvardand\ Jacob~M Montgomery. 2015.
 \newblock ``Connecting the candidates: Consultant networks and the diffusion of
   campaign strategy in American congressional elections.'' {\em American
   Journal of Political Science} 59(2):292--308.
-
-\harvarditem{Nyhan \harvardand\ Reifler}{2015}{nyhan2015effect}
-Nyhan, Brendan \harvardand\ Jason Reifler. 2015.
-\newblock ``The Effect of Fact-Checking on Elites: A Field Experiment on US
-  State Legislators.'' {\em American Journal of Political Science}
-  59(3):628--640.
 
 \harvarditem{Paluck}{2011}{paluck2011}
 Paluck, Elizabeth~Levy. 2011.

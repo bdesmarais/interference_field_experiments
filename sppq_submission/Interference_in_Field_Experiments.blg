@@ -1,60 +1,60 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Interference_in_Field_Experiments.aux
 The style file: apsr.bst
 Database file #1: interference.bib
-Repeated entry---line 1247 of file interference.bib
+Repeated entry---line 1269 of file interference.bib
  : @article{fowler2006connecting
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1269 of file interference.bib
+Repeated entry---line 1291 of file interference.bib
  : @article{victor2009social
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1819 of file interference.bib
+Repeated entry---line 1841 of file interference.bib
  : @article{coppock2016information
  :                                ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "grose2015explainin"
-You've used 46 entries,
+You've used 45 entries,
             2874 wiz_defined-function locations,
-            926 strings with 13611 characters,
-and the built_in function-call counts, 203036 in all, are:
-= -- 33232
-> -- 2495
+            925 strings with 13517 characters,
+and the built_in function-call counts, 198564 in all, are:
+= -- 32496
+> -- 2444
 < -- 1
-+ -- 15616
-- -- 877
-* -- 17438
-:= -- 40464
-add.period$ -- 187
-call.type$ -- 46
-change.case$ -- 598
-chr.to.int$ -- 46
-cite$ -- 46
-duplicate$ -- 767
-empty$ -- 1662
-format.name$ -- 923
-if$ -- 36580
++ -- 15266
+- -- 859
+* -- 17054
+:= -- 39574
+add.period$ -- 183
+call.type$ -- 45
+change.case$ -- 585
+chr.to.int$ -- 45
+cite$ -- 45
+duplicate$ -- 752
+empty$ -- 1626
+format.name$ -- 905
+if$ -- 35777
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 46
-newline$ -- 191
-num.names$ -- 536
-pop$ -- 152
+missing$ -- 45
+newline$ -- 187
+num.names$ -- 524
+pop$ -- 149
 preamble$ -- 1
-purify$ -- 690
+purify$ -- 675
 quote$ -- 0
-skip$ -- 713
+skip$ -- 700
 stack$ -- 0
-substring$ -- 46976
-swap$ -- 162
-text.length$ -- 645
+substring$ -- 45931
+swap$ -- 160
+text.length$ -- 631
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 184
+type$ -- 180
 warning$ -- 0
-while$ -- 1116
+while$ -- 1091
 width$ -- 0
-write$ -- 641
+write$ -- 628
 (There were 3 error messages)
