@@ -45,10 +45,15 @@ BFP.results.summary <- function(parameters,p.values,level=0.95){
 
 summary.copartisan_committee_binary <- BFP.results.summary(parameters,copartisan_committee_binary_results)
 summary.copartisan_committee_weighted <- BFP.results.summary(parameters,copartisan_committee_weighted_results)
-summary.threshold60_scaled <- BFP.results.summary(parameters,threshold60_scaled_results)
-summary.threshold80_scaled <- BFP.results.summary(parameters,threshold80_scaled_results)
-summary.threshold60_unscaled <- BFP.results.summary(parameters,threshold60_unscaled_results)
-summary.threshold80_unscaled <- BFP.results.summary(parameters,threshold80_unscaled_results)
 summary.copartisan_cohort_binary <- BFP.results.summary(parameters, copartisan_cohort_binary_results)
-summary.copartisan_cohort_weighted <- BFP.results.summary(parameters, copartisan_cohort_weighted_results,level=0.9)
+summary.copartisan_cohort_weighted <- BFP.results.summary(parameters, copartisan_cohort_weighted_results)
+summary.copartisan_committee_binary.9 <- BFP.results.summary(parameters,copartisan_committee_binary_results,level=0.9)
+summary.copartisan_committee_weighted.9 <- BFP.results.summary(parameters,copartisan_committee_weighted_results,level=0.9)
+summary.copartisan_cohort_binary.9 <- BFP.results.summary(parameters, copartisan_cohort_binary_results,level=0.9)
+summary.copartisan_cohort_weighted.9 <- BFP.results.summary(parameters, copartisan_cohort_weighted_results,level=0.9)
 
+library(xtable)
+
+committee.table <- cbind(summary.copartisan_committee_binary[[1]],summary.copartisan_committee_binary[[2]],summary.copartisan_committee_binary.9[[2]],summary.copartisan_committee_weighted[[1]],summary.copartisan_committee_weighted[[2]],summary.copartisan_committee_weighted.9[[2]])
+cohort.table <- cbind(summary.copartisan_cohort_binary[[1]],summary.copartisan_cohort_binary[[2]],summary.copartisan_cohort_binary.9[[2]],summary.copartisan_cohort_weighted[[1]],summary.copartisan_cohort_weighted[[2]],summary.copartisan_cohort_weighted.9[[2]])
+xtable(committee.table)
