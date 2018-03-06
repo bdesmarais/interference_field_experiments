@@ -7,7 +7,7 @@
 
 # Authors: Sayali Phadke, Bruce Desmarais
 # Created on: 03/02/2018
-# Last edited on: 03/02/2018
+# Last edited on: 03/05/2018
 # Last edited by: Sayali
 
 rm(list=ls())
@@ -111,6 +111,22 @@ num_treat <- apply(perm,1,sum)
 num_control <- apply(1-perm,1,sum)
 expected.exp1 <- expected.exp1/num_treat
 expected.exp0 <- expected.exp0/num_control
+expected.exp1.dem <- expected.exp1.dem/num_treat
+expected.exp0.dem <- expected.exp0.dem/num_control
+expected.exp1.rep <- expected.exp1.rep/num_treat
+expected.exp0.rep <- expected.exp0.rep/num_control
+
+for(i in 1:n){
+  if(num_control[i] == 0){
+    expected.exp0[i] <- 0
+    expected.exp0.dem[i] <- 0
+    expected.exp0.rep[i] <- 0
+  } else {
+    expected.exp1[i] <- 0
+    expected.exp1.dem[i] <- 0
+    expected.exp1.rep[i] <- 0
+  }
+}
 
 
 #### Generate expected and net exposure
@@ -145,13 +161,13 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
   
   exposures <- indirect.treatment(permutation, adj.mat, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
   
-  exposure_dem <- exposures[[3]]
-  exposure_rep <- exposures[[4]]
+  exposure_dem <- exposures[[1]]
+  exposure_rep <- exposures[[2]]
   # This is equation 5
+  
   h.yz.0 <- outcome - (beta1*permutation*democrat) - (beta2*permutation*(1-democrat)) - (beta3*exposure_dem) - (beta4*exposure_rep)
   return(h.yz.0)
 }
-
 
 
 #########################################
@@ -172,16 +188,15 @@ parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
 
 pvals <- numeric(nrow(parameters))
 
-# Calculate observed test statistic
 exposures <- indirect.treatment(permutation = z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
 
 test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
-                       exposures[[3]] + exposures[[4]],
+                       exposures[[1]] + exposures[[2]],
                      na.action = na.omit)$resid)^2)
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores=12)
+registerDoParallel(cores = 20)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
@@ -205,6 +220,7 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
     exposure_rep <- perm.exposure[[4]]
     y.sim <- perm.y.0 + beta1*perm.z*democrat + beta2*perm.z*(1-democrat) + beta3*exposure_dem + beta4*exposure_rep
     perm.test.stats[k] <- sum((lm(y.sim ~ eval(perm.z*democrat) + eval(perm.z*(1-democrat)) + exposure_dem + exposure_rep , na.action = na.omit)$resid)^2)
+    
   }
   
   # Calculating p-value
