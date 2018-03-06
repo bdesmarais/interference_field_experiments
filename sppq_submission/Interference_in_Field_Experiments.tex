@@ -381,31 +381,33 @@ We present each replication in a separate section below. For each analysis, we p
 
 \subsection{\citet{butler2011can}}
 
-\begin{itemize}
-\item Ideological distance network and top 30\% 
-\item Same party and committee network---direct ties and 1/geodesic distance
-\item cohort network--same cohort, two hops cohort 1/2 effect
-\end{itemize}
+Butler and Nickerson conducted an experiment on New Mexico legislators to study the effect on legislators' votes of their constituents' opinions regarding the votes. In 2008, a special session of the New Mexico Legislature was called to vote on a bill regarding proposed spending plans for a budget surplus---a tax rebate. Butler and Nickerson conducted a large-scale phone survey to gather constituent opinions from across the state. Using matched-pair randomization---matching in terms of political party, 35 out of 70 legislators were assigned to the treatment group. Legislators in the treatment group were sent a letter containing the district-specific support for the proposed spending plan in their own districts. Butler and Nickerson find that the effects of the treatment on legislators' votes were conditioned by the level of support for the measure indicated in the treatment message. In districts with high support for the tax rebate, the treatment had little effect. This is because legislators generally assumed that the tax rebate would be popular, and that constituents would support the measure. In districts with low support for the tax rebate, the treatment had a negative effect on the likelihood of voting in support for the measure, as legislators in low support districts were presumably surprised and affected by the information that the plan was unpopular in their districts.
 
-Butler and Nickerson conducted an experiment on New Mexico legislators to study the effect on legislators of learning public opinion from their constituencies. In 2008, a special session of the New Mexico State Legislature was called to vote on a bill regarding proposed spending plans for a budget surplus---a tax rebate. Butler and Nickerson conducted a large-scale phone survey to gather constituent opinions from across the state. Using matched-pair randomization---matching in terms of political party, 35 out of 70 legislators were assigned to the treatment group. Legislators in the treatment group were sent a letter containing the district-specific support for the proposed spending plan in their own districts. The original paper conducts a direct comparison of outcomes across treatment and control group.  They find that the effects of the treatment on legislators' votes were conditioned by the level of support for the measure indicated in the treatment message. In districts with high support for the tax rebate, the treatment had little effect. This is because legislators generally assumed that the tax rebate would be popular, and that constituents would support the measure. In districts with low support for the tax rebate, the treatment had a negative effect on the likelihood of voting in support for the measure. 
-
-\citet{coppock2014information} applied the \citet{bowers2012reasoning} methodology to test for propagation of treatment in this experiment. The indirect effect estimates were not statistically significant \citep{coppock2016information}, even when separating the sample into low and high support districts. As detailed in Section 3, Coppock used a network based on ideological similarity, where the legislator's outcome is affected by every other legislator in the network, but with varying weight based on ideological similarity. Coppock used a linear model to represent the direct and indirect effects of the treatment on the outcome. We begin by replicating this analysis. {\bf SAYALI, NEW DESIGN TO DESCRIBE HERE} In the extension, we consider two types of networks--- one based on ideological similarity and the other on serving on committees together. We also vary the neighborhood specification to consider an effect from all other legislators---proportional to ideological distance or effect only from k-nearest neighbors. Results of this analysis are presented in section 6.1. The following list summarizes the steps taken to implement Coppock's analysis of interference in the \citet{butler2011can} replication. Note that we re-use these steps in the other replication analyses where the similarity scores are replaced with the respective definition of the network and neighborhood.
+\citet{coppock2014information} applied the BFP methodology to test for propagation of treatment in this experiment. The indirect effect estimates were not statistically significant \citep{coppock2016information}, even when separating the sample into low and high support districts. In the network that Coppock analyzed, the tie between legislators was given by their ideological similarity.  Using this network, each legislator's outcome is affected by every other legislator's treatment status, but with varying weight based on ideological similarity. Coppock used a linear model to represent the direct and indirect effects of the treatment on the outcome. Under the model assumed by Coppock, $$y_{i,z} = y_{i,0}+\beta_1z_i+\beta_2h_i(G,z),$$ where $y_{i,z}$ is the observed outcome (i.e., 0/1 indicating vote against/for the bill), $y_{i,0}$ is the outcome for $i$ that would have been observed if each legislator were assigned to the control, $\beta_1$ is the direct effect of the treatment, $\beta_2$ is the indirect/interference effect, and $h_i(G,z)$ is a function of the network $G$ and the vector of treatment assignments ($z$). Coppock defines $h_i(G,z)$ as the excess or beyond-expected sum of ideological similarities of legislator $i$ to legislators who were assigned to treatment. The steps used in calculating this ``excess exposure'' to the treatment are as follows.
 
 \begin{enumerate}
-\item Calculate W-NOMINATE ideology score for each legislator using roll call vote data
+\item Calculate W-NOMINATE ideology score ($ideo$) for each legislator using roll call vote data
 
 \item Calculate ideological similarity as $Similarity_{i,j} = \frac{2 - |ideo_i - ideo_j|}{2}$
 
 \item Calculate raw exposure as $Raw\; exposure_i =  \sum_{j=1}^{n}Similarity_{i,j} * z_j, \; j \neq i$. 
 
-\item Coppock introduces an adjustment for the expected exposures of legislators. Exposures are simulated under a large number of randomizations. Each randomization where legislator \textit{i} is in treatment is indexed as \textit{k} (\textit{k} = 1, 2, ..., K) and where legislator \textit{i} is in control is indexed as \textit{l} (\textit{l} = 1, 2, ..., L) $$Expected \; exposure_{i, z_i=1} =  \frac{\sum_{k=1}^{K}\sum_{j=1}^{n}Similarity_{i,j} * z_{j,k}}{K}, \; j \neq i, \; z_{i,k}=0$$ $$Expected \; exposure_{i, z_i=0} =  \frac{\sum_{l=1}^{L}\sum_{j=1}^{n}Similarity_{i,j} * z_{j,l}}{L}, \; j \neq i, \; z_{i,l}=1$$
+\item Coppock introduces an adjustment for the expected exposures of legislators. Adjusting for expected exposure removes endogeneity in the network exposure function ($h_i(G,z)$).  Exposures are simulated under a large number of re-randomizations of the treatment (10,000 in both Coppock's and our application), and the average exposure value for each legislator is subtracted from the raw exposure value to give the excess exposure value (i.e., $h_i(G,z) = Raw\; exposure_i - Expected\; exposure_i$).
 
-\item Using the hypothesized parameter values, remove  the model of effects based on a linear regression.
-
-\item Regress hypothesized uniformity trials on direct and indirect treatment, and use the residual sum of squares (RSS) as test statistic. See\citet{bowers2016research} for discussion of why this is an appropriate test statistic for this framework.
-
-\item The p-value for each hypothesized treatment effect is the proportion of simulated RSS that is lower than the observed RSS (note that smaller RSS indicates more variance explained).
 \end{enumerate}
+
+
+We follow \citet{coppock2014information}  In part to build on what Coppock has already contributed with this replication, and also to focus more closely on networks that indicate a higher likelihood of contact/communication between legislators, we use two 
+
+The last detail we need to fill in when it comes to applying the BFP methodology is the test 
+
+
+Using the hypothesized parameter values, remove  the model of effects based on a linear regression.
+
+ Regress hypothesized uniformity trials on direct and indirect treatment, and use the residual sum of squares (RSS) as test statistic. See\citet{bowers2016research} for discussion of why this is an appropriate test statistic for this framework.
+
+The p-value for each hypothesized treatment effect is the proportion of simulated RSS that is lower than the observed RSS (note that smaller RSS indicates more variance explained).
+
 
 One last detail of implementing the Bowers et al. hypothesis testing framework regards the grid of hypothesized parameters over which p-values are calculated. Since the testing process does not involve an optimization routine, there is no way for the parameter values to be selected automatically. However, standard optimization methods can be used to approximate point estimates around which to expand the grid of hypothesized values. In our applications, the model of effects has a linear form, and we can use linear regression to find the estimates around which to expand the grid. In terms of how far to expand the grid----there should be enough grid points that none of the confidence interval boundaries lies at a boundary of the grid of hypothesized parameters.
 
