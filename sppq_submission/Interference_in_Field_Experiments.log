@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 MAR 2018 14:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 MAR 2018 14:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1127,7 +1127,14 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 378.
 
-[20] [21] [22] [23] [24]
+[20] [21] [22]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 403.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 403.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 403.
+ [23] [24]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\begingroup' on input line 417.
@@ -1161,108 +1168,100 @@ Overfull \hbox (7.10513pt too wide) in paragraph at lines 445--446
  [][] 
  []
 
-[26]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 456.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 456.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 456.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\begingroup' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 460.
+(hyperref)                removing `\let' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 460.
+(hyperref)                removing `\<let>-command' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 460.
+(hyperref)                removing `\NAT@ctype' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 460.
+(hyperref)                removing `\z@' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 460.
+(hyperref)                removing `\let' on input line 453.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 460.
+(hyperref)                removing `\new@ifnextchar' on input line 453.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 460.
-
-[27] <./images/pval_plot_bergan_main.pdf, id=426, 505.89pt x 505.89pt>
+[26] <./images/pval_plot_bergan_main.pdf, id=423, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_main.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_main.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_main.pdf used on input line 
-470.
+463.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
- [28]
-<./images/pval_plot_bergan_ideo_3nn.pdf, id=438, 505.89pt x 505.89pt>
+ [27]
+<./images/pval_plot_bergan_ideo_3nn.pdf, id=435, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_3nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_3nn.pdf used on input l
-ine 481.
+ine 474.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_5nn.pdf, id=439, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_5nn.pdf, id=436, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_5nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_5nn.pdf used on input l
-ine 482.
+ine 475.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_8nn.pdf, id=440, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_8nn.pdf, id=437, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_8nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_8nn.pdf used on input l
-ine 483.
+ine 476.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_12nn.pdf, id=441, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_12nn.pdf, id=438, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_12nn.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_ideo_12nn.pdf used on input 
-line 484.
+line 477.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (49.29216pt too wide) in paragraph at lines 480--486
+Overfull \hbox (49.29216pt too wide) in paragraph at lines 473--479
  [][] 
  []
 
-<./images/pval_plot_bergan_cospon.pdf, id=446, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_cospon.pdf, id=443, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_cospon.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_cospon.pdf>
 Package pdftex.def Info: ./images/pval_plot_bergan_cospon.pdf used on input lin
-e 495.
+e 488.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29 <./images/pval_plot_bergan_main.pdf>] [30 <./images/pval_plot_bergan_ideo_3
+[28 <./images/pval_plot_bergan_main.pdf>] [29 <./images/pval_plot_bergan_ideo_3
 nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
-o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [31 <./images/pval_plot_b
-ergan_cospon.pdf>] [32] [33] (./Interference_in_Field_Experiments.bbl [34]
-[35] [36] [37] [38]
+o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [30 <./images/pval_plot_b
+ergan_cospon.pdf>] [31] [32] (./Interference_in_Field_Experiments.bbl [33]
+[34] [35] [36] [37]
 Underfull \hbox (badness 1152) in paragraph at lines 221--225
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[39])
+[38])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1270,12 +1269,12 @@ Package natbib Warning: There were undefined citations.
 Package caption Warning: Unused \captionsetup[subfloat] on input line 79.
 See the caption package documentation for explanation.
 
-[40]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 586.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 586.
+[39]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 579.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 579.
  (./Interference_in_Field_Experiments.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 586.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 586.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 579.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 579.
 Package rerunfilecheck Info: File `Interference_in_Field_Experiments.out' has n
 ot changed.
 (rerunfilecheck)             Checksum: 12A398FF97037C8FFDD612B398358879;869.
@@ -1283,11 +1282,11 @@ ot changed.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 586.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 579.
  ) 
 Here is how much of TeX's memory you used:
- 21642 strings out of 492995
- 394761 string characters out of 6132704
+ 21641 strings out of 492995
+ 394754 string characters out of 6132704
  484583 words of memory out of 5000000
  24647 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
@@ -1302,11 +1301,11 @@ mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (40 pages, 269603 bytes
+Output written on Interference_in_Field_Experiments.pdf (39 pages, 267771 bytes
 ).
 PDF statistics:
- 631 PDF objects out of 1000 (max. 8388607)
- 540 compressed objects within 6 object streams
- 124 named destinations out of 1000 (max. 500000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 538 compressed objects within 6 object streams
+ 123 named destinations out of 1000 (max. 500000)
  194 words of extra memory for PDF output out of 10000 (max. 10000000)
 
