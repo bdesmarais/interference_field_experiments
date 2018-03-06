@@ -397,19 +397,24 @@ Butler and Nickerson conducted an experiment on New Mexico legislators to study 
 \end{enumerate}
 
 
-We follow \citet{coppock2014information}  In part to build on what Coppock has already contributed with this replication, and also to focus more closely on networks that indicate a higher likelihood of contact/communication between legislators, we use two 
+We follow Coppock in the adjustment of the exposure function for expected exposure. We extend the model of effects used by \citet{coppock2014information} to incorporate differential effects of low and high support treatment in one model, rather than running the analysis for the two separate sub-populations. We take this approach since we assume that treatment of legislators in low support districts can influence the outcomes of legislators in high support districts and vice-versa---a dynamic that is lost when splitting the sample into low and high support districts.  The model of effects we use is 
 
-The last detail we need to fill in when it comes to applying the BFP methodology is the test 
+$$y_{i,z} = y_{i,0}+\beta_1z_il_i+\beta_2z_i(1-l_i)+\beta_3h_i(G,z\times l)+\beta_4h_i(G,z\times (1-l)),$$
 
-
-Using the hypothesized parameter values, remove  the model of effects based on a linear regression.
-
- Regress hypothesized uniformity trials on direct and indirect treatment, and use the residual sum of squares (RSS) as test statistic. See\citet{bowers2016research} for discussion of why this is an appropriate test statistic for this framework.
-
-The p-value for each hypothesized treatment effect is the proportion of simulated RSS that is lower than the observed RSS (note that smaller RSS indicates more variance explained).
+where $l_i$ is an indicator (0/1) of whether legislator $i$ is in a low-support district. In part to build on what Coppock has already contributed with this replication, and also to focus more closely on networks that indicate a higher likelihood of contact/communication between legislators, we depart from Coppock in the definition of the networks. For each network we consider both binary and weighted forms of the interference effect. First, we analyze a network in which two legislators are connected based on co-partisanship and co-committee membership. In the binary version, legislator $i$ is exposed to legislator $j$'s treatment status if legislator $i$ is of the same party as legislator $j$ and serves on at least one standing committee with legislator $j$ during the session preceding the special session on the budget surplus. In the weighted version, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to the number of committees on which they served together if they are co-partisans. The committee network is based on the assumptions that (1) legislators will consider the preferences of constituents of their co-partisans as relevant to their own votes, and (2) they are likely to be in contact with legislators with whom they regularly collaborate through committee assignments. The second network we consider is defined by the cohorts in which two legislators arrived in the legislature. In the binary version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status if they are co-partisans and were elected in the same year. In the weighted version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to $1/(1+|c_i-c_j|)$, where $c_i$ is the year in which legislator $i$ was elected. Cohort membership is used to proxy social ties between legislators.  
 
 
-One last detail of implementing the Bowers et al. hypothesis testing framework regards the grid of hypothesized parameters over which p-values are calculated. Since the testing process does not involve an optimization routine, there is no way for the parameter values to be selected automatically. However, standard optimization methods can be used to approximate point estimates around which to expand the grid of hypothesized values. In our applications, the model of effects has a linear form, and we can use linear regression to find the estimates around which to expand the grid. In terms of how far to expand the grid----there should be enough grid points that none of the confidence interval boundaries lies at a boundary of the grid of hypothesized parameters.
+
+
+The next detail we need to fill in when it comes to applying the BFP methodology is the test statistic used in the analysis. To refresh, the test statistic should be designed to quantify the degree to which the outcome is unrelated to the experimental conditions once the hypothesized effects have been removed from the observed outcome. We follow Coppock and \citet{bowers2016research}, and use the following steps to calculate the test statistic.
+\begin{enumerate}
+\item Estimate the outcome under control for each observation as \\ $\hat{y_{i,0} } = y_{i,z} - \left[ \beta_1z_il_i+\beta_2z_i(1-l_i)+\beta_3h_i(G,z\times l)+\beta_4h_i(G,z\times (1-l)) \right],$ where the $\beta$'s are given by their hypothesized values.
+\item Fit the regression equation  \\ $ \hat{y_{i,0} } = \gamma_0 + \gamma_1z_il_i+\gamma_2z_i(1-l_i)+\gamma_3h_i(G,z\times l)+\gamma_4h_i(G,z\times (1-l)$, estimating the $\gamma$'s by ordinary least squares. 
+\item Set the test statistic equal to the residual sum of squares \\ $ RSS =  \sum_i \left[ \hat{y_{i,0} }-  \gamma_0 - \gamma_1z_il_i-\gamma_2z_i(1-l_i)-\gamma_3h_i(G,z\times l)-\gamma_4h_i(G,z\times (1-l) ) \right]^2$
+\end{enumerate}
+The intuition behind using the RSS is that, if the hypothesized parameter values remove the effect of the experiment from $y_{i,z}$, the RSS from regressing $\hat{y_{i,0} } $ on variables defined by the model of effects will be high, as the effects of the experiment were removed from the dependent variable prior to running the regression on which the RSS is based. 
+
+One last detail of implementing the BFP framework regards the grid of hypothesized parameters over which p-values are calculated. Since the testing process does not involve an optimization routine, there is no way for the parameter values to be selected automatically. However, standard optimization methods can be used to approximate point estimates around which to expand the grid of hypothesized values. In our applications, the model of effects has a linear form, and we can use linear regression to find the estimates around which to expand the grid. In terms of how far to expand the grid----there should be enough grid points that none of the point estimates are close to the boundaries of the grid.
 
 \subsubsection{Results for \citet{butler2011can} data}
 
