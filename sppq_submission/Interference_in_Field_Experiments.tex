@@ -416,7 +416,7 @@ The last detail of implementing the BFP framework regards the grid of hypothesiz
 
 \subsubsection{Results for \citet{butler2011can} data}
 
-The results of the \citet{butler2011can} replication are presented in Table \ref{tab:butlernickerson}.  Negative effects indicate that the treatment reduced the likelihood of voting in favor for those who received the treatment directly as well as those to whom it propagated, due to ideological similarity. The negative effects discovered in this experiment may be attributable to the assumed popularity of the bill. A treatment survey that indicated a high level support had no effect on legislators who were already planning to vote for the bill. However, low or moderate support on a treatment survey may have changed the minds of those legislators who were planning to support the bill. Confidence intervals are drawn using dashed lines. Neither the indirect nor the direct effects are statistically significant at the 0.05 level since each confidence interval contains zero. This is not a surprising result, as the direct effects reported in the original paper were not statistically significant at the 0.05 level.
+The results of the \citet{butler2011can} replication are presented in Table \ref{tab:butlernickerson}.  The first notable result is that each confidence interval in each model includes zero. None of the parameter estimates are statistically significantly different from zero at the 0.05 level. However, in most of the models most of the parameters are of the expected sign. In each model the effects of both low support effects are negative, and the indirect high support effect is positive in each model. With the co-partisan cohort network, in both the binary and weighted specifications, the indirect low support effect is statistically significant at the 0.10 level.  
 
 
 \begin{table}[ht]
@@ -443,7 +443,7 @@ Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 
    \hline 
 \end{tabular}
 }
-\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008).}
+\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008). $p$-values calculated using 1,000 randomization iterations. There are 70 legislators in this dataset/netwrok.}
 \label{tab:butlernickerson}
 \end{table}
 
