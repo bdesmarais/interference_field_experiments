@@ -209,7 +209,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 40)
+registerDoParallel(cores = 20)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   

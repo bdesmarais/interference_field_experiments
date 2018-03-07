@@ -175,7 +175,7 @@ z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat,
 #### Testing and p-value calculation ####
 #########################################
 
-job = 1
+job = 5
 
 
 beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
@@ -209,7 +209,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 40)
+registerDoParallel(cores = 20)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
