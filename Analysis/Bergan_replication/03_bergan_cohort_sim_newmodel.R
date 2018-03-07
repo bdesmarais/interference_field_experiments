@@ -4,10 +4,11 @@
 # Cohort network
 # Cohort similarity as weights and coparty indicator interacted
 # Reparametrized model
+# Includes chamber ID
 
 # Authors: Sayali Phadke, Bruce Desmarais
 # Created on: 03/02/2018
-# Last edited on: 03/05/2018
+# Last edited on: 03/06/2018
 # Last edited by: Sayali
 
 rm(list=ls())
@@ -96,13 +97,13 @@ for(p in 1:ncol(perm)){
   for(i in 1:n){
     if (zp[i] == 1){
       expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
-      expected.exp1.dem[i] <- expected.exp1[i] + sum(network[i,]*zp*democrat)
-      expected.exp1.rep[i] <- expected.exp1[i] + sum(network[i,]*zp*(1-democrat))
+      expected.exp1.dem[i] <- expected.exp1.dem[i] + sum(network[i,]*zp*democrat)
+      expected.exp1.rep[i] <- expected.exp1.rep[i] + sum(network[i,]*zp*(1-democrat))
     }
     else{
       expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
-      expected.exp0.dem[i] <- expected.exp0[i] + sum(network[i,]*zp*democrat)
-      expected.exp0.rep[i] <- expected.exp0[i] + sum(network[i,]*zp*(1-democrat))
+      expected.exp0.dem[i] <- expected.exp0.dem[i] + sum(network[i,]*zp*democrat)
+      expected.exp0.rep[i] <- expected.exp0.rep[i] + sum(network[i,]*zp*(1-democrat))
     }
   }
 }
@@ -196,7 +197,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 20)
+registerDoParallel(cores = 40)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
@@ -230,5 +231,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_copartisan_cohort_similarity.RData")
+save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_copartisan_cohort_chamber_similarity.RData")
 

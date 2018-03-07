@@ -400,7 +400,7 @@ $$y_{i,z} = y_{i,0}+\beta_1z_il_i+\beta_2z_i(1-l_i)+\beta_3h_i(G,z\times l)+\bet
 where $l_i$ is an indicator (0/1) of whether legislator $i$ is in a low-support district. This model form separates the direct and indirect effects based on whether the treatment delivered to the legislators incident to the treatment were in low or high support districts. We hypothesize that exposure to low support treatment (either direct or indirect) will reduce support for the bill and exposure to high support treatment (either direct or indirect) will increase support for the bill.
 
 
-In part to build on what Coppock has already contributed with this replication, and also to focus more closely on networks that indicate a higher likelihood of contact/communication between legislators, we depart from Coppock in the definition of the networks. For each network we consider both binary and weighted forms of the interference effect. First, we analyze a network in which two legislators are connected based on co-partisanship and co-committee membership. In the binary version, legislator $i$ is exposed to legislator $j$'s treatment status if legislator $i$ is of the same party as legislator $j$ and serves on at least one standing committee with legislator $j$ during the session preceding the special session on the budget surplus. In the weighted version, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to the number of committees on which they served together if they are co-partisans. We used the committee network based on the assumptions that (1) legislators will consider the preferences of constituents of their co-partisans as relevant to their own votes, and (2) they are likely to be in contact with legislators with whom they regularly collaborate through committee assignments.\footnote{Records of standing committee membership in the 16 standing committees in place during the 2008 regular session was obtained by email correspondence with the New Mexico Legislative Council Service Librarian.}  The second network we consider is defined by the cohorts in which two legislators arrived in the legislature. In the binary version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status if they are co-partisans and were elected in the same year. In the weighted version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to $1/(1+|c_i-c_j|)$, where $c_i$ is the year in which legislator $i$ was elected. Cohort membership is used to proxy social ties between legislators.  
+In part to build on what Coppock has already contributed with this replication, and also to focus more closely on networks that indicate a higher likelihood of contact/communication between legislators, we depart from Coppock in the definition of the networks. For each network we consider both binary and weighted forms of the interference effect. First, we analyze a network in which two legislators are connected based on co-partisanship and co-committee membership. In the binary version, legislator $i$ is exposed to legislator $j$'s treatment status if legislator $i$ is of the same party as legislator $j$ and serves on at least one standing committee with legislator $j$ during the session preceding the special session on the budget surplus. In the weighted version, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to the number of committees on which they served together if they are co-partisans. We used the committee network based on the assumptions that (1) legislators will consider the preferences of constituents of their co-partisans as relevant to their own votes, and (2) they are likely to be in contact with legislators with whom they regularly collaborate through committee assignments.\footnote{Records of standing committee membership in the 16 standing committees in place during the 2008 regular session was obtained by email correspondence with the New Mexico Legislative Council Service Librarian.}  The second network we consider is defined by the cohorts in which two legislators arrived in the legislature. In the binary version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status if they are co-partisans and were elected in the same year. In the weighted version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to $1/(1+|c_i-c_j|)$, where $c_i$ is the year in which legislator $i$ was elected. Cohort membership is used to proxy social ties between legislators.\footnote{Information about the cohort under which ever legislator joined the chamber of legislature they were serving on at the time of the experiment, was collected from \url{https://www.nmlegis.gov}.}
 
 
 
@@ -458,10 +458,46 @@ The second dataset we work with comes from an experiment on the Michigan Legisla
 This data has not been analyzed for indirect effects previously. However, since legislators consider legislation in the context of open communication and debate, and for supporters to assure that legislation passes they need the votes of their colleagues, we expect treatment effects of roll call votes to be characterized by interference. In our replication of  \citet{bergan2015call}, we use a very similar model of interference, except the indicators for low support and high support are replaced by indicators for Democrat and Republican.   \citet{bergan2015call} tested for, but did not find evidence that partisanship or ideology moderated the effect of the treatment, but we incorporate partisan moderators into our model to allow for different effects of the advocacy treatment by party. Our model for the 
 \citet{bergan2015call} replication takes the form $$y_{i,z} = y_{i,0}+\beta_1z_id_i+\beta_2z_i(1-d_i)+\beta_3h_i(G,z\times d)+\beta_4h_i(G,z\times (1-d)),$$  where $d_i$ is a 0/1 indicator of whether legislator $i$ is a Democrat. We use the same test statistic as in the \citet{butler2011can} replication.
 
-As in the \citet{butler2011can} replication, we consider two different networks and functional forms. We again test the co-partisan cohort network. For the \citet{bergan2015call} replication, we use cosponsorship instead of co-committee membership to measure formal legislative connection between legislators. In the binary form of the cosponsorship network, we include a tie between any two legislators who cosponsored two or more of the same bills.\footnote{Data on cosponsorship was gathered from \url{https://www.quorum.us/}.} In the weighted form of the cosponsorship network, the effect of $j$'s treatment status on $i$ is proportional to the number of bills that were cosponsored by both $i$ and $j$. We do not have theoretical expectations regarding the different effects of committee co-membership and cosponsorship in New Mexico and Michigan, the difference is driven by data availability. 
+As in the \citet{butler2011can} replication, we consider two different networks and functional forms. We again test the co-partisan cohort network.\footnote{Data on cohort membership was gathered from \url{https://ballotpedia.org/Main_Page}.} For the \citet{bergan2015call} replication, we use cosponsorship instead of co-committee membership to measure formal legislative connection between legislators. In the binary form of the cosponsorship network, we include a tie between any two legislators who cosponsored two or more of the same bills.\footnote{Data on cosponsorship was gathered from \url{https://www.quorum.us/}.} In the weighted form of the cosponsorship network, the effect of $j$'s treatment status on $i$ is proportional to the number of bills that were cosponsored by both $i$ and $j$. We do not have theoretical expectations regarding the different effects of committee co-membership and cosponsorship in New Mexico and Michigan, the difference is driven by data availability. 
 
 
 \subsubsection{Results for \citet{bergan2015call} data}
+
+The results of the \citet{butler2011can} replication are presented in Table \ref{tab:berganmichigan}. 
+
+%The first notable result is that each confidence interval in each model includes zero. None of the parameter estimates are statistically significantly different from zero at the 0.05 level. However, in most of the models most of the parameters are of the expected sign. In each model the effects of both low support effects are negative, and the indirect high support effect is positive in each model. With the co-partisan cohort network, in both the binary and weighted specifications, the indirect low support effect is statistically significant at the 0.10 level.  To interpret our results, we look to the estimates from the binary network of same cohort co-partisans. The low support effect of -0.20 indicates that, for a legislator in a low support district, being assigned to treatment reduces the probability of a legislator voting in favor of the bill by 0.20. Similarly, having a co-partisan who was elected in the same cohort who is in a low support district assigned to treatment, reduces the probability of voting in favor of the bill by 0.20. We note two central take-aways from this analysis. First, they represent moderate evidence of interference---especially via exposure to treated neighbors in low support districts. Second, the BFP methodology exhibits relatively low statistical power, as the direct effects that are statistically significant in the original analyses by Butler and Nickerson are not significant in our analysis. This suggests that field experiments on legislatures in which the researcher is interested in studying interference may require larger sample sizes (e.g., via administering treatment in multiple states, on multiple legislative proposals, and/or across both chambers).
+
+
+\begin{table}[ht]
+\centering
+\scalebox{.925}{
+\begin{tabular}{|r|rrrrr|rrrrr|}
+  \hline 
+ & \multicolumn{10}{c|}{Results for Cosponsorship Co-partisans Network} \\ \hline
+ & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
+  & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
+  \hline
+Direct (L) & 0.15 & -0.15 & 0.4 & -0.1 & 0.35 & 0.10 & -0.15 & 0.40 & -0.10 & 0.40 \\ 
+Direct (H) & 0.05 & -0.1 & 0.4 & -0.05 & 0.35 & 0.10 & -0.05 & 0.45 & -0.03 & 0.40 \\ 
+Indirect (L) & -0.05 & -0.15 & 0.1 & -0.15 & 0.1 & 0.05 & -0.03 & 0.20 & -0.03 & 0.20 \\ 
+  Indirect (H) & 0.00 & -0.05 & 0.1 & -0.05 & 0.1 & -0.15 & -0.20 & 0.05 & -0.20 & 0.05 \\  \hline
+   & \multicolumn{10}{c|}{Results for Cohort Co-partisans Network DUMMY} \\ \hline
+ & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
+  & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
+  \hline
+Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 & 0.03 \\ 
+  Direct (H) & -0.10 & -0.40 & 0.30 & -0.35 & 0.25 & -0.15 & -0.40 & 0.15 & -0.35 & 0.15 \\ 
+  Indirect (L) & -0.20 & -0.50 & 0.01 & -0.50 & -0.02 & -0.20 & -0.45 & 0.05 & -0.45 & -0.02 \\ 
+  Indirect (H) & 0.05 & -0.15 & 0.35 & -0.10 & 0.35 & 0.10 & -0.10 & 0.35 & -0.05 & 0.30 \\
+   \hline 
+\end{tabular}
+}
+\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008). $p$-values calculated using 1,000 randomization iterations. There are 70 legislators in this dataset/netwrok.}
+\label{tab:berganmichigan}
+\end{table}
+
+
+
 
 \section{Conclusion}
 %%%%
@@ -482,6 +518,8 @@ Despite providing preliminary evidence that some state legislative field experim
 \bibliography{interference}
 
 \end{document}
+
+
 %%%%
 \section{Network plots}
 %%%%

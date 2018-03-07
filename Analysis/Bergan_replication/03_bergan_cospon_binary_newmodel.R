@@ -104,13 +104,13 @@ for(p in 1:ncol(perm)){
   for(i in 1:n){
     if (zp[i] == 1){
       expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
-      expected.exp1.dem[i] <- expected.exp1[i] + sum(network[i,]*zp*democrat)
-      expected.exp1.rep[i] <- expected.exp1[i] + sum(network[i,]*zp*(1-democrat))
+      expected.exp1.dem[i] <- expected.exp1.dem[i] + sum(network[i,]*zp*democrat)
+      expected.exp1.rep[i] <- expected.exp1.rep[i] + sum(network[i,]*zp*(1-democrat))
     }
     else{
       expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
-      expected.exp0.dem[i] <- expected.exp0[i] + sum(network[i,]*zp*democrat)
-      expected.exp0.rep[i] <- expected.exp0[i] + sum(network[i,]*zp*(1-democrat))
+      expected.exp0.dem[i] <- expected.exp0.dem[i] + sum(network[i,]*zp*democrat)
+      expected.exp0.rep[i] <- expected.exp0.rep[i] + sum(network[i,]*zp*(1-democrat))
     }
   }
 }

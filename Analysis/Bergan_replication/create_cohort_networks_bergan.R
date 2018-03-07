@@ -52,7 +52,7 @@ data <- data[1:148, ]
 cohort_copart_amat <- matrix(NA, nrow(data), nrow(data))
 for (i in 1:nrow(data)){
   for (j in 1:nrow(data)){
-    if (data$cohort[i] == data$cohort[j] && data$democrat[i] == data$democrat[j]){
+    if (data$cohort[i] == data$cohort[j] && data$democrat[i] == data$democrat[j] && data$senate[i] == data$senate[j]){
       cohort_copart_amat[i,j] <- 1
     } else {
       cohort_copart_amat[i,j] <- 0
@@ -66,14 +66,14 @@ save(cohort_copart_amat, file = "cohort_copart_network.RData")
 
 
 ## Weighted cohort network
-w_cohort_amat <- matrix(NA, nrow(data), nrow(data))
-for (i in 1:nrow(data)){
-  for (j in 1:nrow(data)){
-      w_cohort_amat[i,j] <- 1/(1+(abs(data$cohort[i] - data$cohort[j])))
-  }
-}
-
-save(w_cohort_amat, file = "w_cohort_network.RData")
+# w_cohort_amat <- matrix(NA, nrow(data), nrow(data))
+# for (i in 1:nrow(data)){
+#   for (j in 1:nrow(data)){
+#       w_cohort_amat[i,j] <- 1/(1+(abs(data$cohort[i] - data$cohort[j])))
+#   }
+# }
+# 
+# save(w_cohort_amat, file = "w_cohort_network.RData")
 
 
 
@@ -82,7 +82,7 @@ save(w_cohort_amat, file = "w_cohort_network.RData")
 w_cohort_copart_amat <- matrix(NA, nrow(data), nrow(data))
 for (i in 1:nrow(data)){
   for (j in 1:nrow(data)){
-    if (data$democrat[i] == data$democrat[j]){
+    if (data$democrat[i] == data$democrat[j] && data$senate[i] == data$senate[j]){
     w_cohort_copart_amat[i,j] <- 1/(1+(abs(data$cohort[i] - data$cohort[j])))
     } else {
       w_cohort_copart_amat[i,j] <- 0
