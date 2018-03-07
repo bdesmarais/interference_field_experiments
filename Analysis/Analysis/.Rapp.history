@@ -1,2514 +1,0 @@
-optim(c(0,0),var_yz,method="BFGS")
-var_yz <- function(tau){#
-require(sna)#
-nsim <- 1000	#
-evar <- numeric(nsim)#
-amat <- matrix(0,5,5)#
-amat[1,5] <- amat[5,1] <- 1#
-amat[3,5] <- amat[5,3] <- 1#
-amat[2,5] <- amat[5,2] <- 1#
-amat[4,5] <- amat[5,4] <- 1#
-amat[2,4] <- amat[4,2] <- 1#
-p <- plogis(tau[1]+tau[2]*degree(amat)/2)#
-b1 <- 2#
-b2 <- 1#
-for(i in 1:nsim){#
-trt <- p > runif(5)#
-yze <- t(t(trt)%*%amat)*b2 + trt*b1#
-evar[i] <- -as.numeric(var(yze))#
-}#
-mean(evar)#
-}
-optim(c(0,0),var_yz,method="BFGS")
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/pvals_coppock_replication.RData")
-rm(list=ls())
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/pvals_coppock_replication.RData")
-ls()
-pvals
-# Set the working directory#
-setwd("~/Dropbox/professional/Research/Active/EmailNets_ProjectFolder/PINLab/Papers/peerExperiment/CodeData/") # BAD#
-#
-library(survival)#
-#
-# Read in the dataset on request responses#
-dat <- read.csv("second_wave.csv",stringsAsFactors=F)#
-#
-# Region breakdown#
-# http://www.ncdhhs.gov/aging/aaafile.htm#A#
-regions <- read.csv("~/Dropbox/professional/Research/Active/EmailNets_ProjectFolder/PINLab/Papers/peerExperiment/CodeData/Regions.csv",stringsAsFactors=F)#
-region <- rep(NA,nrow(dat))#
-for(i in 1:nrow(regions)){#
-	regi <- strsplit(regions[i,2],":")[[1]]#
-	region[which(is.element(tolower(dat$County),tolower(regi)))] <- regions[i,1]#
-}#
-dat$region <- region#
-#
-# Read in control variables#
-pop <- read.csv("Population2010.csv",stringsAsFactors=F)#
-#
-# Merge in control variables#
-# Population is from 2010 Census#
-# County gov data is from http://www.ncacc.org/index.aspx?nid=192#
-dat$population <- pop$Population[match(dat$County,pop$County)]#
-dat$budget <- pop$Budget[match(dat$County,pop$County)]#
-dat$employees <- pop$Employees[match(dat$County,pop$County)]#
-dat$County <- tolower(dat$County)#
-# Income census data#
-income <- read.csv("~/Dropbox/professional/Research/Active/EmailNets_ProjectFolder/PINLab/Papers/peerExperiment/CodeData/Income.csv")#
-income$County <- tolower(income$County)#
-sum(!is.element(dat$County,income$County))#
-#
-dat$income <- income$PCIncome[match(dat$County,income$County)]#
-### North Carolina Adjacency Matrix ####
-# "http://www4.ncsu.edu/~ykao/docs/Lab%208/NCADJ.csv"#
-countyAdj <- as.matrix(read.csv("NCADJ.csv",stringsAsFactors=F))[,2:101]#
-rownames(countyAdj) <- colnames(countyAdj) <- names(read.csv("NCADJ.csv",stringsAsFactors=F))[2:101]#
-dat$County <- tolower(dat$County)#
-#
-library(sna)#
-#
-countyDist <- geodist(countyAdj,inf.rep=101)$gdist#
-#
-colnames(countyDist) <- rownames(countyDist) <- rownames(countyAdj)#
-#
-# vectors to hold neighbor variables#
-nDT1 <- numeric(nrow(dat))#
-nDT2 <- numeric(nrow(dat))#
-nDT3 <- numeric(nrow(dat))#
-minDT <- numeric(nrow(dat))#
-#
-tcounties <-  tolower(strsplit(regions$Members[18],split=":")[[1]])#
-countyDistT <- countyDist[,tcounties]#
-for(i in 1:nrow(dat)){#
-	countyi <- dat$County[i]#
-	d2t <- countyDistT[which(rownames(countyDistT)==countyi),]#
-	minDT[i] <- min(d2t)#
-	nDT1[i] <- sum(d2t < 2)#
-	nDT2[i] <- sum(d2t < 3)#
-	nDT3[i] <- sum(d2t < 4)#
-}#
-#
-countyDistC <- countyDist[dat$County,dat$County]#
-#
-# Pull out and code the treatment variable#
-treat <- 1*(dat$X=="T")#
-#
-dat$treat <- treat#
-#
-# Pull out and code the repsponse time#
-day1 <- as.Date("12/1/13",format="%m/%d/%y")#
-#
-frdate <- dat$Date.of.First.Response#
-frdate[which(nchar(frdate)<2)] <- "3/4/14"#
-#
-status <- rep(1,length(frdate))#
-status[which(frdate=="3/4/14")] <- 0#
-#
-# Eliminate follow-up date coding#
-status[which(months(as.Date(frdate,format="%m/%d/%y")) != "December")] <- 0#
-frdate[which(months(as.Date(frdate,format="%m/%d/%y")) != "December")] <- "2/1/14"#
-#
-# Response = number of days#
-response <- as.Date(frdate,format="%m/%d/%y") - day1#
-resp.time <- Surv(as.numeric(response),event=status)#
-#
-# Using regression adjustment#
-# Weibull AFT model#
-dat$resp.time <- resp.time#
-# Using regression adjustment#
-survPerm <- function(form,dat,col,nperm=200,c){#
-	set.seed(1234)#
-	res <- survreg(as.formula(form),data=dat)#
-	perms <- numeric(nperm)#
-	for(i in 1:nperm){#
-		dati <- dat#
-		dati[,col] <- sample(dati[,col],nrow(dati))#
-		esti <- try(survreg(as.formula(form),data=dati))#
-		if(class(esti)!="try-error") perms[i] <- summary(esti)$table[c,"z"]#
-	}#
-	list(res=res,perms=perms,p.val = c(mean(perms < summary(res)$table[c,"z"],na.rm=T),mean(perms > summary(res)$table[c,"z"], na.rm=T),mean(abs(perms) > abs(summary(res)$table[c,"z"]),na.rm=T)))#
-}#
-#
-transparency <- read.csv("~/Dropbox/professional/Research/Active/EmailNets_ProjectFolder/PINLab/Papers/peerExperiment/CodeData/nc_county_PRR.csv",stringsAsFactors=F)#
-#
-transparency$County <- tolower(transparency$County)#
-#
-match(dat$County,transparency$County)#
-#
-dat <- data.frame(dat,transparency[match(dat$County,transparency$County),-1])#
-#
-dat$NCTransparency_numeric <- match(substr(dat$NCTransparency,1,1),c("A","B","C","D")[4:1])#
-#
-dat$Ballotpedia_numeric <- match(substr(dat$Ballotpedia,1,1),c("A","B","C","D","F")[5:1])#
-#
-resDw <- survreg(resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+frailty(region,dist='t')+NCTransparency_numeric+treat,data=dat)#
-set.seed(1234)#
-permDw <- survPerm("resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+frailty(region,dist='t')+NCTransparency_numeric+treat",dat,which(names(dat)=="treat"),1000,6)#
-#
-set.seed(1234)#
-dat2 <- dat[nDT2>0,]#
-resD2w <- survreg(resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+frailty(region,dist="t"),data=dat2)#
-permD2w <- survPerm("resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+frailty(region,dist='t')",dat2,which(names(dat)=="treat"),1000,6)#
-dat0 <- dat[nDT2==0,]#
-resDwInt <- survreg(resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+frailty(region,dist='t')+NCTransparency_numeric+treat,data=dat0)#
-set.seed(1234)#
-permDwIntT <- survPerm("resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+frailty(region,dist='t')+NCTransparency_numeric+treat",dat0,which(names(dat)=="treat"),1000,6)#
-#permDwIntI <- survPerm("resp.time~eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+frailty(region,dist='t')+treat*eval(nDT2>0)",dat,which(names(dat)=="treat"),1000,8)#
-# Lognormal AFT model#
-# resDln <- survreg(resp.time~treat+dat$employees*eval(dat$population/1000000),dist="lognormal")#
-# resD1ln <- survreg(resp.time~treat+dat$employees*eval(dat$population/1000000),subset=nDT1>0,dist="lognormal")#
-# resD2ln <- survreg(resp.time~treat+dat$employees*eval(dat$population/100000)+frailty(treat),subset=nDT2>0,dist="lognormal")#
-#
-# Loglogistic AFT model#
-# resDll <- survreg(resp.time~treat+dat$employees*eval(dat$population/100000),dist="loglogistic")#
-# resD1ll <- survreg(resp.time~treat+dat$employees*eval(dat$population/100000),subset=nDT1>0,dist="loglogistic")#
-# resD2ll <- survreg(resp.time~treat+dat$employees*eval(dat$population/100000),subset=nDT2>0,dist="loglogistic")#
-#
-logLik.survreg <- function(object){#
-	object$logLik#
-}#
-#
-nobs.survreg<- function(object){#
-	nrow(object$y)#
-}#
-#
-### Not sure what to do with this stuff yet (jcode) ####
-#   1. No response#
-#  2. Refused/objected to request.#
-#  3. Offered to comply in exchange for a fee.#
-#   4. Offered to comply without condition.#
- #  5. Responded, but response was non-committal#
-#
-recode <- function(x){(x==1)+2*(x==2)+2*(x==5)+3*(x==3)+4*(x==4)}#
-#
-# Using regression adjustment#
-lmPerm <- function(y,x,ind,nperm=100){#
-	set.seed(1234)#
-	res <- lm(y~x-1)#
-	perms <- numeric(nperm)#
-	for(i in 1:nperm){#
-		xi <- x#
-		xi[,ind+1] <- sample(x[,ind+1],nrow(x))#
-		esti <- lm(y~xi-1)#
-		perms[i] <- summary(esti)$coef[ind+1,"Estimate"]#
-	}#
-	list(res=res,perms=perms,p.val = c(mean(perms < summary(res)$coef[ind+1,"Estimate"]),mean(perms > summary(res)$coef[ind+1,"Estimate"]),mean(abs(perms) > abs(summary(res)$coef[ind+1,"Estimate"]))))#
-}#
-#
-resC0 <- lm(status>0 ~   eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+as.factor(region),subset=dat$jcode!=1,data=dat,x=T,y=T)#
-permC0 <- lmPerm(resC0$y,resC0$x,5,1000)#
-#
-resC2 <- lm(status>0 ~ eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+as.factor(region),subset=dat$jcode!=1 & nDT2 > 0,data=dat,x=T,y=T)#
-permC2 <- lmPerm(resC2$y,resC2$x,5,1000)#
-#
-resCint <- lm(status>0 ~ eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+as.factor(region),subset=dat$jcode!=1 & nDT2 ==0,data=dat,x=T,y=T)#
-permCintT <- lmPerm(resCint$y,resCint$x,5,1000)#
-#permCintI <- lmPerm(resCint$y,resCint$x,7,1000)#
-#
-#### look at coding#
-recode <- function(x){(x==1)+2*(x==2)+2*(x==5)+3*(x==3)+4*(x==4)}#
-#
-resI0 <- lm(recode(dat$jcode) ~ eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+as.factor(region),subset=dat$jcode>1 & !is.na(dat$mcode),data=dat,x=T,y=T)#
-permI0 <- lmPerm(resI0$y,resI0$x,5,5000)#
-#
-resI2 <- lm(recode(dat$jcode) ~ eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+as.factor(region),subset=dat$jcode>1 & nDT2>0 & !is.na(dat$mcode),data=dat,x=T,y=T)#
-permI2 <- lmPerm(resI2$y,resI2$x,5,5000)#
-#
-resIint <- lm(recode(dat$jcode) ~ eval(employees/1000)+eval(population/100000)+eval(eval(employees/1000)*eval(population/100000))+NCTransparency_numeric+treat+eval(nDT2>0)+eval(treat*eval(nDT2>0))+as.factor(region),subset=dat$jcode>1 & !is.na(dat$mcode),data=dat,x=T,y=T)#
-permIintT <- lmPerm(resIint$y,resIint$x,5,5000)#
-permIintI <- lmPerm(resIint$y,resIint$x,7,5000)#
-# Make latex table of results#
-library(xtable)#
-#
-coefs <- cbind(c(resDw$coef),c(resD2w$coef),c(resDwInt$coef),c(coef(resC0)[c(1:6)]), c(coef(resC2)[c(1:6)]),c(coef(resCint)[1:6]))#
-#
-# Row for fisher p-values#
-#
-p <- cbind(c(summary(resDw)$table[c(1:6),"p"]),c(summary(resD2w)$table[c(1:6),"p"]),c(summary(resDwInt)$table[c(1:6),"p"]), c(summary(resC0)$coef[c(1:6),"Pr(>|t|)"]), c(summary(resC2)$coef[c(1:6),"Pr(>|t|)"]),c(summary(resCint)$coef[c(1:6),"Pr(>|t|)"]) )#
-#
-n <-   c(summary(resDw)$n,summary(resD2w)$n,summary(resDwInt)$n,length(resC0$y),length(resC2$y),length(resCint$y)) #
-#
-fitMat <- matrix(0,2*nrow(coefs)+1,6)#
-fitMat[(1:nrow(coefs))*2-1,] <- coefs#
-fitMat[(1:nrow(coefs))*2,] <- p#
-fitMat[nrow(coefs)*2+1,] <- n#
-#
-permPT <- c(permDw$p.val[1],permD2w$p.val[1],permDwIntT$p.val[1],permC0$p.val[2],permC2$p.val[2],permCintT$p.val[2])#
-#
-#permPI <- c(permDwIntI$p.val[1],permCintI$p.val[2],permIintI$p.val[2])#
-#
-xtable(fitMat,dig=3)#
-## Simple Table of Descriptives#
-#
-durations <- cbind(c(mean(as.numeric(response)[treat==1]),mean(as.numeric(response)[treat==0])),c(length(as.numeric(response)[treat==1]),length(as.numeric(response)[treat==0])),c(mean(as.numeric(response)[treat==1 & nDT2>0]),mean(as.numeric(response)[treat==0 & nDT2>0])),c(length(as.numeric(response)[treat==1 & nDT2>0]),length(as.numeric(response)[treat==0 & nDT2>0])))#
-compliance <- cbind(c(mean((dat$status!=0)[dat$jcode != 1 & nDT1 > -1 & treat == 1]),mean((dat$status!=0)[dat$jcode != 1 & nDT1 > -1 & treat == 0])),c(length((dat$status!=0)[dat$jcode != 1 & nDT1 > -1 & treat == 1]),length((dat$status!=0)[dat$jcode != 1 & nDT1 > -1 & treat == 0])),c(mean((dat$status!=0)[dat$jcode != 1 & nDT2 > 0 & treat == 1]),mean((dat$status!=0)[dat$jcode != 1 & nDT2 > 0 & treat == 0])),c(length((dat$status!=0)[dat$jcode != 1 & nDT2 > 0 & treat == 1]),length((dat$status!=0)[dat$jcode != 1 & nDT2 > 0 & treat == 0])))#
-#
-descTab <- rbind(durations,compliance)#
-#
-library(xtable)#
-#
-xtable(descTab,dig=3)#
-#
-## Simulation#
-resD2e <- survreg(resp.time~treat+eval(employees/1000)*eval(population/100000)+frailty(region),data=dat2,dist="exponential")#
-#
-snDT2 <- numeric(nrow(pop))#
-#
-pop$County <- tolower(pop$County)#
-#
-Days <- 365#
-#
-for(d in 1:360){#
-#
-for(i in 1:nrow(dat)){#
-	countyi <- dat$County[i]#
-	d2t <- countyDistT[which(rownames(countyDistT)==countyi),]#
-	minDT[i] <- min(d2t)#
-	nDT1[i] <- sum(d2t < 2)#
-	nDT2[i] <- sum(d2t < 3)#
-	nDT3[i] <- sum(d2t < 4)#
-}#
-#
-}
-names(dat)
-mean(dat$NCTransparency_numeric[treat==0])
-mean(dat$NCTransparency_numeric[treat==1])
-for()#
-#############################################
-#### Replicating Coppock using our code #####
-#############################################
-setwd("~/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/") # BD#
-rm(list=ls())#
-gc()#
-set.seed(231)#
-library(doParallel)#
-library(fields)#
-library(foreach)#
-library(kSamples)#
-library(network)#
-library(permute)#
-library(wnominate)#
-permute.within.categories <- function(categories,z){#
-	ucategories <- unique(categories)#
-	perm.z <- rep(NA,length(z))#
-	for(c in ucategories){#
-		z.c <- z[which(categories==c)]#
-		perm.z.c <- sample(z.c,length(z.c),rep=F)#
-		perm.z[which(categories==c)] <- perm.z.c#
-	}#
-	perm.z#
-}#
-matrix.max <- function(x){#
-  # x is the matrix with respect to which you want to find the max cell#
-  rowmax <- which.max(apply(x,1,max))#
-  colmax <- which.max(x[rowmax,])#
-  c(rowmax,colmax)#
-}#
-#### Read the original Butler and Nicketson data#
-#### This is the New Mexico dataset#
-data <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-z <- data$treatment #observed treatment#
-y.z <- data$sb24 #observed outcome#
-n <- length(y.z) #number of observations#
-t <- length(z[z==1]) #number of treated units#
-perms <- 10000 #number of permutations to use in generating expected exposure#
-perms.test <- 500 #number of permutations used in testing#
-#### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)#
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-## Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-## Create an adjacency/similarity matrix using ideology#
-S.ideo <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(S.ideo) <- 0#
-S.ideo[is.na(S.ideo)==T] <- 0#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}#
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control#
-#### Generate expected and net exposure#
-#### This is the spillover effect model#
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used#
- # permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }#
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)#
-}#
-#### We now model the uniformity trial transformation#
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){#
-  # outcome: vector of direct treatment outcomes#
-  # beta1: direct treatment effect parameter#
-  # beta2: indirect treatment effect parameter#
-  # permutation: vector of a permutation of z (can be z itself)#
-  # adj.mat: adjacency matrix#
-  exposure <- indirect.treatment(permutation, adj.mat)#
-  # This is equation 5#
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)#
-  return(h.yz.0)#
-}#
-#### Testing and p-value calculation#
-beta1s <- seq(from=-0.5, to=0.5, by=.025)#
-beta2s <- seq(from=-0.5, to=0.5, by=.025)#
-pvals <- matrix(NA, length(beta1s), length(beta2s))#
-cl <- makeCluster(4) #Setup for parallel computing#
-registerDoParallel(cl)#
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {#
-  abc <- foreach (j = 1:length(beta2s)) %do% {#
-    # Calculate the outcome vector after taking away the effect of treatment#
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-    # Calculate observed test statistic#
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)#
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)#
-    # Calculate a vector of test statistic using permutations#
-    results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }#
-    # A vector of test statistics#
-    all.test.stat.vals <- as.numeric(unlist(results))#
-    # Calculating p-value#
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test#
-  }#
-  as.numeric(unlist(abc))#
-}#
-stopCluster(cl)#
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}#
-pvals #rows are direct effects, columns indirect
-results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }
-results
-names(perms)
-length(results)
-test.stat
-lm(y.z ~ z + exposure, na.action = na.omit)
-?lm
-lm(y.z ~ z + exposure, na.action = na.omit,y=T)
-fit.obs <- lm(y.z ~ z + exposure, na.action = na.omit,y=T,x=T)
-summary(fit.obs)
-all.test.stat.vals
-sum(all.test.stat.vals < test.stat)/perms.test
-length(beta1s)
-i <- 15
-j <- 15
-beta1s[i]
-beta2s[j]
-i <- 15#
-j <- 15#
-all.test.stat.vals <- numeric(500)#
-   for(k in 1:500){#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      all.test.stat.vals[k] <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }
-summary(all.test.stat.vals)
-j <- 5
-i <- 5
-beta1s5
-beta1s[5]
-beta2s[5]
-i <- 5#
-j <- 5#
-all.test.stat.vals <- numeric(500)#
-   for(k in 1:500){#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      all.test.stat.vals[k] <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }
-summary(all.test.stat.vals)
-mean(test.stat>all.test.stat.vals)
-test.stat
-save(list=c("expected.exp0","expected.exp1"),file="/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/expected_ours.RData")
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/expected_coppock.RData")
-t.test(expected.exposure1,expected.exp1)
-t.test(exposure.expected.1,expected.exp1)
-t.test(exposure.expected.1,expected.exp0)
-t.test(exposure.expected.0,expected.exp0)
-plot(exposure.expected.0,expected.exp0)
-abline(0,1)
-plot(exposure.expected.1,expected.exp1)
-abline(0,1)
-plot(exposure,exposure.obs)
-setwd("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival")
-#load("Replication Archive/CoppockJEPS.rdata")#
-load("CoppockJEPS.rdata")
-exposure.obs <- CoppockJEPS$s.difs.dw
-plot(exposure,exposure.obs)
-dev.off()
-plot(exposure,exposure.obs)
-abline(0,1)
-#### Public Opinion Replication#
-#### Butler, Daniel M., and David W. Nickerson. 2011. #
-#### “Can Learning Constituency Opinion Affect How Legislators Vote? Results from a Field Experiment.” #
-#### Quarterly Journal of Political Science 6(1): 55–83. DOI: 10.1561/100.00011019#
-rm(list=ls())#
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block
-install.packages("maptools")
-install.packages("spdep")
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)
-#### Public Opinion Replication#
-#### Butler, Daniel M., and David W. Nickerson. 2011. #
-#### “Can Learning Constituency Opinion Affect How Legislators Vote? Results from a Field Experiment.” #
-#### Quarterly Journal of Political Science 6(1): 55–83. DOI: 10.1561/100.00011019#
-rm(list=ls())#
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block
-exposure.block.dw
-adj.mat
-dim(exposure.block.dw)
-#Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment
-#### Public Opinion Replication#
-#### Butler, Daniel M., and David W. Nickerson. 2011. #
-#### “Can Learning Constituency Opinion Affect How Legislators Vote? Results from a Field Experiment.” #
-#### Quarterly Journal of Political Science 6(1): 55–83. DOI: 10.1561/100.00011019#
-rm(list=ls())#
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})
-exposure.observed.dw
-names(butler)
-raw.exp
-adj.mat <- S.ideo
-###################################################################################
-#### Nickerson-Butler data; Coppock network setup & Bowers et. al. framework #####
-##################################################################################
-#############################################
-#### Replicating Coppock using our code #####
-#############################################
-setwd("~/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/") # BD#
-rm(list=ls())#
-gc()#
-set.seed(231)#
-library(doParallel)#
-library(fields)#
-library(foreach)#
-library(kSamples)#
-library(network)#
-library(permute)#
-library(wnominate)#
-permute.within.categories <- function(categories,z){#
-	ucategories <- unique(categories)#
-	perm.z <- rep(NA,length(z))#
-	for(c in ucategories){#
-		z.c <- z[which(categories==c)]#
-		perm.z.c <- sample(z.c,length(z.c),rep=F)#
-		perm.z[which(categories==c)] <- perm.z.c#
-	}#
-	perm.z#
-}#
-matrix.max <- function(x){#
-  # x is the matrix with respect to which you want to find the max cell#
-  rowmax <- which.max(apply(x,1,max))#
-  colmax <- which.max(x[rowmax,])#
-  c(rowmax,colmax)#
-}#
-#### Read the original Butler and Nicketson data#
-#### This is the New Mexico dataset#
-data <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-z <- data$treatment #observed treatment#
-y.z <- data$sb24 #observed outcome#
-n <- length(y.z) #number of observations#
-t <- length(z[z==1]) #number of treated units#
-perms <- 10000 #number of permutations to use in generating expected exposure#
-perms.test <- 500 #number of permutations used in testing#
-#### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)#
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-## Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-## Create an adjacency/similarity matrix using ideology#
-S.ideo <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(S.ideo) <- 0#
-S.ideo[is.na(S.ideo)==T] <- 0#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}#
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control#
-#### Generate expected and net exposure#
-#### This is the spillover effect model#
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used#
- # permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }#
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)#
-}
-adj.mat <- S.ideo
-# permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }
-permutation <- z
-# permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }
-names(butler)
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})
-setwd(""/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival"")
-setwd("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival")
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})
-names(butler)
-raw.exp
-plot(buter$exposure.observed.dw,raw.exp)
-plot(butler$exposure.observed.dw,raw.exp)
-abline(0,1)
-exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)
-library(lattice)#
-find_breaks <- function(x){#
-  breaks <- rep(NA, length(x)-1)#
-  for(i in 1:length(breaks)){#
-    breaks[i+1] <- x[i]!=x[i+1]#
-  }#
-  return(which(breaks))#
-}#
-#load("Replication Archive/CoppockJEPS.rdata")#
-load("CoppockJEPS.rdata")#
-## Pick exposure model -- main analysis uses dw nominate#
-Z.obs <- CoppockJEPS$treatment#
-Y.obs <- CoppockJEPS$sb24#
-exposure.obs <- CoppockJEPS$s.difs.dw#
-fit.obs <- lm(Y.obs ~ Z.obs + exposure.obs)#
-ssr.obs <- sum(residuals(fit.obs)^2)#
-direct.obs <- fit.obs$coefficients[2]#
-indirect.obs <- fit.obs$coefficients[3]
-plot(exposure,exposure.obs)
-raw.exp
-net.exp <- raw.exp-(z*expected.exp1+(1-z*expected.exp0))
-std.exp <- (net.exp-mean(net.exp))/sd(net.exp)
-exposure.obs
-std.exp
-plot(std.exp,exposure.obs)
-plot(exposure,exposure.obs)
-plot(butler$exposure.observed.dw,raw.exp)
-plot(exposure,exposure.obs)
-indirect.treatment
-net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)
-plot(standard.exp,exposure.obs)
-dev.off()
-plot(standard.exp,exposure.obs)
-exposure.expected.1
-exposure.expected.1 <- CoppockJEPS$exposure.expected.1.dw#
-exposure.expected.0 <- CoppockJEPS$exposure.expected.0.dw
-exposure.expected.1
-exposure.expected.1 <- CoppockJEPS$exposure.expected.1.dw#
-exposure.expected.0 <- CoppockJEPS$exposure.expected.0.dw
-exposure.obs
-plot(standard.exp,exposure.obs)
-dev.off()
-plot(exposure.expected.1,expected.exp1)
-abline(0,1)
-plot(exposure.expected.0,expected.exp0)
-abline(0,1)
-table(z,treatment)
-table(z,butler$treatment)
-cbind(buter$exposure.observed.dw,raw.exp)
-cbind(butler$exposure.observed.dw,raw.exp)
-cbind(butler$difs.dw,net.exp)
-plot(butler$difs.dw,net.exp)
-dev.off()
-plot(butler$difs.dw,net.exp)
-cor(exposure.expected.1,expected.exp1)
-cor(exposure.expected.1,expected.exp1)^2
-exp.exposure <- (permutation*expected.exp1 + (1-permutation)*expected.exp0)
-cor(raw.exp,exp.exposure)
-cor(raw.exp,exp.exposure)^2
-rm(list=ls())
-load("CoppockJEPS.rdata")
-Zblock
-ls()
-###################################################################################
-#### Nickerson-Butler data; Coppock network setup & Bowers et. al. framework #####
-##################################################################################
-#############################################
-#### Replicating Coppock using our code #####
-#############################################
-setwd("~/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/") # BD#
-rm(list=ls())#
-gc()#
-set.seed(231)#
-library(doParallel)#
-library(fields)#
-library(foreach)#
-library(kSamples)#
-library(network)#
-library(permute)#
-library(wnominate)#
-permute.within.categories <- function(categories,z){#
-	ucategories <- unique(categories)#
-	perm.z <- rep(NA,length(z))#
-	for(c in ucategories){#
-		z.c <- z[which(categories==c)]#
-		perm.z.c <- sample(z.c,length(z.c),rep=F)#
-		perm.z[which(categories==c)] <- perm.z.c#
-	}#
-	perm.z#
-}#
-matrix.max <- function(x){#
-  # x is the matrix with respect to which you want to find the max cell#
-  rowmax <- which.max(apply(x,1,max))#
-  colmax <- which.max(x[rowmax,])#
-  c(rowmax,colmax)#
-}#
-#### Read the original Butler and Nicketson data#
-#### This is the New Mexico dataset#
-data <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-z <- data$treatment #observed treatment#
-y.z <- data$sb24 #observed outcome#
-n <- length(y.z) #number of observations#
-t <- length(z[z==1]) #number of treated units#
-perms <- 10000 #number of permutations to use in generating expected exposure#
-perms.test <- 500 #number of permutations used in testing#
-#### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)#
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-## Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-## Create an adjacency/similarity matrix using ideology#
-S.ideo <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(S.ideo) <- 0#
-S.ideo[is.na(S.ideo)==T] <- 0#
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata")#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-perm <- Z_block#
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}#
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control#
-#### Generate expected and net exposure#
-#### This is the spillover effect model#
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used#
- # permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }#
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)#
-}#
-#### We now model the uniformity trial transformation#
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){#
-  # outcome: vector of direct treatment outcomes#
-  # beta1: direct treatment effect parameter#
-  # beta2: indirect treatment effect parameter#
-  # permutation: vector of a permutation of z (can be z itself)#
-  # adj.mat: adjacency matrix#
-  exposure <- indirect.treatment(permutation, adj.mat)#
-  # This is equation 5#
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)#
-  return(h.yz.0)#
-}#
-#### Testing and p-value calculation#
-beta1s <- seq(from=-0.5, to=0.5, by=.025)#
-beta2s <- seq(from=-0.5, to=0.5, by=.025)#
-pvals <- matrix(NA, length(beta1s), length(beta2s))#
-cl <- makeCluster(4) #Setup for parallel computing#
-registerDoParallel(cl)#
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {#
-  abc <- foreach (j = 1:length(beta2s)) %do% {#
-    # Calculate the outcome vector after taking away the effect of treatment#
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-    # Calculate observed test statistic#
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)#
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)#
-    # Calculate a vector of test statistic using permutations#
-    results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }#
-    # A vector of test statistics#
-    all.test.stat.vals <- as.numeric(unlist(results))#
-    # Calculating p-value#
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test#
-  }#
-  as.numeric(unlist(abc))#
-}#
-stopCluster(cl)#
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}#
-pvals #rows are direct effects, columns indirect
-direct.effect.CI.high <- beta1s[max(which(pvals >= 0.05, arr.ind = TRUE)[,1])]#
-direct.effect.CI.low <- beta1s[min(which(pvals <= 0.05, arr.ind = TRUE)[,1])]#
-indirect.effect.CI.high <- beta2s[max(which(pvals <= 0.05, arr.ind = TRUE)[,2])]#
-indirect.effect.CI.low <- beta2s[min(which(pvals >= 0.05, arr.ind = TRUE)[,2])]
-direct.effect.CI.high
-direct.effect.CI.low
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-high.p.value <- max(pvals)#
-highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)#
-direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]#
-indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]#
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-direct.effect.CI.high
-direct.effect.CI.low
-i <- 5#
-j <- 5#
-all.test.stat.vals <- numeric(500)#
-   for(k in 1:500){#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      all.test.stat.vals[k] <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }
-mean(test.stat > all.test.stat.vals)
-exp.exposure <- (permutation*expected.exp1 + (1-permutation)*expected.exp0)
-permutation <- z
-exp.exposure <- (permutation*expected.exp1 + (1-permutation)*expected.exp0)
-cor(raw.exp,exp.exposure)
-exposure.expected.1 <- CoppockJEPS$exposure.expected.1.dw#
-exposure.expected.0 <- CoppockJEPS$exposure.expected.0.dw
-exp.exp.coppock <- (permutation*expected.exposure.1 + (1-permutation)*expected.exposure.0)
-exp.exp.coppock <- (permutation*exposure.expected.1 + (1-permutation)*exposure.expected.0)
-cor(exp.exposure,exp.exp.coppock)
-cor(exp.exposure,exp.exp.coppock)^2
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata")#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-perm <- Z_block
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}
-cor(exposure.expected.1,expected.exp1)
-cor(exposure.expected.0,expected.exp0)
-dim(perm)
-names(butler)
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})#
-### Alternative parameterization of nominate distance using ranks#
-get.similarity.rank <- function(x, y){#
-  return((67-abs(x-y))/67)#
-}#
-dwnom_ranks <- rank(dwnom_scores, na.last="keep")#
-similarity.matrix.rank <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.rank[i,j] <- get.similarity.rank(dwnom_ranks[i], dwnom_ranks[j])#
-  }#
-}#
-diag(similarity.matrix.rank) <- 0#
-similarity.matrix.rank[is.na(similarity.matrix.rank)==T] <- 0#
-exposure.block.rank <- similarity.matrix.rank %*% Z_block#
-pos.exposure.block.rank <- similarity.matrix.rank %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.rank <- similarity.matrix.rank %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.rank <- rep(NA, 70)#
-  exposure.expected.0.rank <- rep(NA, 70)#
-  pos.exposure.expected.1.rank <- rep(NA, 70)#
-  pos.exposure.expected.0.rank <- rep(NA, 70)#
-  neg.exposure.expected.1.rank <- rep(NA, 70)#
-  neg.exposure.expected.0.rank <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.rank[i] <- mean(exposure.block.rank[i,Z_block[i,]==1])#
-    exposure.expected.0.rank[i] <- mean(exposure.block.rank[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.rank[i] <- mean(pos.exposure.block.rank[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.rank[i] <- mean(pos.exposure.block.rank[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.rank[i] <- mean(neg.exposure.block.rank[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.rank[i] <- mean(neg.exposure.block.rank[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.rank <- similarity.matrix.rank %*% treatment#
-  neg.exposure.observed.rank <- similarity.matrix.rank %*% (treatment*lowsupport)#
-  pos.exposure.observed.rank <- similarity.matrix.rank %*% (treatment*(!lowsupport))#
-  difs.rank <- exposure.observed.rank - (treatment * exposure.expected.1.rank + (1-treatment)*exposure.expected.0.rank)#
-  pos.difs.rank <- pos.exposure.observed.rank - (treatment * pos.exposure.expected.1.rank + (1-treatment)*pos.exposure.expected.0.rank)#
-  neg.difs.rank <- neg.exposure.observed.rank - (treatment * neg.exposure.expected.1.rank + (1-treatment)*neg.exposure.expected.0.rank)#
-  s.difs.rank <- (difs.rank - mean(difs.rank))/sd(difs.rank)#
-  s.pos.difs.rank <- (pos.difs.rank - mean(pos.difs.rank))/sd(pos.difs.rank)#
-  s.neg.difs.rank <- (neg.difs.rank - mean(neg.difs.rank))/sd(neg.difs.rank)#
-})
-names(butler)
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})
-expected.exp0
-exposure.expected.1.dw
-butler$exposure.expected.1.dw
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control
-butler$exposure.expected.1.dw
-cbind(butler$exposure.expected.1.dw,expected.exp1)
-cor(butler$exposure.expected.1.dw,expected.exp1)
-cor(butler$exposure.expected.0.dw,expected.exp0)
-set.seed(231)#
-library(doParallel)#
-library(fields)#
-library(foreach)#
-library(kSamples)#
-library(network)#
-library(permute)#
-library(wnominate)#
-permute.within.categories <- function(categories,z){#
-	ucategories <- unique(categories)#
-	perm.z <- rep(NA,length(z))#
-	for(c in ucategories){#
-		z.c <- z[which(categories==c)]#
-		perm.z.c <- sample(z.c,length(z.c),rep=F)#
-		perm.z[which(categories==c)] <- perm.z.c#
-	}#
-	perm.z#
-}#
-matrix.max <- function(x){#
-  # x is the matrix with respect to which you want to find the max cell#
-  rowmax <- which.max(apply(x,1,max))#
-  colmax <- which.max(x[rowmax,])#
-  c(rowmax,colmax)#
-}#
-#### Read the original Butler and Nicketson data#
-#### This is the New Mexico dataset#
-data <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-z <- data$treatment #observed treatment#
-y.z <- data$sb24 #observed outcome#
-n <- length(y.z) #number of observations#
-t <- length(z[z==1]) #number of treated units#
-perms <- 10000 #number of permutations to use in generating expected exposure#
-perms.test <- 500 #number of permutations used in testing#
-#### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)#
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-## Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-## Create an adjacency/similarity matrix using ideology#
-S.ideo <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(S.ideo) <- 0#
-S.ideo[is.na(S.ideo)==T] <- 0#
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata")#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-perm <- Z_block#
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}#
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control#
-#### Generate expected and net exposure#
-#### This is the spillover effect model#
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used#
- # permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }#
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)#
-}#
-#### We now model the uniformity trial transformation#
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){#
-  # outcome: vector of direct treatment outcomes#
-  # beta1: direct treatment effect parameter#
-  # beta2: indirect treatment effect parameter#
-  # permutation: vector of a permutation of z (can be z itself)#
-  # adj.mat: adjacency matrix#
-  exposure <- indirect.treatment(permutation, adj.mat)#
-  # This is equation 5#
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)#
-  return(h.yz.0)#
-}#
-#### Testing and p-value calculation#
-beta1s <- seq(from=-0.5, to=0.5, by=.025)#
-beta2s <- seq(from=-0.5, to=0.5, by=.025)#
-pvals <- matrix(NA, length(beta1s), length(beta2s))#
-cl <- makeCluster(4) #Setup for parallel computing#
-registerDoParallel(cl)#
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {#
-  abc <- foreach (j = 1:length(beta2s)) %do% {#
-    # Calculate the outcome vector after taking away the effect of treatment#
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-    # Calculate observed test statistic#
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)#
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)#
-    # Calculate a vector of test statistic using permutations#
-    results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }#
-    # A vector of test statistics#
-    all.test.stat.vals <- as.numeric(unlist(results))#
-    # Calculating p-value#
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test#
-  }#
-  as.numeric(unlist(abc))#
-}#
-stopCluster(cl)#
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}#
-pvals #rows are direct effects, columns indirect
-high.p.value <- max(pvals)#
-highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)#
-direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]#
-indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]#
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-direct.effect.CI.high
-direct.effect.CI.low
-indirect.effect.CI.high
-indirect.effect.CI.low
-high.p.value
-test.stat
-perm.z <- Z_block[,5]
-<- 5#
-j <- 5
-i <- 5#
-j <- 5
-perm.z <- Z_block[,5]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure
-summary(lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit))
-perm.exposure
-perm.y.0
-perm.exposure
-expected.exp1
-CoppockJEPS
-CoppockJEPS$exposure.expected.1.dw
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})#
-### Alternative parameterization of nominate distance using ranks#
-get.similarity.rank <- function(x, y){#
-  return((67-abs(x-y))/67)#
-}#
-dwnom_ranks <- rank(dwnom_scores, na.last="keep")#
-similarity.matrix.rank <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.rank[i,j] <- get.similarity.rank(dwnom_ranks[i], dwnom_ranks[j])#
-  }#
-}#
-diag(similarity.matrix.rank) <- 0#
-similarity.matrix.rank[is.na(similarity.matrix.rank)==T] <- 0#
-exposure.block.rank <- similarity.matrix.rank %*% Z_block#
-pos.exposure.block.rank <- similarity.matrix.rank %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.rank <- similarity.matrix.rank %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.rank <- rep(NA, 70)#
-  exposure.expected.0.rank <- rep(NA, 70)#
-  pos.exposure.expected.1.rank <- rep(NA, 70)#
-  pos.exposure.expected.0.rank <- rep(NA, 70)#
-  neg.exposure.expected.1.rank <- rep(NA, 70)#
-  neg.exposure.expected.0.rank <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.rank[i] <- mean(exposure.block.rank[i,Z_block[i,]==1])#
-    exposure.expected.0.rank[i] <- mean(exposure.block.rank[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.rank[i] <- mean(pos.exposure.block.rank[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.rank[i] <- mean(pos.exposure.block.rank[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.rank[i] <- mean(neg.exposure.block.rank[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.rank[i] <- mean(neg.exposure.block.rank[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.rank <- similarity.matrix.rank %*% treatment#
-  neg.exposure.observed.rank <- similarity.matrix.rank %*% (treatment*lowsupport)#
-  pos.exposure.observed.rank <- similarity.matrix.rank %*% (treatment*(!lowsupport))#
-  difs.rank <- exposure.observed.rank - (treatment * exposure.expected.1.rank + (1-treatment)*exposure.expected.0.rank)#
-  pos.difs.rank <- pos.exposure.observed.rank - (treatment * pos.exposure.expected.1.rank + (1-treatment)*pos.exposure.expected.0.rank)#
-  neg.difs.rank <- neg.exposure.observed.rank - (treatment * neg.exposure.expected.1.rank + (1-treatment)*neg.exposure.expected.0.rank)#
-  s.difs.rank <- (difs.rank - mean(difs.rank))/sd(difs.rank)#
-  s.pos.difs.rank <- (pos.difs.rank - mean(pos.difs.rank))/sd(pos.difs.rank)#
-  s.neg.difs.rank <- (neg.difs.rank - mean(neg.difs.rank))/sd(neg.difs.rank)#
-})#
-### Alternative parameterization of nominate distance using squared distance#
-get.similarity.sq <- function(x, y){#
-  return((4 - (x-y)^2)/4)#
-}#
-similarity.matrix.sq <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.sq[i,j] <- get.similarity.sq(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.sq) <- 0#
-similarity.matrix.sq[is.na(similarity.matrix.sq)==T] <- 0#
-exposure.block.sq <- similarity.matrix.sq %*% Z_block#
-pos.exposure.block.sq <- similarity.matrix.sq %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.sq <- similarity.matrix.sq %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.sq <- rep(NA, 70)#
-  exposure.expected.0.sq <- rep(NA, 70)#
-  pos.exposure.expected.1.sq <- rep(NA, 70)#
-  pos.exposure.expected.0.sq <- rep(NA, 70)#
-  neg.exposure.expected.1.sq <- rep(NA, 70)#
-  neg.exposure.expected.0.sq <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.sq[i] <- mean(exposure.block.sq[i,Z_block[i,]==1])#
-    exposure.expected.0.sq[i] <- mean(exposure.block.sq[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.sq[i] <- mean(pos.exposure.block.sq[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.sq[i] <- mean(pos.exposure.block.sq[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.sq[i] <- mean(neg.exposure.block.sq[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.sq[i] <- mean(neg.exposure.block.sq[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.sq <- similarity.matrix.sq %*% treatment#
-  neg.exposure.observed.sq <- similarity.matrix.sq %*% (treatment*lowsupport)#
-  pos.exposure.observed.sq <- similarity.matrix.sq %*% (treatment*(!lowsupport))#
-  difs.sq <- exposure.observed.sq - (treatment * exposure.expected.1.sq + (1-treatment)*exposure.expected.0.sq)#
-  pos.difs.sq <- pos.exposure.observed.sq - (treatment * pos.exposure.expected.1.sq + (1-treatment)*pos.exposure.expected.0.sq)#
-  neg.difs.sq <- neg.exposure.observed.sq - (treatment * neg.exposure.expected.1.sq + (1-treatment)*neg.exposure.expected.0.sq)#
-  s.difs.sq <- (difs.sq - mean(difs.sq))/sd(difs.sq)#
-  s.pos.difs.sq <- (pos.difs.sq - mean(pos.difs.sq))/sd(pos.difs.sq)#
-  s.neg.difs.sq <- (neg.difs.sq - mean(neg.difs.sq))/sd(neg.difs.sq)#
-})#
-### Geographical -- connected if CDs touch#
-### Bring in shapefile#
-#NM_geo <-readShapeSpatial("CoppockJEPSshapefile/hd_court_ordered.shp")#
-NM_geo <-readShapeSpatial("hd_court_ordered.shp")#
-### Convert to Adjacency Matrix#
-similarity.matrix.geo <- nb2mat(poly2nb(NM_geo), style="B")#
-rownames(similarity.matrix.geo) <- NULL#
-exposure.block.geo <- similarity.matrix.geo %*% Z_block#
-pos.exposure.block.geo <- similarity.matrix.geo %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.geo <- similarity.matrix.geo %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler, {#
-  exposure.expected.1.geo <- rep(NA, 70)#
-  exposure.expected.0.geo <- rep(NA, 70)#
-  pos.exposure.expected.1.geo <- rep(NA, 70)#
-  pos.exposure.expected.0.geo <- rep(NA, 70)#
-  neg.exposure.expected.1.geo <- rep(NA, 70)#
-  neg.exposure.expected.0.geo <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.geo[i] <- mean(exposure.block.geo[i,Z_block[i,]==1])#
-    exposure.expected.0.geo[i] <- mean(exposure.block.geo[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.geo[i] <- mean(pos.exposure.block.geo[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.geo[i] <- mean(pos.exposure.block.geo[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.geo[i] <- mean(neg.exposure.block.geo[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.geo[i] <- mean(neg.exposure.block.geo[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.geo <- similarity.matrix.geo %*% treatment#
-  neg.exposure.observed.geo <- similarity.matrix.geo %*% (treatment*lowsupport)#
-  pos.exposure.observed.geo <- similarity.matrix.geo %*% (treatment*(!lowsupport))#
-  difs.geo <- exposure.observed.geo - (treatment * exposure.expected.1.geo + (1-treatment)*exposure.expected.0.geo)#
-  pos.difs.geo <- pos.exposure.observed.geo - (treatment * pos.exposure.expected.1.geo + (1-treatment)*pos.exposure.expected.0.geo)#
-  neg.difs.geo <- neg.exposure.observed.geo - (treatment * neg.exposure.expected.1.geo + (1-treatment)*neg.exposure.expected.0.geo)#
-  s.difs.geo <- (difs.geo - mean(difs.geo))/sd(difs.geo)#
-  s.pos.difs.geo <- (pos.difs.geo - mean(pos.difs.geo))/sd(pos.difs.geo)#
-  s.neg.difs.geo <- (neg.difs.geo - mean(neg.difs.geo))/sd(neg.difs.geo)#
-})#
-CoppockJEPS <- butler#
-save(Z_block, similarity.matrix.geo, similarity.matrix.dw, similarity.matrix.rank, similarity.matrix.sq, CoppockJEPS, file="CoppockJEPS.rdata")
-expected.exp1
-# Set your working directory#
-# setwd("")#
-library(foreign)  #
-library(maptools)#
-library(spdep)#
-library(wnominate)#
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-# 2. Bring in Data from NM House Roll Calls in 2008 ##
-# 3. Replication Results from Butler and Nickerson  ##
-# 4. Create Exposure Model                          ##
-# 5. Randomization Inteference                      ##
-######################################################
-######################################################
-# 1. Bring in Data from Butler and Nickerson (2012) ##
-######################################################
-#butler <- read.dta("nm.replication.dta")#
-butler <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-butler <- within(butler,{#
-#Generate IDs#
-id <- 1:70#
-#Generate Presidential 2-party Vote Share#
-dem_vs <- kerry/(bush+kerry)#
-#Generate Governor Vote#
-v_richardson <- richardsongovdem/(richardsongovdem+dendahlgovrep)#
-#Generate dichotomous spending preferences.  full_co =1 if q2full is below the median. #
-#(b/c the proposal was popular, the "treatment" should #
-#have a larger effect among legislators #
-#who learned that public support was low)#
-full_co <- q2full <= quantile(q2full, probs=.50)#
-lowsupport <- full_co#
-treatment_lowsupport <- treatment*lowsupport#
-treatment_highsupport <- treatment*(1-lowsupport)#
-})#
-######################################################
-# 2. Bring in 10,000 Block Random Assignments       ##
-######################################################
-load("CoppockJEPS_10000Randomizations.rdata")#
-######################################################
-# 3. Generate Similarity Scores                     ##
-######################################################
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-####Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-pdf("Replication Archive/figures/CoppockJEPS_appendixfigure1.pdf")#
-hist(dwnom_scores, breaks=50, main="", xlab="W-NOMINATE score")#
-dev.off()#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-similarity.matrix.dw <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    similarity.matrix.dw[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(similarity.matrix.dw) <- 0#
-similarity.matrix.dw[is.na(similarity.matrix.dw)==T] <- 0#
-exposure.block.dw <- similarity.matrix.dw %*% Z_block#
-pos.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (!butler$lowsupport))#
-neg.exposure.block.dw <- similarity.matrix.dw %*% (Z_block* (butler$lowsupport))#
-butler <- within(butler,{#
-  dwnom_scores <- dwnom_scores#
-  exposure.expected.1.dw <- rep(NA, 70)#
-  exposure.expected.0.dw <- rep(NA, 70)#
-  pos.exposure.expected.1.dw <- rep(NA, 70)#
-  pos.exposure.expected.0.dw <- rep(NA, 70)#
-  neg.exposure.expected.1.dw <- rep(NA, 70)#
-  neg.exposure.expected.0.dw <- rep(NA, 70)#
-  for (i in 1:70){#
-    exposure.expected.1.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==1])#
-    exposure.expected.0.dw[i] <- mean(exposure.block.dw[i,Z_block[i,]==0])#
-    pos.exposure.expected.1.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==1])#
-    pos.exposure.expected.0.dw[i] <- mean(pos.exposure.block.dw[i,Z_block[i,]==0])#
-    neg.exposure.expected.1.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==1])#
-    neg.exposure.expected.0.dw[i] <- mean(neg.exposure.block.dw[i,Z_block[i,]==0])#
-  }#
-  #Generate observed exposure variable#
-  exposure.observed.dw <- similarity.matrix.dw %*% treatment#
-  neg.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*lowsupport)#
-  pos.exposure.observed.dw <- similarity.matrix.dw %*% (treatment*(!lowsupport))#
-  difs.dw <- exposure.observed.dw - (treatment * exposure.expected.1.dw + (1-treatment)*exposure.expected.0.dw)#
-  pos.difs.dw <- pos.exposure.observed.dw - (treatment * pos.exposure.expected.1.dw + (1-treatment)*pos.exposure.expected.0.dw)#
-  neg.difs.dw <- neg.exposure.observed.dw - (treatment * neg.exposure.expected.1.dw + (1-treatment)*neg.exposure.expected.0.dw)#
-  s.difs.dw <- (difs.dw - mean(difs.dw))/sd(difs.dw)#
-  s.pos.difs.dw <- (pos.difs.dw - mean(pos.difs.dw))/sd(pos.difs.dw)#
-  s.neg.difs.dw <- (neg.difs.dw - mean(neg.difs.dw))/sd(neg.difs.dw)#
-})
-CoppockJEPS$exposure.expected.1.dw
-expected.exp1
-getwd()
-butler$dwnom_scores
-set.seed(231)#
-library(doParallel)#
-library(fields)#
-library(foreach)#
-library(kSamples)#
-library(network)#
-library(permute)#
-library(wnominate)#
-permute.within.categories <- function(categories,z){#
-	ucategories <- unique(categories)#
-	perm.z <- rep(NA,length(z))#
-	for(c in ucategories){#
-		z.c <- z[which(categories==c)]#
-		perm.z.c <- sample(z.c,length(z.c),rep=F)#
-		perm.z[which(categories==c)] <- perm.z.c#
-	}#
-	perm.z#
-}#
-matrix.max <- function(x){#
-  # x is the matrix with respect to which you want to find the max cell#
-  rowmax <- which.max(apply(x,1,max))#
-  colmax <- which.max(x[rowmax,])#
-  c(rowmax,colmax)#
-}#
-#### Read the original Butler and Nicketson data#
-#### This is the New Mexico dataset#
-data <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-z <- data$treatment #observed treatment#
-y.z <- data$sb24 #observed outcome#
-n <- length(y.z) #number of observations#
-t <- length(z[z==1]) #number of treated units#
-perms <- 10000 #number of permutations to use in generating expected exposure#
-perms.test <- 500 #number of permutations used in testing#
-#### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)#
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-## Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-#
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata")#
-#
-dwnom_scores <- CoppockJEPS$dwnom_scores#
-## Create an adjacency/similarity matrix using ideology#
-S.ideo <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(S.ideo) <- 0#
-S.ideo[is.na(S.ideo)==T] <- 0#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-perm <- Z_block#
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}#
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control#
-#### Generate expected and net exposure#
-#### This is the spillover effect model#
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used#
- # permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }#
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)#
-}#
-#### We now model the uniformity trial transformation#
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){#
-  # outcome: vector of direct treatment outcomes#
-  # beta1: direct treatment effect parameter#
-  # beta2: indirect treatment effect parameter#
-  # permutation: vector of a permutation of z (can be z itself)#
-  # adj.mat: adjacency matrix#
-  exposure <- indirect.treatment(permutation, adj.mat)#
-  # This is equation 5#
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)#
-  return(h.yz.0)#
-}#
-#### Testing and p-value calculation#
-beta1s <- seq(from=-0.5, to=0.5, by=.025)#
-beta2s <- seq(from=-0.5, to=0.5, by=.025)#
-pvals <- matrix(NA, length(beta1s), length(beta2s))#
-cl <- makeCluster(4) #Setup for parallel computing#
-registerDoParallel(cl)#
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {#
-  abc <- foreach (j = 1:length(beta2s)) %do% {#
-    # Calculate the outcome vector after taking away the effect of treatment#
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-    # Calculate observed test statistic#
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)#
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)#
-    # Calculate a vector of test statistic using permutations#
-    results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }#
-    # A vector of test statistics#
-    all.test.stat.vals <- as.numeric(unlist(results))#
-    # Calculating p-value#
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test#
-  }#
-  as.numeric(unlist(abc))#
-}#
-stopCluster(cl)#
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}#
-pvals #rows are direct effects, columns indirect
-## Saving results#
-high.p.value <- max(pvals)#
-highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)#
-direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]#
-indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]#
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-indirect.effect.CI.low
-indirect.effect.CI.high
-i <- 5#
-j <- 5
-perm.z <- Z_block[,5]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure
-perm.exposure
-test.stat
-exposure
-expected.exp1
-###################################################################################
-#### Nickerson-Butler data; Coppock network setup & Bowers et. al. framework #####
-##################################################################################
-#############################################
-#### Replicating Coppock using our code #####
-#############################################
-setwd("~/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/") # BD#
-rm(list=ls())#
-gc()#
-set.seed(231)#
-library(doParallel)#
-library(fields)#
-library(foreach)#
-library(kSamples)#
-library(network)#
-library(permute)#
-library(wnominate)#
-permute.within.categories <- function(categories,z){#
-	ucategories <- unique(categories)#
-	perm.z <- rep(NA,length(z))#
-	for(c in ucategories){#
-		z.c <- z[which(categories==c)]#
-		perm.z.c <- sample(z.c,length(z.c),rep=F)#
-		perm.z[which(categories==c)] <- perm.z.c#
-	}#
-	perm.z#
-}#
-matrix.max <- function(x){#
-  # x is the matrix with respect to which you want to find the max cell#
-  rowmax <- which.max(apply(x,1,max))#
-  colmax <- which.max(x[rowmax,])#
-  c(rowmax,colmax)#
-}#
-#### Read the original Butler and Nicketson data#
-#### This is the New Mexico dataset#
-data <- read.table("nm.replication.tab", sep="\t", header=TRUE)#
-z <- data$treatment #observed treatment#
-y.z <- data$sb24 #observed outcome#
-n <- length(y.z) #number of observations#
-t <- length(z[z==1]) #number of treated units#
-perms <- 10000 #number of permutations to use in generating expected exposure#
-perms.test <- 500 #number of permutations used in testing#
-#### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)#
-nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")#
-bills <- data.frame(nmhouse2008[5:21])#
-## Nominate Scores#
-bills_nona <- bills#
-bills_nona[bills_nona==99] <- NA#
-rollcalls <- rollcall(bills_nona)#
-nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)#
-dwnom_scores <- nominate_scores$legislators$coord1D#
-get.similarity <- function(x, y){#
-  return((2-abs(x-y))/2)#
-}#
-#
-load("/Users/bbd5087/Dropbox/professional/Research/Active/causalityinnetworks-agenda/Interference_in_Field_Experiments/Analysis/coppock_replication_data/Original archival/CoppockJEPS.rdata")#
-#
-dwnom_scores <- CoppockJEPS$dwnom_scores#
-## Create an adjacency/similarity matrix using ideology#
-S.ideo <- matrix(NA, ncol=70, nrow=70)#
-for (i in 1:70){#
-  for (j in 1:70){#
-    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])#
-  }#
-}#
-diag(S.ideo) <- 0#
-S.ideo[is.na(S.ideo)==T] <- 0#
-#### Generate expected exposure#
-perm <- replicate(perms, permute.within.categories(data$match_category,z))#
-perm <- Z_block#
-expected.exp0 <- rep(0, n)#
-expected.exp1 <- rep(0, n)#
-for(p in 1:ncol(perm)){#
-	#zp <- permute.within.categories(data$match_category,z)#
-  zp <- perm[,p]#
-	for(i in 1:n){#
-		if (zp[i] == 1){#
-				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)#
-			}#
-			else{#
-				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)#
-			}#
-	}#
-}#
-num_treat <- apply(perm,1,sum)#
-num_control <- apply(1-perm,1,sum)#
-expected.exp1 <- expected.exp1/num_treat#
-expected.exp0 <- expected.exp0/num_control#
-#### Generate expected and net exposure#
-#### This is the spillover effect model#
-indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used#
- # permutation: can be the initial treatment assignment or a permutation#
- raw.exp <- rep(NA, n)#
- for (i in 1:n){#
-   raw.exp[i] <- sum(adj.mat[i,]*permutation)#
-   }#
- net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)#
- standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect#
- return(standard.exp)#
-}#
-#### We now model the uniformity trial transformation#
-z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){#
-  # outcome: vector of direct treatment outcomes#
-  # beta1: direct treatment effect parameter#
-  # beta2: indirect treatment effect parameter#
-  # permutation: vector of a permutation of z (can be z itself)#
-  # adj.mat: adjacency matrix#
-  exposure <- indirect.treatment(permutation, adj.mat)#
-  # This is equation 5#
-  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)#
-  return(h.yz.0)#
-}#
-#### Testing and p-value calculation#
-beta1s <- seq(from=-0.5, to=0.5, by=.025)#
-beta2s <- seq(from=-0.5, to=0.5, by=.025)#
-pvals <- matrix(NA, length(beta1s), length(beta2s))#
-cl <- makeCluster(4) #Setup for parallel computing#
-registerDoParallel(cl)#
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {#
-  abc <- foreach (j = 1:length(beta2s)) %do% {#
-    # Calculate the outcome vector after taking away the effect of treatment#
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-    # Calculate observed test statistic#
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)#
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)#
-    # Calculate a vector of test statistic using permutations#
-    results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- permute.within.categories(data$match_category,z)#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }#
-    # A vector of test statistics#
-    all.test.stat.vals <- as.numeric(unlist(results))#
-    # Calculating p-value#
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test#
-  }#
-  as.numeric(unlist(abc))#
-}#
-stopCluster(cl)#
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}#
-pvals #rows are direct effects, columns indirect
-test.stat
-high.p.value <- max(pvals)#
-highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)#
-direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]#
-indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]#
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-indirect.effect.CI.high
-#### Testing and p-value calculation#
-beta1s <- seq(from=-0.5, to=0.5, by=.025)#
-beta2s <- seq(from=-0.5, to=0.5, by=.025)#
-pvals <- matrix(NA, length(beta1s), length(beta2s))#
-cl <- makeCluster(4) #Setup for parallel computing#
-registerDoParallel(cl)#
-pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {#
-  abc <- foreach (j = 1:length(beta2s)) %do% {#
-    # Calculate the outcome vector after taking away the effect of treatment#
-    # y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-    # Calculate observed test statistic#
-    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)#
-    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)#
-    # Calculate a vector of test statistic using permutations#
-    results <- foreach (k = 1:perms.test) %dopar% {#
-      require(permute)#
-      perm.z <- Z_block[,sample(1:10000, 1)]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }#
-    # A vector of test statistics#
-    all.test.stat.vals <- as.numeric(unlist(results))#
-    # Calculating p-value#
-    pval <- sum(all.test.stat.vals < test.stat)/perms.test#
-  }#
-  as.numeric(unlist(abc))#
-}#
-stopCluster(cl)#
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}
-high.p.value <- max(pvals)#
-highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)#
-direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]#
-indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]#
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-indirect.effect.CI.high
-dim(pvals)
-pvals[12,12]
-mean(pvals)
-direct_breaks <- find_breaks(apply(pmat.ssr, MARGIN=1, FUN=max) >.05)#
-indirect_breaks <- find_breaks(apply(pmat.ssr, MARGIN=2, FUN=max) >.05)#
-graph.frame <- expand.grid(x=directs, y=indirects)#
-graph.frame$z <- as.vector(pmat.ssr)#
-col.l <- colorRampPalette(c('white', 'black'))(1000)#
-depth.breaks <- do.breaks(c(0,1), 20)#
-fig2 <- levelplot(z~x*y, graph.frame, cuts=20, col.regions=col.l,#
-                  colorkey=FALSE,#
-                  at=depth.breaks,#
-                        ylab = "Hypothesized indirect effect",#
-                        xlab = "Hypothesized direct effect",#
-                        scales=list(x=list(at=round(seq(-.7, .2, by=.1), digits=1), labels=round(seq(-.7, .2, by=.1), digits=1)),#
-                                    y=list(at=round(seq(-.7, .2, by=.1), digits=1), labels=round(seq(-.7, .2, by=.1), digits=1))),#
-                        panel = function(...) {#
-                          panel.levelplot(...)#
-                          panel.abline(h = 0, lty=2)#
-                          panel.abline(v = 0, lty=2)#
-                          larrows(y0=-.5, y1= -.5, x0=directs[direct_breaks[1]], x1=directs[direct_breaks[2]], angle=90,code=3)#
-                          larrows(x0=-.6, x1= -.6, y0=indirects[indirect_breaks[1]], y1=indirects[indirect_breaks[2]], angle=90,code=3)#
-                        },#
-                  legend = #
-                    list(right = #
-                           list(fun = draw.colorkey,#
-                                args = list(key = list(col = col.l, at = depth.breaks),#
-                                            draw = FALSE))),#
-)#
-pdf("Replication Archive/figures/CoppockJEPS_figure2.pdf")#
-print(fig2)#
-dev.off()#
-indirect.maxpvalue.2 <- median(indirects[which(pmat.ssr == max(pmat.ssr), arr.ind = TRUE)[,2]])#
-direct.maxpvalue.2 <- median(directs[which(pmat.ssr == max(pmat.ssr), arr.ind = TRUE)[,1]])#
-indirects.95.2 <- indirects[indirect_breaks]#
-directs.95.2 <- directs[direct_breaks]
-direct.breaks
-perm.z <- Z_block[,5]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure
-i <- 5#
-j <- 5
-perm.z <- permute.within.categories(data$match_category,z)#
-      perm.z <- Z_block[,5]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure
-fit.sim <- lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)
-fit.sim
-beta2s[j]
-expected.exp1
-perm.exposure
-s.exposure.sim
-y.sim
-perm.y.0
-perm.exposure
-y.sim
-fit.sim
-for (i in 1:length(beta1s)){#
-  pvals[i,] <- unlist(pvalues.ideology[i])#
-}
-## Saving results#
-high.p.value <- max(pvals)#
-highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)#
-direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]#
-indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]#
-direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]#
-indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]#
-indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
-indirect.effect.CI.high
-length(all.test.stat.vals)
-test.stat
-unlist(pvalues.ideology[i])
-pvalues.ideology
-set.seed(10)#
-   for(k in 1:500){#
-      require(permute)#
-      perm.z <- Z_block[,sample(1:10000, 1)]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      all.test.stat.vals[k] <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }
-i <- 5#
-j <- 5#
-all.test.stat.vals <- numeric(500)#
-set.seed(10)#
-   for(k in 1:500){#
-      require(permute)#
-      perm.z <- Z_block[,sample(1:10000, 1)]#
-      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)#
-      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))#
-      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]#
-      #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = S.ideo)#
-      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure#
-      all.test.stat.vals[k] <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)#
-      }
-mean(test.stat > all.test.stat.vals)

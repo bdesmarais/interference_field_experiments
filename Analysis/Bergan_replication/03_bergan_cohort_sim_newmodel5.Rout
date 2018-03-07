@@ -1,0 +1,414 @@
+
+R version 3.4.0 (2017-04-21) -- "You Stupid Darkness"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ############################
+> #### Bergan (Michigan) ####
+> ############################
+> # Cohort network
+> # Cohort similarity as weights and coparty indicator interacted
+> # Reparametrized model
+> # Includes chamber ID
+> 
+> # Authors: Sayali Phadke, Bruce Desmarais
+> # Created on: 03/02/2018
+> # Last edited on: 03/06/2018
+> # Last edited by: Sayali
+> 
+> rm(list=ls())
+> gc()
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 251974 13.5     460000 24.6   350000 18.7
+Vcells 441739  3.4    1023718  7.9   786431  6.0
+> set.seed(132)
+> 
+> ## Packages
+> dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
+> install.packages("iterators", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/iterators_1.0.9.tar.gz'
+Content type 'application/x-gzip' length 290634 bytes (283 KB)
+==================================================
+downloaded 283 KB
+
+* installing *source* package 'iterators' ...
+** package 'iterators' successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'iterators'
+    finding HTML links ... done
+    iapply                                  html  
+    icount                                  html  
+    idiv                                    html  
+    iread.table                             html  
+    ireadLines                              html  
+    irnorm                                  html  
+    isplit                                  html  
+    iter                                    html  
+    iterators-package                       html  
+    nextElem                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (iterators)
+
+The downloaded source packages are in
+	'/tmp/Rtmpr0dbvi/downloaded_packages'
+> install.packages("foreign", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/foreign_0.8-69.tar.gz'
+Content type 'application/x-gzip' length 344394 bytes (336 KB)
+==================================================
+downloaded 336 KB
+
+* installing *source* package 'foreign' ...
+** package 'foreign' successfully unpacked and MD5 sums checked
+** libs
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c R_systat.c -o R_systat.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c Rdbfread.c -o Rdbfread.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c Rdbfwrite.c -o Rdbfwrite.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c SASxport.c -o SASxport.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c avl.c -o avl.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c dbfopen.c -o dbfopen.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c file-handle.c -o file-handle.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c format.c -o format.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c init.c -o init.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c minitab.c -o minitab.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c pfm-read.c -o pfm-read.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c sfm-read.c -o sfm-read.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c spss.c -o spss.o
+gcc -m64 -std=gnu99 -I/usr/include/R -DNDEBUG   -I/usr/local/include   -fpic  -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -fpic -fPIC   -c stataread.c -o stataread.o
+gcc -m64 -std=gnu99 -shared -L/usr/lib64/R/lib -o foreign.so R_systat.o Rdbfread.o Rdbfwrite.o SASxport.o avl.o dbfopen.o file-handle.o format.o init.o minitab.o pfm-read.o sfm-read.o spss.o stataread.o -L/usr/lib64/R/lib -lR
+installing to /storage/home/bbd5087/R/x86_64-redhat-linux-gnu-library/3.4/foreign/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'foreign'
+    finding HTML links ... done
+    lookup.xport                            html  
+    read.S                                  html  
+    read.arff                               html  
+    read.dbf                                html  
+    read.dta                                html  
+    read.epiinfo                            html  
+    read.mtp                                html  
+    read.octave                             html  
+    read.spss                               html  
+    read.ssd                                html  
+    read.systat                             html  
+    read.xport                              html  
+    write.arff                              html  
+    write.dbf                               html  
+    write.dta                               html  
+    write.foreign                           html  
+** building package indices
+** testing if installed package can be loaded
+* DONE (foreign)
+
+The downloaded source packages are in
+	'/tmp/Rtmpr0dbvi/downloaded_packages'
+> install.packages("foreach", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/foreach_1.4.4.tar.gz'
+Content type 'application/x-gzip' length 360705 bytes (352 KB)
+==================================================
+downloaded 352 KB
+
+* installing *source* package 'foreach' ...
+** package 'foreach' successfully unpacked and MD5 sums checked
+** R
+** demo
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'foreach'
+    finding HTML links ... done
+    foreach-ext                             html  
+    foreach-package                         html  
+    foreach                                 html  
+    getDoParWorkers                         html  
+    getDoSeqWorkers                         html  
+    registerDoSEQ                           html  
+    setDoPar                                html  
+    setDoSeq                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (foreach)
+
+The downloaded source packages are in
+	'/tmp/Rtmpr0dbvi/downloaded_packages'
+> install.packages("doParallel", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/doParallel_1.0.11.tar.gz'
+Content type 'application/x-gzip' length 172885 bytes (168 KB)
+==================================================
+downloaded 168 KB
+
+* installing *source* package 'doParallel' ...
+** package 'doParallel' successfully unpacked and MD5 sums checked
+** R
+** demo
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'doParallel'
+    finding HTML links ... done
+    doParallel-package                      html  
+    registerDoParallel                      html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (doParallel)
+
+The downloaded source packages are in
+	'/tmp/Rtmpr0dbvi/downloaded_packages'
+> library(foreign,lib.loc=Sys.getenv("R_LIBS_USER"))
+> library(foreach,lib.loc=Sys.getenv("R_LIBS_USER"))
+> library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
+Loading required package: iterators
+Loading required package: parallel
+> 
+> # library(doParallel)
+> # library(foreach)
+> # library(foreign)
+> # library(kSamples)
+> # library(network)
+> # library(permute)
+> 
+> ## Functions
+> permute.within.categories <- function(categories,z){
++   ucategories <- unique(categories)
++   perm.z <- rep(NA,length(z))
++   for(c in ucategories){
++     z.c <- z[which(categories==c)]
++     perm.z.c <- sample(z.c,length(z.c),rep=F)
++     perm.z[which(categories==c)] <- perm.z.c
++   }
++   perm.z
++ }
+> 
+> matrix.max <- function(x){
++   # x is the matrix with respect to which you want to find the max cell
++   rowmax <- which.max(apply(x,1,max))
++   colmax <- which.max(x[rowmax,])
++   c(rowmax,colmax)
++ }
+> 
+> get.similarity <- function(x, y){
++   return((2-abs(x-y))/2)
++ }
+> 
+> ## Importing data
+> data <- read.dta("bergan.dta", convert.underscore=TRUE)
+> data <- data[1:148,]
+> 
+> 
+> # Fixing the adjacency matrix
+> load("w_cohort_copart_network.RData")
+> network <- w_cohort_copart_amat
+> rm(w_cohort_copart_amat)
+> gc()
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 301491 16.2     592000 31.7   592000 31.7
+Vcells 555598  4.3    2067981 15.8  2583806 19.8
+> 
+> ## Cleaning it up
+> network <- network[-which(data$finalvote < 0), -which(data$finalvote < 0)]
+> data <- data[-which(data$finalvote < 0), ]
+> 
+> 
+> ## Setting treatment and outcome vector
+> y.z <- data$finalvote
+> z <- data$anytreat
+> perms <- 10000 #number of permutations to use in generating expected exposure
+> perms.test <- 1000 #number of permutations used in testing
+> n <- length(z)
+> 
+> democrat <- data$democrat
+> 
+> 
+> #### Generate expected exposure
+> perm <- replicate(perms, permute.within.categories(data$strata,z))
+> 
+> expected.exp0 <- rep(0, n)
+> expected.exp1 <- rep(0, n)
+> expected.exp0.dem <- rep(0, n)
+> expected.exp1.dem <- rep(0, n)
+> expected.exp0.rep <- rep(0, n)
+> expected.exp1.rep <- rep(0, n)
+> 
+> for(p in 1:ncol(perm)){
++   #zp <- permute.within.categories(data$match_category,z)
++   zp <- perm[,p]
++   for(i in 1:n){
++     if (zp[i] == 1){
++       expected.exp1[i] <- expected.exp1[i] + sum(network[i,]*zp)
++       expected.exp1.dem[i] <- expected.exp1.dem[i] + sum(network[i,]*zp*democrat)
++       expected.exp1.rep[i] <- expected.exp1.rep[i] + sum(network[i,]*zp*(1-democrat))
++     }
++     else{
++       expected.exp0[i] <- expected.exp0[i] + sum(network[i,]*zp)
++       expected.exp0.dem[i] <- expected.exp0.dem[i] + sum(network[i,]*zp*democrat)
++       expected.exp0.rep[i] <- expected.exp0.rep[i] + sum(network[i,]*zp*(1-democrat))
++     }
++   }
++ }
+> 
+> num_treat <- apply(perm,1,sum)
+> num_control <- apply(1-perm,1,sum)
+> expected.exp1 <- expected.exp1/num_treat
+> expected.exp0 <- expected.exp0/num_control
+> expected.exp1.dem <- expected.exp1.dem/num_treat
+> expected.exp0.dem <- expected.exp0.dem/num_control
+> expected.exp1.rep <- expected.exp1.rep/num_treat
+> expected.exp0.rep <- expected.exp0.rep/num_control
+> 
+> for(i in 1:n){
++   if(num_control[i] == 0){
++     expected.exp0[i] <- 0
++     expected.exp0.dem[i] <- 0
++     expected.exp0.rep[i] <- 0
++   } else {
++     expected.exp1[i] <- 0
++     expected.exp1.dem[i] <- 0
++     expected.exp1.rep[i] <- 0
++   }
++ }
+> 
+> 
+> #### Generate expected and net exposure
+> #### This is the spillover effect model
+> 
+> indirect.treatment <- function(permutation, adj.mat, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat){
++   
++   #any treatment assignment vector and adjacency matrix can be used
++   # permutation: can be the initial treatment assignment or a permutation
++   #for (i in 1:n){
++   # raw.exp[i] <- sum(adj.mat[i,]*permutation)
++   # }
++   
++   raw.exp.dem <- c(adj.mat%*%(permutation*democrat))
++   raw.exp.rep <- c(adj.mat%*%(permutation*(1-democrat)))
++   net.exp.dem <- raw.exp.dem - (permutation*expected.exp1.dem + (1-permutation)*expected.exp0.dem)
++   net.exp.rep <- raw.exp.rep - (permutation*expected.exp1.rep + (1-permutation)*expected.exp0.rep)
++   standard.exp.dem <- (net.exp.dem - mean(net.exp.dem))/sd(net.exp.dem) #this is the spillover or indirect effect
++   standard.exp.rep <- (net.exp.rep - mean(net.exp.rep))/sd(net.exp.rep) #this is the spillover or indirect effect
++   return(list(standard.exp.dem, standard.exp.rep, raw.exp.dem, raw.exp.rep))
++ }
+> 
+> 
+> #### We now model the uniformity trial transformation
+> 
+> z.to.unif <- function(outcome, beta1, beta2, beta3, beta4, permutation, adj.mat, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat){
++   # outcome: vector of direct treatment outcomes
++   # beta1: direct treatment effect parameter
++   # beta2: indirect treatment effect parameter
++   # permutation: vector of a permutation of z (can be z itself)
++   # adj.mat: adjacency matrix
++   
++   exposures <- indirect.treatment(permutation, adj.mat, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
++   
++   exposure_dem <- exposures[[1]]
++   exposure_rep <- exposures[[2]]
++   # This is equation 5
++   
++   h.yz.0 <- outcome - (beta1*permutation*democrat) - (beta2*permutation*(1-democrat)) - (beta3*exposure_dem) - (beta4*exposure_rep)
++   return(h.yz.0)
++ }
+> 
+> 
+> #########################################
+> #### Testing and p-value calculation ####
+> #########################################
+> 
+> job = 5
+> 
+> 
+> beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+> beta2s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+> beta3s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+> beta4s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+> 
+> parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
+> 
+> 
+> interval <- ceiling(nrow(parameters)/16)
+> interval.job.lower <- interval*(job-1)+1
+> interval.job.upper <- min(c(interval*job,nrow(parameters)))
+> 
+> parameters <- parameters[interval.job.lower:interval.job.upper,]  
+> 
+> resultsFile <- paste("BerganSPPQRRresults_copartisan_cohort_chamber_similarity",job,".RData",sep="")
+> 
+> # beta1: direct effect of treatment for dem
+> # beta2: direct effect of treatment for rep
+> # beta3: indirect effect of dem treated
+> # beta4: indirect effect of rep treated
+> 
+> pvals <- numeric(nrow(parameters))
+> 
+> exposures <- indirect.treatment(permutation = z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
+> 
+> test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
++                        exposures[[1]] + exposures[[2]],
++                      na.action = na.omit)$resid)^2)
+> 
+> pval <- numeric(nrow(parameters))
+> 
+> registerDoParallel(cores = 20)
+> 
+> BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
++   
++   perm.y.0 <- z.to.unif(outcome=y.z, beta1=parameters[i,1], beta2=parameters[i,2], beta3=parameters[i,3], beta4=parameters[i,4], permutation=z, adj.mat=network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
++   #perm.y.0 <- z.to.unif(outcome = y.z, beta1 = beta1s[i], beta2 = beta2s[j], permutation = z, adj.mat = network)
++   
++   # Calculate a vector of test statistic using permutations
++   
++   beta1 <- parameters[i,1]
++   beta2 <- parameters[i,2]
++   beta3 <- parameters[i,3]
++   beta4 <- parameters[i,4]
++   
++   perm.test.stats <- numeric(perms.test)
++   
++   for(k in 1:perms.test){
++     #perm.z <- Z_block[,sample(1:10000, 1)]
++     perm.z <- perm[,sample(1:perms, 1)]
++     perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
++     exposure_dem <- perm.exposure[[3]]
++     exposure_rep <- perm.exposure[[4]]
++     y.sim <- perm.y.0 + beta1*perm.z*democrat + beta2*perm.z*(1-democrat) + beta3*exposure_dem + beta4*exposure_rep
++     perm.test.stats[k] <- sum((lm(y.sim ~ eval(perm.z*democrat) + eval(perm.z*(1-democrat)) + exposure_dem + exposure_rep , na.action = na.omit)$resid)^2)
++     
++   }
++   
++   # Calculating p-value
++   c(sum(perm.test.stats < test.stat)/perms.test,1)
++   
++ }
+> 
+> stopImplicitCluster()
+> 
+> save(list=c("BFP.results","parameters"),file=resultsFile)
+> 
+> 
+> proc.time()
+     user    system   elapsed 
+91177.448     3.350  5249.448 
