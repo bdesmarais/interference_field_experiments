@@ -316,9 +316,9 @@ Similarity in constituency demographics \\
 \label{tab:legislative.nets}
 \end{table}
 
-The determination regarding which network(s) to consider in any particular application is, of course, best made by the researchers carrying out the application. Selecting which network(s) to test is much like selecting which variables to include when specifying a model---researchers should use a combination of theory and exploration, being careful to adjust for multiple testing bias in hypothesis tests (e.g., via Bonferroni correction \citep{napierala2012bonferroni}). We discuss two dimensions of interference dynamics---exposure and uptake---that should help to inform this determination. Exposure refers to the degree to which the network governs legislators' awareness regarding each others' beliefs or behaviors. Uptake refers to the role of the network in determining which legislators' would adopt each others' beliefs or behaviors if exposed to them. Consider a legislator's position on a major policy issue. It is likely that each legislator in a chamber is aware of each other legislator's opinion on a major issue, so the network does not need to play a major role in exposure to govern interference. However, in order to influence each other on a major policy issue, legislators may need to see each other as closely aligned ideologically. For interference dynamics that do not require exposure through the network, but require uptake, researchers should look for networks that signal ideological similarity such as co-voting on bills. On the other hand, some interference dynamics for which uptake might be highly likely, such as re-use of issue framing in legislators' public statements \citep{lin2016uncovering}, or the adoption of strategies in responding to constituent requests \citep{grose2015explainin}, would require legislators to be exposed to each other through explicit communication channels.  In applications where the network needs to play an important role in signaling exposure, networks such as twitter follower networks and caucus co-membership may be more appropriate. We can also think of networks that would signal both ideological alignment and explicit communication ties, such as co-participation in press events and frequent bill co-sponsorship (especially early-stage, or original cosponsorships).  Note that there are two categories of processes through which interference can occur---spread of the treatment through a network (e.g., an influential lobbying communication is sent to a legislator, and that legislator forwards the communication to others in their network) and spillover of effects (e.g., a lobbying communication influences a legislator's vote, and others in that legislator's network take cues from their vote). A useful thought experiment in selecting networks to use in tests of interference would be to consider which networks would facilitate the spread of treatments, and which networks would facilitate the spillover of effects.
+The determination regarding which network(s) to consider in any particular application is, of course, best made by the researchers carrying out the application. Selecting which network(s) to test is much like selecting which variables to include when specifying a model---researchers should use a combination of theory and exploration. We discuss two dimensions of interference dynamics---exposure and uptake---that should help to inform this determination. Exposure refers to the degree to which the network governs legislators' awareness regarding each others' beliefs or behaviors. Uptake refers to the role of the network in determining which legislators' would adopt each others' beliefs or behaviors if exposed to them. Consider a legislator's position on a major policy issue. It is likely that each legislator in a chamber is aware of each other legislator's opinion on a major issue, so the network does not need to play a major role in exposure to govern interference. However, in order to influence each other on a major policy issue, legislators may need to see each other as closely aligned ideologically. For interference dynamics that do not require exposure through the network, but require uptake, researchers should look for networks that signal ideological similarity such as co-voting on bills. On the other hand, some interference dynamics for which uptake might be highly likely, such as re-use of issue framing in legislators' public statements \citep{lin2016uncovering}, or the adoption of strategies in responding to constituent requests \citep{grose2015explaining}, would require legislators to be exposed to each other through explicit communication channels.  In applications where the network needs to play an important role in signaling exposure, networks such as twitter follower networks and caucus co-membership may be more appropriate. We can also think of networks that would signal both ideological alignment and explicit communication ties, such as co-participation in press events and frequent bill co-sponsorship (especially early-stage, or original cosponsorships).  Note that there are two categories of processes through which interference can occur---spread of the treatment through a network (e.g., an influential lobbying communication is sent to a legislator, and that legislator forwards the communication to others in their network) and spillover of effects (e.g., a lobbying communication influences a legislator's vote, and others in that legislator's network take cues from their vote). A useful thought experiment in selecting networks to use in tests of interference would be to consider which networks would facilitate the spread of treatments, and which networks would facilitate the spillover of effects.
 
-It is, of course, entirely possible that the researcher either hypothesizes that more than one network plays a role in interference, and/or is uncertain regarding which network best represents potential interference relationships. In the case that the researcher hypothesizes that multiple networks serve as vectors for interference,  the researcher can either create a composite network (e.g., a network in which a tie indicates that two legislator serve on a committee together and frequently co-sponsor the same legislation) \citep[e.g.,][]{ansari2011modeling}, or include multiple networks in the interference model.  In the case that multiple models are evaluated that include different networks, the researcher should be cognizant of issues related to robustness and multiple testing bias (i.e., the increased likelihood of Type 2 inferential errors when running multiple tests of the same hypothesis). In future methodological research, it would be valuable to develop a Bonferroni-style adjustment \citep{cabin2000bonferroni} to avoid multiple testing bias with the BFP methodology.
+It is, of course, entirely possible that the researcher either hypothesizes that more than one network plays a role in interference, and/or is uncertain regarding which network best represents potential interference relationships. In the case that the researcher hypothesizes that multiple networks serve as vectors for interference,  the researcher can either create a composite network (e.g., a network in which a tie indicates that two legislator serve on a committee together and frequently co-sponsor the same legislation) \citep[e.g.,][]{ansari2011modeling}, or include multiple networks in the interference model.  In the case that multiple models are evaluated that include different networks, the researcher should be cognizant of issues related to robustness and multiple testing bias (i.e., the increased likelihood of Type 2 inferential errors when running multiple tests of the same hypothesis). In future methodological research, it would be valuable to develop a Bonferroni-style adjustment \citep{cabin2000bonferroni} to avoid multiple testing bias with the BFP methodology.\footnote{The most basic form of Bonferonni adjustment could be used when testing with the BFP methodology, though the independent form of the Bonferonni adjustment is often overly conservative \citep{simes1986improved}. A method that accounts for the dependence across the tests using the BFP methodlogy would provide a more accurate and statistically powerful adjustment \citep{stevens2017comparison}.} 
 
 \subsection{Interference Model Formulation}
 
@@ -453,111 +453,16 @@ Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 
 \subsection{\citet{bergan2015call}}
 
 
-The second dataset we work with comes from an experiment on the Michigan state legislators. This experiment was conducted on legislators from both houses, in the context of anti-bullying legislation. Legislators were stratified based on various background variables. The treatments were calls from constituents expressing their support for the proposed bill. Treatment was given in three different doses, which differed in the number of calls places to the given legislator. Once again, the authors conducted an analysis under SUTVA and concluded that this treatment has a significant effect on the final vote on the bill. They observed a 12 percentage point increase in the likelihood of voting in favor of the anti-bullying bill, for those treated. Table 2 summarizes results of the \citet{bergan2015call}. 
+The second dataset we work with comes from an experiment on the Michigan Legislature. This experiment was conducted on legislators from both chambers, in the context of anti-bullying legislation. Legislators were stratified based on six background variables. The treatments were calls from constituents expressing their support for the proposed bill. Treatment was given in three different doses, which differed in the number of calls placed to the given legislator. The results were that this treatment had a significant effect on the final vote on the bill. They observed a 12 percentage point increase in the likelihood of voting in favor of the anti-bullying bill for those treated. 
 
-This data has not been analyzed for indirect effects previously. However, for all the reasons that we would expect to see interference in the \citet{butler2011can} results, we would expect to see them in the \citet{bergan2015call} results. We conduct an analysis that is analogous to that in \citet{coppock2014information}, where a network is constructed based on ideological scores of legislators, using roll call data. We do not find evidence of indirect effects via this network. It is possible that we can attribute this to the nature of the bill.  Voting behavior on an anti-bullying bill may not be governed by ideological coalitions. Figure 4 shows the plot of p-values for this analysis.
+This data has not been analyzed for indirect effects previously. However, since legislators consider legislation in the context of open communication and debate, and for supporters to assure that legislation passes they need the votes of their colleagues, we expect treatment effects of roll call votes to be characterized by interference. In our replication of  \citet{bergan2015call}, we use a very similar model of interference, except the indicators for low support and high support are replaced by indicators for Democrat and Republican.   \citet{bergan2015call} tested for, but did not find evidence that partisanship or ideology moderated the effect of the treatment, but we incorporate partisan moderators into our model to allow for different effects of the advocacy treatment by party. Our model for the 
+\citet{bergan2015call} replication takes the form $$y_{i,z} = y_{i,0}+\beta_1z_id_i+\beta_2z_i(1-d_i)+\beta_3h_i(G,z\times d)+\beta_4h_i(G,z\times (1-d)),$$  where $d_i$ is a 0/1 indicator of whether legislator $i$ is a Democrat. We use the same test statistic as in the \citet{butler2011can} replication.
 
-\begin{figure}
-	\centering
-	\begin{tabular}{cc}
-	\includegraphics[scale=0.45]{./images/pval_plot_bergan_main.pdf}
-	\end{tabular}
-	\caption{p-values: main analysis for \citet{bergan2015call} data}
-\end{figure}
+As in the \citet{butler2011can} replication, we consider two different networks and functional forms. We again test the co-partisan cohort network. For the \citet{bergan2015call} replication, we use cosponsorship instead of co-committee membership to measure formal legislative connection between legislators. In the binary form of the cosponsorship network, we include a tie between any two legislators who cosponsored two or more of the same bills.\footnote{Data on cosponsorship was gathered from \url{https://www.quorum.us/}.} In the weighted form of the cosponsorship network, the effect of $j$'s treatment status on $i$ is proportional to the number of bills that were cosponsored by both $i$ and $j$. We do not have theoretical expectations regarding the different effects of committee co-membership and cosponsorship in New Mexico and Michigan, the difference is driven by data availability. 
 
 
-Figure 5 depicts results of analyzing the \citet{bergan2015call} data under the ideological network and considers k nearest neighbors (k = 3,5,8,12) based on ideological similarity to constitute the neighborhood. We see that the results regarding indirect effects do not change and the estimate is still zero, indicating no interference effect. Since there is no change in the interference effect estimate, we see no change in the direct effect estimate, which indicates a 15 percentage point increase in the likelihood of voting in favor of the bill in response to being assigned to treatment.
+\subsubsection{Results for \citet{bergan2015call} data}
 
-\begin{figure}
-	\centering
-	\begin{tabular}{cc}
-	\includegraphics[scale=0.45]{./images/pval_plot_bergan_ideo_3nn.pdf} &
-	\includegraphics[scale=0.45]{./images/pval_plot_bergan_ideo_5nn.pdf} \\ 
-	\includegraphics[scale=0.45]{./images/pval_plot_bergan_ideo_8nn.pdf} &
-	\includegraphics[scale=0.45]{./images/pval_plot_bergan_ideo_12nn.pdf} \\ 
-	\end{tabular}
-	\caption{p-values: k-nearest ideological neighbors for \citet{bergan2015call} data}
-\end{figure}
-
-
-We again consider an extension in which we change the network. In this network, an undirected edge represents the number of bills cosponsored by a pair of legislators. The indirect effect estimate with this network is positive. The positive indirect effect indicates that as exposure through cosponsorship neighbors goes up, the likelihood of a legislator voting in favor of the anti-bullying bill goes up. However, the confidence interval indicates that this effect is not statistically significant.
-
-\begin{figure}
-	\centering
-	\begin{tabular}{cc}
-	\includegraphics[scale=0.45]{./images/pval_plot_bergan_cospon.pdf}
-	\end{tabular}
-	\caption{p-values: Cosponsorship network for \citet{bergan2015call} data}
-\end{figure}
-
-\floatsetup[table]{objectset=centering,capposition=top}
-\begin{table}[h]
-\centering
-\begin{tabular}{lcccc}
-\toprule
-\multirow{2}{*}{Model} & \multicolumn{2}{c}{Direct effect} & \multicolumn{2}{c}{Indirect effect} \\
-\cmidrule(l){2-3} \cmidrule(l){4-5}
- & Estimate & 95\% CI & Estimate & 95\% CI \\
-\midrule
-Ideology: full network  & 0.15 & (-0.1, 0.35) &  0 & (-0.15, 0.2)\\
-Ideology: 3nn & 0.15 & (0, 0.25) & 0 & (-0.075, 0.075)\\
-Ideology: 5nn & 0.15 & (0.025, 0.75) & 0 & (-0.075, 0.075)\\
-Ideology: 8nn & 0.15 & (0.025, 0.75) & 0 & (-0.075, 0.075)\\
-Ideology: 12nn & 0.15 & (0, 0.275) & 0 & (-0.075, 0.075)\\
-Cosponsorship & 0.15 & (0.025, 0.25) & 0.025 & (-0.075, 0.075)\\
-\bottomrule
-\end{tabular}
-\caption{Results from \citet{bergan2015call} data}
-\end{table}
-
-
-%\floatsetup[table]{objectset=centering,capposition=top}
-%\begin{table}[h]
-%\centering
-%\begin{tabular}{lcccc}
-%\toprule
-%\multirow{2}{*}{Model} & \multicolumn{2}{c}{Direct effect} & \multicolumn{2}{c}{Indirect effect} \\
-%\cmidrule(l){2-3} \cmidrule(l){4-5}
-% & Estimate & 95\% CI & Estimate & 95\% CI \\
-%\midrule
-%Ideology: full network  & 0.125 & (0.025, 0.2) &  -0.05 & (-0.45, 0.5)\\
-%Ideology: 3nn & 0.1 & (0, 0.2) & -0.05 & (-0.25, 0.05)\\
-%Ideology: 5nn & 0.1 & (0, 0.2) & -0.05 & (-0.175, 0.05)\\
-%Ideology: 8nn & 0.125 & (0, 0.225) & -0.025 & (-0.1, 0.05)\\
-%Ideology: 12nn & 0.125 & (0, 0.225) & 0 & (-0.075, 0.075)\\
-%Cosponsorship & 0.125 & (0.025, 0.2) & 0.075 & (-0.5, 0.5)\\
-%\bottomrule
-%\end{tabular}
-%\caption{Results from \citet{bergan2015call} data: Raw exposure}
-%\end{table}
-
-
-%\subsection{Extensions of Coppock analysis}
-%We consider several extensions of the Coppock method, applied to both datasets depending on availability of data.
-%
-%\begin{itemize}
-%\item Consider k (=3, 5, 8, 12) neighbors according to ideological scores to form adjacency matrix. A tie between i and j indicates that legislator j is one of the k-nearest neighbors to i. This generates some ties. We will try the following two ways of taking care of the ties:
-%
-%\begin{enumerate}
-%\item Choose, among the ties in the k closest neighbors for i, those nodes for which i is the closest neighbor. To illustrate, if i is equally close to j and h, we ask whether i ranks higher on j's list of closest neighbors. If yes, then we take out h. If no, we keep j and h if i ranks equally on j and h's neighbor list, or kick out j if h ranks i more highly.
-%\item Look at the number of nodes for which j is the nearest neighbor and in some way account for the j's influence on that basis
-%1. Look at control unit i
-%2. Calculate a composite score that indicates the ranking of i for each of its k neighbors
-%3. Estimate a parameter to see if change in composite score leads to a change in propensity for changing the outcome
-%4. This parameter will be modeled as a non-linear effect
-%For example, say k=3 condition. If a control unit is the lowest in the proximity of all of its 3 neighbors, it is less likely to receive a spillover; as compared to if it was in the highest proximity of all three of them (the two extremes). We would have to condition this on the treatment status of its neighbors.
-%\end{enumerate}
-%
-%\item Consider committee network instead of ideological network, where a tie between i and j indicates that they have served on two or more committees together
-%\item Use number of shared committees in adjacency matrix
-%\item Separate out the high and low support district in original \citet{butler2011can} data and conduct separate analyses. This would explain the direction of the spillover effect much better. Conduct this analysis with ideological network as well as committee network
-%\item Include geographical network in both dataset and extend analysis
-%\item Consider various spillover models other than the growth curve specification
-%\item Consider weighted combinations of different networks to estimate a $\gamma$
-%\item Explore the idea of using communities to model spread across the network
-%
-%\end{itemize}
-%%%%
 \section{Conclusion}
 %%%%
 

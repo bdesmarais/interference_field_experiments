@@ -3,58 +3,57 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Interference_in_Field_Experiments.aux
 The style file: apsr.bst
 Database file #1: interference.bib
-Repeated entry---line 1269 of file interference.bib
+Repeated entry---line 1291 of file interference.bib
  : @article{fowler2006connecting
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1291 of file interference.bib
+Repeated entry---line 1313 of file interference.bib
  : @article{victor2009social
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1841 of file interference.bib
+Repeated entry---line 1863 of file interference.bib
  : @article{coppock2016information
  :                                ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "grose2015explainin"
-You've used 45 entries,
+You've used 47 entries,
             2874 wiz_defined-function locations,
-            925 strings with 13517 characters,
-and the built_in function-call counts, 198564 in all, are:
-= -- 32496
-> -- 2444
+            937 strings with 13957 characters,
+and the built_in function-call counts, 211759 in all, are:
+= -- 34708
+> -- 2584
 < -- 1
-+ -- 15266
-- -- 859
-* -- 17054
-:= -- 39574
-add.period$ -- 183
-call.type$ -- 45
-change.case$ -- 585
-chr.to.int$ -- 45
-cite$ -- 45
-duplicate$ -- 752
-empty$ -- 1626
-format.name$ -- 905
-if$ -- 35777
++ -- 16338
+- -- 907
+* -- 18226
+:= -- 42134
+add.period$ -- 191
+call.type$ -- 47
+change.case$ -- 611
+chr.to.int$ -- 47
+cite$ -- 47
+duplicate$ -- 782
+empty$ -- 1704
+format.name$ -- 953
+if$ -- 38155
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 45
-newline$ -- 187
-num.names$ -- 524
-pop$ -- 149
+missing$ -- 47
+newline$ -- 195
+num.names$ -- 550
+pop$ -- 154
 preamble$ -- 1
-purify$ -- 675
+purify$ -- 705
 quote$ -- 0
-skip$ -- 700
+skip$ -- 727
 stack$ -- 0
-substring$ -- 45931
-swap$ -- 160
-text.length$ -- 631
+substring$ -- 49131
+swap$ -- 164
+text.length$ -- 659
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 180
+type$ -- 188
 warning$ -- 0
-while$ -- 1091
+while$ -- 1142
 width$ -- 0
-write$ -- 628
+write$ -- 656
 (There were 3 error messages)

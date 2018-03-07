@@ -85,9 +85,8 @@ Broockman, David~E. 2013.
   Blacks? interests: A field experiment manipulating political incentives.''
   {\em American Journal of Political Science} 57(3):521--536.
 
-\harvarditem[Butler, Nickerson et~al.]{Butler, Nickerson
-  et~al.}{2011}{butler2011can}
-Butler, Daniel~M, David~W Nickerson et~al. 2011.
+\harvarditem{Butler \harvardand\ Nickerson}{2011}{butler2011can}
+Butler, Daniel~M \harvardand\ David~W Nickerson. 2011.
 \newblock ``Can learning constituency opinion affect how legislators vote?
   Results from a field experiment.'' {\em Quarterly Journal of Political
   Science} 6(1):55--83.
@@ -138,6 +137,14 @@ Fowler, James~H. 2006.
 Gerber, Alan~S, Donald~P Green \harvardand\ Christopher~W Larimer. 2008.
 \newblock ``Social pressure and voter turnout: Evidence from a large-scale
   field experiment.'' {\em American Political Science Review} 102(01):33--48.
+
+\harvarditem[Grose, Malhotra \harvardand\ Parks Van~Houweling]{Grose, Malhotra
+  \harvardand\ Parks Van~Houweling}{2015}{grose2015explaining}
+Grose, Christian~R, Neil Malhotra \harvardand\ Robert Parks Van~Houweling.
+  2015.
+\newblock ``Explaining explanations: How legislators explain their policy
+  positions and how citizens react.'' {\em American Journal of Political
+  Science} 59(3):724--743.
 
 \harvarditem{Kim \harvardand\ Barnett}{2012}{kim2012comparing}
 Kim, Jang~Hyun \harvardand\ George Barnett. 2012.
@@ -200,10 +207,6 @@ Muchnik, Lev, Sinan Aral \harvardand\ Sean~J Taylor. 2013.
 \newblock ``Social influence bias: A randomized experiment.'' {\em Science}
   341(6146):647--651.
 
-\harvarditem{Napierala}{2012}{napierala2012bonferroni}
-Napierala, Matthew~A. 2012.
-\newblock ``What is the Bonferroni correction.'' {\em AAOS Now} 6(4):40.
-
 \harvarditem{Nyhan \harvardand\ Montgomery}{2015}{nyhan2015connecting}
 Nyhan, Brendan \harvardand\ Jacob~M Montgomery. 2015.
 \newblock ``Connecting the candidates: Consultant networks and the diffusion of
@@ -254,6 +257,18 @@ Shalizi, C.~R. \harvardand\ A.~C. Thomas. 2011.
 \newblock ``{{H}omophily and {C}ontagion {A}re {G}enerically {C}onfounded in
   {O}bservational {S}ocial {N}etwork {S}tudies}.'' {\em Sociol Methods Res}
   40(2):211--239.
+
+\harvarditem{Simes}{1986}{simes1986improved}
+Simes, R~John. 1986.
+\newblock ``An improved Bonferroni procedure for multiple tests of
+  significance.'' {\em Biometrika} 73(3):751--754.
+
+\harvarditem[Stevens, Al~Masud \harvardand\ Suyundikov]{Stevens, Al~Masud
+  \harvardand\ Suyundikov}{2017}{stevens2017comparison}
+Stevens, John~R, Abdullah Al~Masud \harvardand\ Anvar Suyundikov. 2017.
+\newblock ``A comparison of multiple testing adjustment methods with
+  block-correlation positively-dependent tests.'' {\em PloS one}
+  12(4):e0176124.
 
 \harvarditem[Valentini, Hamann \harvardand\ Dorigo]{Valentini, Hamann
   \harvardand\ Dorigo}{2014}{valentini2014self}
