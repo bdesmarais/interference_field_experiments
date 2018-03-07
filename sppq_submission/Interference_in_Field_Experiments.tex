@@ -443,7 +443,7 @@ Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 
    \hline 
 \end{tabular}
 }
-\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008). $p$-values calculated using 1,000 randomization iterations. There are 70 legislators in this dataset/netwrok.}
+\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008). $p$-values calculated using 1,000 randomization iterations. There are 70 legislators in this dataset/network.}
 \label{tab:butlernickerson}
 \end{table}
 
@@ -455,7 +455,7 @@ Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 
 
 The second dataset we work with comes from an experiment on the Michigan Legislature. This experiment was conducted on legislators from both chambers, in the context of anti-bullying legislation. Legislators were stratified based on six background variables. The treatments were calls from constituents expressing their support for the proposed bill. Treatment was given in three different doses, which differed in the number of calls placed to the given legislator. The results were that this treatment had a significant effect on the final vote on the bill. They observed a 12 percentage point increase in the likelihood of voting in favor of the anti-bullying bill for those treated. 
 
-This data has not been analyzed for indirect effects previously. However, since legislators consider legislation in the context of open communication and debate, and for supporters to assure that legislation passes they need the votes of their colleagues, we expect treatment effects of roll call votes to be characterized by interference. In our replication of  \citet{bergan2015call}, we use a very similar model of interference, except the indicators for low support and high support are replaced by indicators for Democrat and Republican.   \citet{bergan2015call} tested for, but did not find evidence that partisanship or ideology moderated the effect of the treatment, but we incorporate partisan moderators into our model to allow for different effects of the advocacy treatment by party. Our model for the 
+This data has not been analyzed for indirect effects previously. However, since legislators consider legislation in the context of open communication and debate, and for supporters to assure that legislation passes they need the votes of their colleagues, we expect treatment effects of roll call votes to be characterized by interference. In our replication of  \citet{bergan2015call}, we use a very similar model of interference, except the indicators for low support and high support are replaced by indicators for Democrat (D) and Republican (R).   \citet{bergan2015call} tested for, but did not find evidence that partisanship or ideology moderated the effect of the treatment, but we incorporate partisan moderators into our model to allow for different effects of the advocacy treatment by party. Our model for the 
 \citet{bergan2015call} replication takes the form $$y_{i,z} = y_{i,0}+\beta_1z_id_i+\beta_2z_i(1-d_i)+\beta_3h_i(G,z\times d)+\beta_4h_i(G,z\times (1-d)),$$  where $d_i$ is a 0/1 indicator of whether legislator $i$ is a Democrat. We use the same test statistic as in the \citet{butler2011can} replication.
 
 As in the \citet{butler2011can} replication, we consider two different networks and functional forms. We again test the co-partisan cohort network.\footnote{Data on cohort membership was gathered from \url{https://ballotpedia.org/Main_Page}.} For the \citet{bergan2015call} replication, we use cosponsorship instead of co-committee membership to measure formal legislative connection between legislators. In the binary form of the cosponsorship network, we include a tie between any two legislators who cosponsored two or more of the same bills.\footnote{Data on cosponsorship was gathered from \url{https://www.quorum.us/}.} In the weighted form of the cosponsorship network, the effect of $j$'s treatment status on $i$ is proportional to the number of bills that were cosponsored by both $i$ and $j$. We do not have theoretical expectations regarding the different effects of committee co-membership and cosponsorship in New Mexico and Michigan, the difference is driven by data availability. 
@@ -477,22 +477,22 @@ The results of the \citet{butler2011can} replication are presented in Table \ref
  & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
   & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
   \hline
-Direct (L) & 0.15 & -0.15 & 0.4 & -0.1 & 0.35 & 0.10 & -0.15 & 0.40 & -0.10 & 0.40 \\ 
-Direct (H) & 0.05 & -0.1 & 0.4 & -0.05 & 0.35 & 0.10 & -0.05 & 0.45 & -0.03 & 0.40 \\ 
-Indirect (L) & -0.05 & -0.15 & 0.1 & -0.15 & 0.1 & 0.05 & -0.03 & 0.20 & -0.03 & 0.20 \\ 
-  Indirect (H) & 0.00 & -0.05 & 0.1 & -0.05 & 0.1 & -0.15 & -0.20 & 0.05 & -0.20 & 0.05 \\  \hline
+Direct (D) & 0.15 & -0.15 & 0.40 & -0.10 & 0.35 & 0.10 & -0.15 & 0.40 & -0.10 & 0.40 \\ 
+Direct (R) & 0.05 & -0.10 & 0.40 & -0.05 & 0.35 & 0.10 & -0.05 & 0.45 & -0.03 & 0.40 \\ 
+Indirect (D) & -0.05 & -0.15 & 0.10 & -0.15 & 0.10 & 0.05 & -0.03 & 0.20 & -0.03 & 0.20 \\ 
+  Indirect (R) & 0.00 & -0.05 & 0.10 & -0.05 & 0.10 & -0.15 & -0.20 & 0.05 & -0.20 & 0.05 \\  \hline
    & \multicolumn{10}{c|}{Results for Cohort Co-partisans Network DUMMY} \\ \hline
  & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
   & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
   \hline
-Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 & 0.03 \\ 
-  Direct (H) & -0.10 & -0.40 & 0.30 & -0.35 & 0.25 & -0.15 & -0.40 & 0.15 & -0.35 & 0.15 \\ 
-  Indirect (L) & -0.20 & -0.50 & 0.01 & -0.50 & -0.02 & -0.20 & -0.45 & 0.05 & -0.45 & -0.02 \\ 
-  Indirect (H) & 0.05 & -0.15 & 0.35 & -0.10 & 0.35 & 0.10 & -0.10 & 0.35 & -0.05 & 0.30 \\
+Direct (D) & 0.00 & -0.20 & 0.20 & -0.15 & 0.15 & -0.20 & -0.50 & 0.05 & -0.50 & 0.03 \\ 
+  Direct (R) & 0.10 & -0.05 & 0.30 & -0.03 & 0.30 & -0.15 & -0.40 & 0.15 & -0.35 & 0.15 \\ 
+  Indirect (D) & 0.15 & 0.10 & 0.25 & 0.10 & 0.20 & -0.20 & -0.45 & 0.05 & -0.45 & -0.02 \\ 
+  Indirect (R) & -0.10 & -0.15 & -0.01 & -0.15 & -0.02 & 0.10 & -0.10 & 0.35 & -0.05 & 0.30 \\
    \hline 
 \end{tabular}
 }
-\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008). $p$-values calculated using 1,000 randomization iterations. There are 70 legislators in this dataset/netwrok.}
+\caption{Results from applying the BFP methodology to the replication of \citet{bergan2015call}. (D) indicates the effect of being a democrat, and (R) indicates the effect of being a republican. The outcome variable is 0/1, where 1 indicates a vote in favor of the anti-bullying bill (voted on in both chambers of the Michigan Legislature, 2011). $p$-values calculated using 1,000 randomization iterations. There are 144 legislators in the clean dataset/network.}
 \label{tab:berganmichigan}
 \end{table}
 

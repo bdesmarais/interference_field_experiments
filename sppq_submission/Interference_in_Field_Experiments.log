@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  7 MAR 2018 09:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  7 MAR 2018 09:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1214,7 +1214,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 464.
 
 
-Overfull \hbox (7.10513pt too wide) in paragraph at lines 494--495
+Overfull \hbox (10.8014pt too wide) in paragraph at lines 494--495
  [][] 
  []
 
@@ -1243,12 +1243,15 @@ ot changed.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 520.
  ) 
 Here is how much of TeX's memory you used:
  21555 strings out of 493014
  392843 string characters out of 6133351
- 483189 words of memory out of 5000000
+ 483130 words of memory out of 5000000
  24553 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1262,11 +1265,11 @@ mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (38 pages, 203562 bytes
+Output written on Interference_in_Field_Experiments.pdf (38 pages, 203603 bytes
 ).
 PDF statistics:
- 590 PDF objects out of 1000 (max. 8388607)
- 521 compressed objects within 6 object streams
+ 595 PDF objects out of 1000 (max. 8388607)
+ 524 compressed objects within 6 object streams
  126 named destinations out of 1000 (max. 500000)
  172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
