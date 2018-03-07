@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 MAR 2018 19:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 MAR 2018 19:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1196,7 +1196,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 453.
 
-[26] <./images/pval_plot_bergan_main.pdf, id=423, 505.89pt x 505.89pt>
+[26] [27] <./images/pval_plot_bergan_main.pdf, id=428, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_main.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_main.pdf>
@@ -1204,7 +1204,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_main.pdf used on input line
 463.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_3nn.pdf, id=430, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_3nn.pdf, id=435, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_3nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_3nn.pdf>
@@ -1212,7 +1212,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_ideo_3nn.pdf used on input l
 ine 474.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_5nn.pdf, id=431, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_5nn.pdf, id=436, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_5nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_5nn.pdf>
@@ -1220,7 +1220,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_ideo_5nn.pdf used on input l
 ine 475.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_8nn.pdf, id=432, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_8nn.pdf, id=437, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_8nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_8nn.pdf>
@@ -1228,7 +1228,7 @@ Package pdftex.def Info: ./images/pval_plot_bergan_ideo_8nn.pdf used on input l
 ine 476.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-<./images/pval_plot_bergan_ideo_12nn.pdf, id=433, 505.89pt x 505.89pt>
+<./images/pval_plot_bergan_ideo_12nn.pdf, id=438, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_ideo_12nn.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_ideo_12nn.pdf>
@@ -1240,7 +1240,10 @@ Overfull \hbox (49.29216pt too wide) in paragraph at lines 473--479
  [][] 
  []
 
-[27] <./images/pval_plot_bergan_cospon.pdf, id=443, 505.89pt x 505.89pt>
+[28 <./images/pval_plot_bergan_main.pdf>] [29 <./images/pval_plot_bergan_ideo_3
+nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
+o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>]
+<./images/pval_plot_bergan_cospon.pdf, id=483, 505.89pt x 505.89pt>
 File: ./images/pval_plot_bergan_cospon.pdf Graphic file (type pdf)
 
 <use ./images/pval_plot_bergan_cospon.pdf>
@@ -1251,17 +1254,14 @@ e 488.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28 <./images/pval_plot_bergan_main.pdf>] [29 <./images/pval_plot_bergan_ideo_3
-nn.pdf> <./images/pval_plot_bergan_ideo_5nn.pdf> <./images/pval_plot_bergan_ide
-o_8nn.pdf> <./images/pval_plot_bergan_ideo_12nn.pdf>] [30 <./images/pval_plot_b
-ergan_cospon.pdf>] [31] (./Interference_in_Field_Experiments.bbl [32] [33]
-[34] [35] [36]
+[30 <./images/pval_plot_bergan_cospon.pdf>] [31] [32]
+(./Interference_in_Field_Experiments.bbl [33] [34] [35] [36] [37]
 Underfull \hbox (badness 1152) in paragraph at lines 221--225
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[37] [38])
+[38])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1290,11 +1290,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 579.
 Here is how much of TeX's memory you used:
  21641 strings out of 492995
  394754 string characters out of 6132704
- 484643 words of memory out of 5000000
+ 484693 words of memory out of 5000000
  24647 multiletter control sequences out of 15000+600000
  74860 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,2963b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,2963b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -1304,7 +1304,7 @@ mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (39 pages, 267430 bytes
+Output written on Interference_in_Field_Experiments.pdf (39 pages, 268652 bytes
 ).
 PDF statistics:
  626 PDF objects out of 1000 (max. 8388607)
