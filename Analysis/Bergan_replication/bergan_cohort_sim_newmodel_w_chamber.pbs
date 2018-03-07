@@ -1,11 +1,9 @@
-#PBS -l nodes=1:ppn=40
+#!/bin/bash
+#PBS -l nodes=1:ppn=20
 #PBS -l walltime=48:00:00
 #PBS -l mem=8gb
-#PBS -j oe
-#PBS -mae sphadke@psu.edu
-#PBS -N w_coh_cop_nmod
-
-cd ~/Phadke_Desmarais_paper/bergan_replication/
+#PBS -M bdesmarais@psu.edu
+cd /gpfs/group/bbd5087/default/Bergan_replication
 
 module load R/3.2.0
 

@@ -7,6 +7,6 @@ cd /gpfs/group/bbd5087/default/Bergan_replication
 
 module load R/3.2.0
 
-R CMD BATCH 03_bergan_cospon_binary_newmodel1.R
+R CMD BATCH 03_bergan_cohort_sim_newmodel10.R
 
 
