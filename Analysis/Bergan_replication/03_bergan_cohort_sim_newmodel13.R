@@ -241,6 +241,10 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
 }
 
+registerDoParallel(cores = 10)
+
+BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
+
 stopImplicitCluster()
 
 save(list=c("BFP.results","parameters"),file=resultsFile)
