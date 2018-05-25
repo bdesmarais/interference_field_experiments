@@ -20,9 +20,9 @@ source("butler_nickerson_analysis.R")
 source("bergan_cole_analysis.R")
 # what files are produced?
 
-# Separate script to produce figures and tables
+# Separate script to produce the tables
 # what files are needed?
-source("figures_tables.R")
+source("tables.R")
 # table4.txt
 # table5.txt
 
