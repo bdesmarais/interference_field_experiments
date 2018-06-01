@@ -37,12 +37,16 @@ source("butler_nickerson_analysis.R")
 ####
 
 # what data files are needed?
+# 'bergan.dta', nm.replication.tab', 'CoppockJEPS.RData', 'cohort_copart_network.RData', 'w_cohort_copart_network.RData', 'cosponsorship_network.RData'
 source("bergan_cole_analysis.R")
 # what files are produced?
+# 'BerganSPPQRRresults_copartisan_cohort_binary.RData', 'BerganSPPQRRresults_copartisan_cohort_similarity.RData', 'BerganSPPQRRresults_cospon_binary.RData', 'BerganSPPQRRresults_cospon_weighted.RData'
 
 # Separate script to produce the tables
 # what files are needed?
-source("tables.R")
-# table4.txt
-# table5.txt
+# the four mentioned above
+source("bergan_tables.R")
+# Outputs four tables, one for each analysis
+# 'table4.txt
+# table5.txt'bergan_cohort_binary.txt', 'bergan_cohort_weighted.txt', 'bergan_cospon_binary.txt', 'bergan_cospon_weighted.txt'
 
