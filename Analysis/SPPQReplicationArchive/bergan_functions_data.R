@@ -68,3 +68,25 @@ data <- read.dta("bergan.dta", convert.underscore=TRUE)
 data <- data[1:148,]
 
 
+## Other details
+perms <- 10000 #number of permutations to use in generating expected exposure
+perms.test <- 1000 #number of permutations used in testing
+
+
+beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+beta2s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+beta3s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+beta4s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
+
+parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
+
+# beta1: direct effect of treatment for dem
+# beta2: direct effect of treatment for rep
+# beta3: indirect effect of dem treated
+# beta4: indirect effect of rep treated
+
+pvals <- numeric(nrow(parameters))
+
+
+
+

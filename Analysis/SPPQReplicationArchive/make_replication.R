@@ -19,17 +19,28 @@ library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
 library(xtable,lib.loc=Sys.getenv("R_LIBS_USER"))
 
 
-ncores = 12 # how much time on 12 nodes?
+ncores = 40 # how much time on 40 nodes?
 
 # note to Sayali and Bruce, all files should be in the top-level
 # SPPQReplicationArchive directory---no subfolders
 
+
+####
 # Butler & Nickerson replication
+####
+
 # what data files are needed?
+# 'nm.replication.tab', 'CoppockJEPS.RData', 'butler_cohort_copart_network.RData', 'butler_cohort_copart_network_weighted.RData', 'butler_committee_number_shared.csv'
 source("butler_nickerson_analysis.R")
 # what files are produced?
+# 'CoppockSPPQRRresults_copartisan_cohort_binary.RData', 'CoppockSPPQRRresults_copartisan_cohort_weighted.RData', 'CoppockSPPQRRresults_copartisan_committee_binary.RData', 'CoppockSPPQRRresults_copartisan_committee_weighted.RData'
 
-
+# Separate script to produce the tables
+# what files are needed?
+# the four mentioned above
+source("butler_tables.R")
+# Outputs four tables, one for each analysis
+# 'butler_cohort_binary_table4_bottomleft.txt', 'butler_cohort_weighted_table4_bottomright.txt', 'butler_committee_binary_table4_topleft.txt', 'butler_committee_weighted_table4_topright.txt'
 
 
 ####
@@ -37,7 +48,7 @@ source("butler_nickerson_analysis.R")
 ####
 
 # what data files are needed?
-# 'bergan.dta', nm.replication.tab', 'CoppockJEPS.RData', 'cohort_copart_network.RData', 'w_cohort_copart_network.RData', 'cosponsorship_network.RData'
+# 'bergan.dta', 'bergan_cohort_copart_network.RData', 'bergan_w_cohort_copart_network.RData', 'bergan_cosponsorship_network.RData'
 source("bergan_cole_analysis.R")
 # what files are produced?
 # 'BerganSPPQRRresults_copartisan_cohort_binary.RData', 'BerganSPPQRRresults_copartisan_cohort_similarity.RData', 'BerganSPPQRRresults_cospon_binary.RData', 'BerganSPPQRRresults_cospon_weighted.RData'
@@ -47,6 +58,5 @@ source("bergan_cole_analysis.R")
 # the four mentioned above
 source("bergan_tables.R")
 # Outputs four tables, one for each analysis
-# 'table4.txt
-# table5.txt'bergan_cohort_binary.txt', 'bergan_cohort_weighted.txt', 'bergan_cospon_binary.txt', 'bergan_cospon_weighted.txt'
+# 'bergan_cohort_binary_table5_bottomleft.txt', 'bergan_cohort_weighted_table5_bottomright.txt', 'bergan_cospon_binary_table5_topleft.txt', 'bergan_cospon_weighted_table5_topright.txt' 
 

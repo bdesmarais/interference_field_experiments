@@ -1,5 +1,5 @@
 ####
-#### Creating tables using results
+#### Creating tables for Bergan and Cole analysis using results
 ####
 
 rm(list=ls())
@@ -25,7 +25,7 @@ BFP.results.summary <- function(parameters, p.values, level){
 }
 
 
-## Read in results of all four Bergan analyses
+## Read in results of all four Bergan-Cole analyses
 # Binary cohort with copartisanship
 load("BerganSPPQRRresults_copartisan_cohort_binary.RData")
 copartisan_cohort_binary_results <- do.call('rbind',BFP.results)[,1]
@@ -50,7 +50,7 @@ summary.cohort_binary.9 <- BFP.results.summary(parameters, copartisan_cohort_bin
 
 cohort.binary.table <- cbind(summary.cohort_binary.95[[1]], summary.cohort_binary.95[[2]], summary.cohort_binary.9[[2]])
 cohort.binary <- xtable(cohort.binary.table)
-print(cohort.binary, file = "bergan_cohort_binary.txt")
+print(cohort.binary, file = "bergan_cohort_binary_table5_bottomleft.txt")
 
 # Weighted cohort with copartisanship
 summary.cohort_weighted.95 <- BFP.results.summary(parameters, copartisan_cohort_weighted_results, level = 0.95)
@@ -58,7 +58,7 @@ summary.cohort_weighted.9 <- BFP.results.summary(parameters, copartisan_cohort_w
 
 cohort.weighted.table <- cbind(summary.cohort_weighted.95[[1]], summary.cohort_weighted.95[[2]], summary.cohort_weighted.9[[2]])
 cohort.weighted<- xtable(cohort.weighted.table)
-print(cohort.weighted, file = "bergan_cohort_weighted.txt")
+print(cohort.weighted, file = "bergan_cohort_weighted_table5_bottomright.txt")
 
 
 # Binary cosponsorship with copartisanship
@@ -67,7 +67,7 @@ summary.cospon_binary.9 <- BFP.results.summary(parameters, copartisan_cosponsors
 
 cospon.binary.table <- cbind(summary.cospon_binary.95[[1]], summary.cospon_binary.95[[2]], summary.cospon_binary.9[[2]])
 cospon.binary <- xtable(cospon.binary.table)
-print(cospon.binary, file = "bergan_cospon_binary.txt")
+print(cospon.binary, file = "bergan_cospon_binary_table5_topleft.txt")
 
 
 # Weighted cosponsorship with copartisanship
@@ -76,7 +76,7 @@ summary.cospon_weighted.9 <- BFP.results.summary(parameters, copartisan_cosponso
 
 cospon.weighted.table <- cbind(summary.cospon_weighted.95[[1]], summary.cospon_weighted.95[[2]], summary.cospon_weighted.9[[2]])
 cospon.weighted <- xtable(cospon.weighted.table)
-print(cospon.weighted, file = "bergan_cospon_weighted.txt")
+print(cospon.weighted, file = "bergan_cospon_weighted_table5_topright.txt")
 
 
 

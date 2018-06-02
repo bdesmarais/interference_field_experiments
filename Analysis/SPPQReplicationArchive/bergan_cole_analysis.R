@@ -12,7 +12,7 @@ set.seed(132)
 source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
-load("cohort_copart_network.RData")
+load("bergan_cohort_copart_network.RData")
 network <- cohort_copart_amat
 rm(cohort_copart_amat)
 gc()
@@ -24,8 +24,6 @@ data <- data[-which(data$finalvote < 0), ]
 ## Setting treatment and outcome vector
 y.z <- data$finalvote
 z <- data$anytreat
-perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 1000 #number of permutations used in testing
 n <- length(z)
 
 democrat <- data$democrat
@@ -82,20 +80,6 @@ for(i in 1:n){
 #### Testing and p-value calculation ####
 #########################################
 
-beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta2s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta3s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta4s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-
-parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
-
-# beta1: direct effect of treatment for dem
-# beta2: direct effect of treatment for rep
-# beta3: indirect effect of dem treated
-# beta4: indirect effect of rep treated
-
-pvals <- numeric(nrow(parameters))
-
 exposures <- indirect.treatment(permutation = z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
 
 test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
@@ -104,7 +88,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 40)
+registerDoParallel(cores = ncores)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
@@ -155,7 +139,7 @@ set.seed(132)
 source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
-load("w_cohort_copart_network.RData")
+load("bergan_w_cohort_copart_network.RData")
 network <- w_cohort_copart_amat
 rm(w_cohort_copart_amat)
 gc()
@@ -167,8 +151,6 @@ data <- data[-which(data$finalvote < 0), ]
 ## Setting treatment and outcome vector
 y.z <- data$finalvote
 z <- data$anytreat
-perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 1000 #number of permutations used in testing
 n <- length(z)
 
 democrat <- data$democrat
@@ -225,19 +207,7 @@ for(i in 1:n){
 #### Testing and p-value calculation ####
 #########################################
 
-beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta2s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta3s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta4s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-
-parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
-
-# beta1: direct effect of treatment for dem
-# beta2: direct effect of treatment for rep
-# beta3: indirect effect of dem treated
-# beta4: indirect effect of rep treated
-
-pvals <- numeric(nrow(parameters))
+# Calculate observed test statistic
 
 exposures <- indirect.treatment(permutation = z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
 
@@ -247,7 +217,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 40)
+registerDoParallel(cores = ncores)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
@@ -298,7 +268,7 @@ set.seed(132)
 source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
-load("cosponsorship_network.RData")
+load("bergan_cosponsorship_network.RData")
 network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
                                                                              data$name))==FALSE],
                                  rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
@@ -317,8 +287,6 @@ data <- data[-which(data$finalvote < 0), ]
 ## Setting treatment and outcome vector
 y.z <- data$finalvote
 z <- data$anytreat
-perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 1000 #number of permutations used in testing
 n <- length(z)
 
 democrat <- data$democrat
@@ -377,20 +345,6 @@ for(i in 1:n){
 #### Testing and p-value calculation ####
 #########################################
 
-beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta2s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta3s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta4s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-
-parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
-
-# beta1: direct effect of treatment for dem
-# beta2: direct effect of treatment for rep
-# beta3: indirect effect of dem treated
-# beta4: indirect effect of rep treated
-
-pvals <- numeric(nrow(parameters))
-
 # Calculate observed test statistic
 
 exposures <- indirect.treatment(permutation = z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
@@ -401,7 +355,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 20)
+registerDoParallel(cores = ncores)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
@@ -452,7 +406,7 @@ set.seed(132)
 source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
-load("cosponsorship_network.RData")
+load("bergan_cosponsorship_network.RData")
 network <- cosponsorship_network[rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
                                                                              data$name))==FALSE],
                                  rownames(cosponsorship_network)[is.na(match(rownames(cosponsorship_network),
@@ -469,8 +423,6 @@ data <- data[-which(data$finalvote < 0), ]
 ## Setting treatment and outcome vector
 y.z <- data$finalvote
 z <- data$anytreat
-perms <- 10000 #number of permutations to use in generating expected exposure
-perms.test <- 1000 #number of permutations used in testing
 n <- length(z)
 
 democrat <- data$democrat
@@ -529,19 +481,7 @@ for(i in 1:n){
 #### Testing and p-value calculation ####
 #########################################
 
-beta1s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta2s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta3s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-beta4s <- c(seq(from=-0.5, to=0.5, by=.05),seq(-.025,.025,length=6))
-
-parameters <- expand.grid(beta1s, beta2s, beta3s, beta4s)
-
-# beta1: direct effect of treatment for dem
-# beta2: direct effect of treatment for rep
-# beta3: indirect effect of dem treated
-# beta4: indirect effect of rep treated
-
-pvals <- numeric(nrow(parameters))
+# Calculate observed test statistic
 
 exposures <- indirect.treatment(permutation = z, adj.mat = network, expected.exp0.dem, expected.exp1.dem, expected.exp0.rep, expected.exp1.rep, democrat)
 
@@ -551,7 +491,7 @@ test.stat <- sum((lm(y.z ~ eval(z*democrat) + eval(z*(1-democrat)) +
 
 pval <- numeric(nrow(parameters))
 
-registerDoParallel(cores = 20)
+registerDoParallel(cores = ncores)
 
 BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
   
