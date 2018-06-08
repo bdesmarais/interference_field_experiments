@@ -1,15 +1,13 @@
 #### SPPQ submission
 ## Bergan & Cole analysis
 ####
-# Binary Cohort network with coparty indicator
-####
-
-rm(list=ls())
-gc()
-set.seed(132)
 
 # Sourcing functions and data import
 source("bergan_functions_data.R")
+
+####
+# Binary Cohort network with coparty indicator
+####
 
 # Fixing the adjacency matrix
 load("bergan_cohort_copart_network.RData")
@@ -130,13 +128,6 @@ save(list=c("BFP.results","parameters"), file="BerganSPPQRRresults_copartisan_co
 ####
 # Cohort similarity as weights with coparty indicator
 ####
-
-rm(list=ls())
-gc()
-set.seed(132)
-
-# Sourcing functions and data import
-source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
 load("bergan_w_cohort_copart_network.RData")
@@ -259,13 +250,6 @@ save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_copartisan_coh
 ####
 # Binary network with tie if MORE THAN ONE bill co-sponsored
 ####
-
-rm(list=ls())
-gc()
-set.seed(132)
-
-# Sourcing functions and data import
-source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
 load("bergan_cosponsorship_network.RData")
@@ -397,13 +381,6 @@ save(list=c("BFP.results","parameters"),file="BerganSPPQRRresults_cospon_binary.
 ####
 # Weighted co-sposorship network with number of bills as weights
 ####
-
-rm(list=ls())
-gc()
-set.seed(132)
-
-# Sourcing functions and data import
-source("bergan_functions_data.R")
 
 # Fixing the adjacency matrix
 load("bergan_cosponsorship_network.RData")

@@ -19,11 +19,15 @@ library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
 library(xtable,lib.loc=Sys.getenv("R_LIBS_USER"))
 
 
+#### Cleanup
+rm(list=ls())
+gc()
+set.seed(132)
+
 ncores = 40 # how much time on 40 nodes?
 
 # note to Sayali and Bruce, all files should be in the top-level
 # SPPQReplicationArchive directory---no subfolders
-
 
 ####
 # Butler & Nickerson replication
@@ -42,6 +46,13 @@ source("butler_tables.R")
 # Outputs four tables, one for each analysis
 # 'butler_cohort_binary_table4_bottomleft.txt', 'butler_cohort_weighted_table4_bottomright.txt', 'butler_committee_binary_table4_topleft.txt', 'butler_committee_weighted_table4_topright.txt'
 
+
+#### Cleanup
+rm(list=ls())
+gc()
+set.seed(132)
+
+ncores = 40 # how much time on 40 nodes?
 
 ####
 # Bergan and Cole replication

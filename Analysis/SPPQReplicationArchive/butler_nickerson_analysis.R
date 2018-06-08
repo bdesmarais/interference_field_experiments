@@ -4,10 +4,6 @@
 # Binary Cohort network with coparty indicator
 ####
 
-rm(list=ls())
-gc()
-set.seed(132)
-
 # Sourcing functions and data import
 source("butler_functions_data.R")
 
@@ -114,14 +110,6 @@ save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_co
 # Cohort similarity as weights with coparty indicator
 ####
 
-rm(list=ls())
-gc()
-set.seed(132)
-
-# Sourcing functions and data import
-source("butler_functions_data.R")
-
-
 #### Read the original Butler and Nicketson data
 #### This is the New Mexico dataset
 
@@ -223,14 +211,6 @@ save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_co
 ####
 # Binary committee with copartisanship
 ####
-
-rm(list=ls())
-gc()
-set.seed(132)
-
-# Sourcing functions and data import
-source("butler_functions_data.R")
-
 
 #### Read the original Butler and Nicketson data
 #### This is the New Mexico dataset
@@ -345,15 +325,7 @@ save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_co
 # Weighted committee with copartisanship
 ####
 
-rm(list=ls())
-gc()
-set.seed(132)
-
-# Sourcing functions and data import
-source("butler_functions_data.R")
-
-
-#### Read the original Butler and Nicketson data
+#### Read the original Butler and Nickerson data
 #### This is the New Mexico dataset
 
 z <- data$treatment #observed treatment
