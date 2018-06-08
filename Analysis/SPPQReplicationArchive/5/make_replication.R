@@ -19,32 +19,32 @@ library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
 library(xtable,lib.loc=Sys.getenv("R_LIBS_USER"))
 
 
-#### Cleanup
-rm(list=ls())
-gc()
-set.seed(231)
-
-ncores = 40 # how much time on 40 nodes?
-
-# note to Sayali and Bruce, all files should be in the top-level
-# SPPQReplicationArchive directory---no subfolders
-
-####
-# Butler & Nickerson replication (Coppock)
-####
-
-# what data files are needed?
-# 'nm.replication.tab', 'CoppockJEPS.RData', 'butler_cohort_copart_network.RData', 'butler_cohort_copart_network_weighted.RData', 'butler_committee_number_shared.csv'
-source("butler_nickerson_analysis.R")
-# what files are produced?
-# 'CoppockSPPQRRresults_copartisan_cohort_binary.RData', 'CoppockSPPQRRresults_copartisan_cohort_weighted.RData', 'CoppockSPPQRRresults_copartisan_committee_binary.RData', 'CoppockSPPQRRresults_copartisan_committee_weighted.RData'
-
-# Separate script to produce the tables
-# what files are needed?
-# the four mentioned above
-source("butler_tables.R")
-# Outputs four tables, one for each analysis
-# 'butler_cohort_binary_table4_bottomleft.txt', 'butler_cohort_weighted_table4_bottomright.txt', 'butler_committee_binary_table4_topleft.txt', 'butler_committee_weighted_table4_topright.txt'
+# #### Cleanup
+# rm(list=ls())
+# gc()
+# set.seed(231)
+# 
+# ncores = 40 # how much time on 40 nodes?
+# 
+# # note to Sayali and Bruce, all files should be in the top-level
+# # SPPQReplicationArchive directory---no subfolders
+# 
+# ####
+# # Butler & Nickerson replication (Coppock)
+# ####
+# 
+# # what data files are needed?
+# # 'nm.replication.tab', 'CoppockJEPS.RData', 'butler_cohort_copart_network.RData', 'butler_cohort_copart_network_weighted.RData', 'butler_committee_number_shared.csv'
+# source("butler_nickerson_analysis.R")
+# # what files are produced?
+# # 'CoppockSPPQRRresults_copartisan_cohort_binary.RData', 'CoppockSPPQRRresults_copartisan_cohort_weighted.RData', 'CoppockSPPQRRresults_copartisan_committee_binary.RData', 'CoppockSPPQRRresults_copartisan_committee_weighted.RData'
+# 
+# # Separate script to produce the tables
+# # what files are needed?
+# # the four mentioned above
+# source("butler_tables.R")
+# # Outputs four tables, one for each analysis
+# # 'butler_cohort_binary_table4_bottomleft.txt', 'butler_cohort_weighted_table4_bottomright.txt', 'butler_committee_binary_table4_topleft.txt', 'butler_committee_weighted_table4_topright.txt'
 
 
 #### Cleanup

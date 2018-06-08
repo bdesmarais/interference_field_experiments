@@ -47,27 +47,27 @@ source("butler_tables.R")
 # 'butler_cohort_binary_table4_bottomleft.txt', 'butler_cohort_weighted_table4_bottomright.txt', 'butler_committee_binary_table4_topleft.txt', 'butler_committee_weighted_table4_topright.txt'
 
 
-#### Cleanup
-rm(list=ls())
-gc()
-set.seed(132)
-
-ncores = 40 # how much time on 40 nodes?
-
-####
-# Bergan and Cole replication
-####
-
-# what data files are needed?
-# 'bergan.dta', 'bergan_cohort_copart_network.RData', 'bergan_w_cohort_copart_network.RData', 'bergan_cosponsorship_network.RData'
-source("bergan_cole_analysis.R")
-# what files are produced?
-# 'BerganSPPQRRresults_copartisan_cohort_binary.RData', 'BerganSPPQRRresults_copartisan_cohort_similarity.RData', 'BerganSPPQRRresults_cospon_binary.RData', 'BerganSPPQRRresults_cospon_weighted.RData'
-
-# Separate script to produce the tables
-# what files are needed?
-# the four mentioned above
-source("bergan_tables.R")
-# Outputs four tables, one for each analysis
-# 'bergan_cohort_binary_table5_bottomleft.txt', 'bergan_cohort_weighted_table5_bottomright.txt', 'bergan_cospon_binary_table5_topleft.txt', 'bergan_cospon_weighted_table5_topright.txt' 
-
+# #### Cleanup
+# rm(list=ls())
+# gc()
+# set.seed(132)
+# 
+# ncores = 40 # how much time on 40 nodes?
+# 
+# ####
+# # Bergan and Cole replication
+# ####
+# 
+# # what data files are needed?
+# # 'bergan.dta', 'bergan_cohort_copart_network.RData', 'bergan_w_cohort_copart_network.RData', 'bergan_cosponsorship_network.RData'
+# source("bergan_cole_analysis.R")
+# # what files are produced?
+# # 'BerganSPPQRRresults_copartisan_cohort_binary.RData', 'BerganSPPQRRresults_copartisan_cohort_similarity.RData', 'BerganSPPQRRresults_cospon_binary.RData', 'BerganSPPQRRresults_cospon_weighted.RData'
+# 
+# # Separate script to produce the tables
+# # what files are needed?
+# # the four mentioned above
+# source("bergan_tables.R")
+# # Outputs four tables, one for each analysis
+# # 'bergan_cohort_binary_table5_bottomleft.txt', 'bergan_cohort_weighted_table5_bottomright.txt', 'bergan_cospon_binary_table5_topleft.txt', 'bergan_cospon_weighted_table5_topright.txt' 
+# 
