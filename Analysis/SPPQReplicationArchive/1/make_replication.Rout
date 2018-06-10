@@ -1,0 +1,199 @@
+
+R version 3.4.0 (2017-04-21) -- "You Stupid Darkness"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ## This file calls source code to replicate the figures and tables
+> ## in Phadke and Desmarais, "Considering Network Effects in the Design and Analysis of 
+> ## Field Experiments on State Legislatures"
+> ## in SPPQ. For each call to source(), we list the required input files above in comments
+> ## and the output files produced by the code below. Note, this code takes a long time to run,
+> ## and takes an argument (ncores), which can be used to parallelize across cores on one node.
+> 
+> ## Required packages
+> #Packages
+> dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
+> install.packages("iterators", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/iterators_1.0.9.tar.gz'
+Content type 'application/x-gzip' length 290634 bytes (283 KB)
+==================================================
+downloaded 283 KB
+
+* installing *source* package 'iterators' ...
+** package 'iterators' successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'iterators'
+    finding HTML links ... done
+    iapply                                  html  
+    icount                                  html  
+    idiv                                    html  
+    iread.table                             html  
+    ireadLines                              html  
+    irnorm                                  html  
+    isplit                                  html  
+    iter                                    html  
+    iterators-package                       html  
+    nextElem                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (iterators)
+
+The downloaded source packages are in
+	'/tmp/RtmpPhbrXE/downloaded_packages'
+> install.packages("foreign", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/foreign_0.8-70.tar.gz'
+Content type 'application/x-gzip' length 344502 bytes (336 KB)
+==================================================
+downloaded 336 KB
+
+ERROR: failed to lock directory '/storage/home/ssp5208/R/x86_64-redhat-linux-gnu-library/3.4' for modifying
+Try removing '/storage/home/ssp5208/R/x86_64-redhat-linux-gnu-library/3.4/00LOCK-foreign'
+
+The downloaded source packages are in
+	'/tmp/RtmpPhbrXE/downloaded_packages'
+Warning message:
+In install.packages("foreign", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/") :
+  installation of package 'foreign' had non-zero exit status
+> install.packages("foreach", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/foreach_1.4.4.tar.gz'
+Content type 'application/x-gzip' length 360705 bytes (352 KB)
+==================================================
+downloaded 352 KB
+
+* installing *source* package 'foreach' ...
+** package 'foreach' successfully unpacked and MD5 sums checked
+** R
+** demo
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'foreach'
+    finding HTML links ... done
+    foreach-ext                             html  
+    foreach-package                         html  
+    foreach                                 html  
+    getDoParWorkers                         html  
+    getDoSeqWorkers                         html  
+    registerDoSEQ                           html  
+    setDoPar                                html  
+    setDoSeq                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (foreach)
+
+The downloaded source packages are in
+	'/tmp/RtmpPhbrXE/downloaded_packages'
+> install.packages("doParallel", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/")
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/doParallel_1.0.11.tar.gz'
+Content type 'application/x-gzip' length 172885 bytes (168 KB)
+==================================================
+downloaded 168 KB
+
+* installing *source* package 'doParallel' ...
+** package 'doParallel' successfully unpacked and MD5 sums checked
+** R
+** demo
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'doParallel'
+    finding HTML links ... done
+    doParallel-package                      html  
+    registerDoParallel                      html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (doParallel)
+
+The downloaded source packages are in
+	'/tmp/RtmpPhbrXE/downloaded_packages'
+> install.packages("xtable", Sys.getenv("R_LIBS_USER"), repos = "https://cran.cnr.berkeley.edu/") #Producing tables for latex
+trying URL 'https://cran.cnr.berkeley.edu/src/contrib/xtable_1.8-2.tar.gz'
+Content type 'application/x-gzip' length 619611 bytes (605 KB)
+==================================================
+downloaded 605 KB
+
+* installing *source* package 'xtable' ...
+** package 'xtable' successfully unpacked and MD5 sums checked
+** R
+** data
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'xtable'
+    finding HTML links ... done
+    autoformat                              html  
+    print.xtable                            html  
+    print.xtableMatharray                   html  
+    sanitize                                html  
+    string                                  html  
+    table.attributes                        html  
+    tli                                     html  
+    toLatex                                 html  
+    xtable-internal                         html  
+    xtable                                  html  
+    xtableFtable                            html  
+    xtableList                              html  
+    xtableMatharray                         html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (xtable)
+
+The downloaded source packages are in
+	'/tmp/RtmpPhbrXE/downloaded_packages'
+> library(foreign,lib.loc=Sys.getenv("R_LIBS_USER"))
+> library(foreach,lib.loc=Sys.getenv("R_LIBS_USER"))
+> library(doParallel,lib.loc=Sys.getenv("R_LIBS_USER"))
+Loading required package: iterators
+Loading required package: parallel
+> library(xtable,lib.loc=Sys.getenv("R_LIBS_USER"))
+> 
+> 
+> #### Cleanup
+> rm(list=ls())
+> gc()
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 295825 15.8     592000 31.7   592000 31.7
+Vcells 516711  4.0    2186471 16.7  2733088 20.9
+> set.seed(231)
+> 
+> ncores = 40 # how much time on 40 nodes?
+> 
+> # note to Sayali and Bruce, all files should be in the top-level
+> # SPPQReplicationArchive directory---no subfolders
+> 
+> ####
+> # Butler & Nickerson replication (Coppock)
+> ####
+> 
+> # what data files are needed?
+> # 'nm.replication.tab', 'CoppockJEPS.RData', 'butler_cohort_copart_network.RData', 'butler_cohort_copart_network_weighted.RData', 'butler_committee_number_shared.csv'
+> source("butler_nickerson_analysis.R")
+Error in source("butler_nickerson_analysis.R") : 
+  butler_nickerson_analysis.R:108:1: unexpected input
+107: 
+108: \
+     ^
+Execution halted
