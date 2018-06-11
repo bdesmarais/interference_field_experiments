@@ -55,7 +55,7 @@ get.similarity <- function(x, y){
   return((2-abs(x-y))/2)
 }
 
-load("./Original archival/CoppockJEPS.rdata") #BD
+load("CoppockJEPS.rdata") #BD
 
 dwnom_scores <- CoppockJEPS$dwnom_scores
 

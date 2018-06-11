@@ -1,0 +1,104 @@
+
+R version 3.4.0 (2017-04-21) -- "You Stupid Darkness"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ### 60% threshold, scaled ###
+> 
+> rm(list=ls())
+> gc()
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 251974 13.5     460000 24.6   350000 18.7
+Vcells 441739  3.4    1023718  7.9   786431  6.0
+> set.seed(231)
+> 
+> 
+> permute.within.categories <- function(categories,z){
++   ucategories <- unique(categories)
++   perm.z <- rep(NA,length(z))
++   for(c in ucategories){
++     z.c <- z[which(categories==c)]
++     perm.z.c <- sample(z.c,length(z.c),rep=F)
++     perm.z[which(categories==c)] <- perm.z.c
++   }
++   perm.z
++ }
+> 
+> 
+> matrix.max <- function(x){
++   # x is the matrix with respect to which you want to find the max cell
++   rowmax <- which.max(apply(x,1,max))
++   colmax <- which.max(x[rowmax,])
++   c(rowmax,colmax)
++ }
+> 
+> 
+> #### Read the original Butler and Nicketson data
+> #### This is the New Mexico dataset
+> 
+> data <- read.table("nm.replication.tab", sep="\t", header=TRUE)
+> 
+> z <- data$treatment #observed treatment
+> y.z <- data$sb24 #observed outcome
+> n <- length(y.z) #number of observations
+> t <- length(z[z==1]) #number of treated units
+> perms <- 10000 #number of permutations to use in generating expected exposure
+> perms.test <- 1000 #number of permutations used in testing
+> 
+> 
+> # #### Generate Similarity Scores (this code taken from CoppockJEPS_datapreparation.R)
+> # 
+> # nmhouse2008 <-read.csv("CoppockJEPS_rollcalldata.csv")
+> # bills <- data.frame(nmhouse2008[5:21])
+> # 
+> # ## Nominate Scores
+> # 
+> # bills_nona <- bills
+> # bills_nona[bills_nona==99] <- NA
+> # rollcalls <- rollcall(bills_nona)
+> # nominate_scores <- wnominate(rollcalls, polarity=c(1, 2), minvotes=10)
+> # dwnom_scores <- nominate_scores$legislators$coord1D
+> 
+> get.similarity <- function(x, y){
++   return((2-abs(x-y))/2)
++ }
+> 
+> load("CoppockJEPS.rdata") #BD
+> 
+> dwnom_scores <- CoppockJEPS$dwnom_scores
+> 
+> low_support <- CoppockJEPS$lowsupport
+> 
+> ## Create an adjacency/similarity matrix using ideology
+> S.ideo <- matrix(NA, ncol=70, nrow=70)
+> for (i in 1:70){
++   for (j in 1:70){
++     S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])
++   }
++ }
+> diag(S.ideo) <- 0
+> S.ideo[is.na(S.ideo)==T] <- 0
+> 
+> # Limit to 30% most similar
+> threshold <- quantile(c(S.ideo),0.70)
+> S.ideo <- S.ideo*(S.ideo>=threshold)
+> 
+> committee.net <- 1*(as.matrix(read.csv("committee.number.shared.csv")[,-1])>0)
+Error in file(file, "rt") : cannot open the connection
+Calls: as.matrix -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'committee.number.shared.csv': No such file or directory
+Execution halted
