@@ -63,7 +63,7 @@ summary.cohort_weighted.95 <- BFP.results.summary(parameters, copartisan_cohort_
 summary.cohort_weighted.9 <- BFP.results.summary(parameters, copartisan_cohort_weighted_results,level = 0.9)
 
 cohort.weighted.table <- cbind(summary.cohort_weighted.95[[1]], summary.cohort_weighted.95[[2]], summary.cohort_weighted.9[[2]])
-cohort.weighted<- xtable(cohort.weighted.table)
+cohort.weighted <- xtable(cohort.weighted.table)
 print(cohort.weighted, file = "butler_cohort_weighted_table4_bottomright.txt")
 
 
