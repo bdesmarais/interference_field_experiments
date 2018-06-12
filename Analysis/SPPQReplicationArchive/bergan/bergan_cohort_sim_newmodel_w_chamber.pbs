@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=40
+#PBS -l walltime=48:00:00
+#PBS -l mem=8gb
+#PBS -M sayalip@psu.edu
+cd ~/Phadke_Desmarais_paper/SPPQRR_final_analysis/bergan
+
+module load R/3.2.0
+
+R CMD BATCH 03_bergan_cohort_sim_newmodel.R
+
+
