@@ -1,0 +1,8 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=48:00:00
+#PBS -l mem=8gb
+#PBS -M bdesmarais@psu.edu
+cd /gpfs/group/bbd5087/default/coppock_replication_data
+
+R CMD BATCH coppock_replication_threshold60scaled.R
