@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=48:00:00
+#PBS -l mem=8gb
+#PBS -N cohort_sim4
+cd /gpfs/group/bbd5087/default/Bergan_replication
+
+
+R CMD BATCH 03_bergan_cohort_sim_newmodel4.R
+
+

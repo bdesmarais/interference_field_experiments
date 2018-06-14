@@ -1,0 +1,11 @@
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=48:00:00
+#PBS -l mem=8gb
+#PBS -j oe
+#PBS -N cosp_nmod_11
+
+cd /gpfs/group/bbd5087/default/Bergan_replication
+
+R CMD BATCH 03_bergan_cospon_binary_newmodel11.R
+
+
