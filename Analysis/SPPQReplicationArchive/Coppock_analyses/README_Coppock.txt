@@ -1,4 +1,4 @@
-This is a replication archive for Phadke and Desmarais, "Considering Network Effects in the Design and Analysis of Field Experiments on State Legislatures" (2018). This subfolder contains files for replicating the Bergan analyses presented in table 5.
+This is a replication archive for Phadke and Desmarais, "Considering Network Effects in the Design and Analysis of Field Experiments on State Legislatures" (2018). This subfolder contains files for replicating the Coppock analyses presented in table 4.
 
 
 Instructions:
@@ -28,13 +28,15 @@ C3. CoppockSPPQRRresults_copartisan_cohort_binary.RData
 C4. CoppockSPPQRRresults_copartisan_cohort_weighted.RData
 
 
-
 D. List of files to run on the intermediate results listed in C.
 D1. coppockSPPQresults_summary.R
 
 
 E. List of text files containing the tables that appear in the manuscript, produced by the script files in list D.
-E1. table5_bottomleft_bergan_cohort_binary.txt
-E2. table5_bottomright_bergan_cohort_weighted.txt
-E3. table5_topleft_bergan_cospon_binary.txt
-E4. table5_topright_bergan_cospon_weighted.txt
+E1. table4_topleft_coppock_committee_binary.txt
+E2. table4_topright_coppock_committee_weighted.txt
+E3. table4_bottomleft_coppock_cohort_binary.txt
+E4. table4_bottomright_coppock_cohort_weighted.txt
+
+
+

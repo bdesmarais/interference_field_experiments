@@ -53,7 +53,7 @@ summary.copartisan_cohort_binary.9 <- BFP.results.summary(parameters, copartisan
 
 cohort.table <- cbind(summary.copartisan_cohort_binary[[1]],summary.copartisan_cohort_binary[[2]],summary.copartisan_cohort_binary.9[[2]])
 cohort.binary <- xtable(cohort.table)
-print(cohort.binary, file = "table5_bottomleft_coppock_cohort_binary.txt")
+print(cohort.binary, file = "table4_bottomleft_coppock_cohort_binary.txt")
 
 
 summary.copartisan_cohort_weighted <- BFP.results.summary(parameters, copartisan_cohort_weighted_results)
@@ -61,7 +61,7 @@ summary.copartisan_cohort_weighted.9 <- BFP.results.summary(parameters, copartis
 
 cohort.table <- cbind(summary.copartisan_cohort_weighted[[1]],summary.copartisan_cohort_weighted[[2]],summary.copartisan_cohort_weighted.9[[2]])
 cohort.weighted <- xtable(cohort.table)
-print(cohort.weighted, file = "table5_bottomright_coppock_cohort_weighted.txt")
+print(cohort.weighted, file = "table4_bottomright_coppock_cohort_weighted.txt")
 
 
 
