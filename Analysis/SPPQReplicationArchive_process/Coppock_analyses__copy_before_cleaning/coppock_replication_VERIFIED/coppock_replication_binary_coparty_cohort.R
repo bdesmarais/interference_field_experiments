@@ -55,7 +55,7 @@ get.similarity <- function(x, y){
   return((2-abs(x-y))/2)
 }
 
-load("CoppockJEPS.rdata") #BD
+load("./Original archival/CoppockJEPS.rdata") #BD
 
 dwnom_scores <- CoppockJEPS$dwnom_scores
 
@@ -71,9 +71,9 @@ for (i in 1:70){
 diag(S.ideo) <- 0
 S.ideo[is.na(S.ideo)==T] <- 0
 
-load("cohort_copart_network_weighted.RData")
+load("cohort_copart_network.RData")
 
-S.ideo <- cohort_copart_amat_weighted
+S.ideo <- cohort_copart_amat
 
 #### Generate expected exposure
 perm <- replicate(perms, permute.within.categories(data$match_category,z))
@@ -211,5 +211,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_cohort_weighted.RData")
+save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_cohort_binary.RData")
 

@@ -55,7 +55,7 @@ get.similarity <- function(x, y){
   return((2-abs(x-y))/2)
 }
 
-load("CoppockJEPS.rdata") #BD
+load("./Original archival/CoppockJEPS.rdata") #BD
 
 dwnom_scores <- CoppockJEPS$dwnom_scores
 
@@ -75,7 +75,7 @@ S.ideo[is.na(S.ideo)==T] <- 0
 threshold <- quantile(c(S.ideo),0.70)
 S.ideo <- S.ideo*(S.ideo>=threshold)
 
-committee.net <- as.matrix(read.csv("committee.number.shared.csv")[,-1])
+committee.net <- 1*(as.matrix(read.csv("committee.number.shared.csv")[,-1])>0)
 copartisan <- matrix(0,nrow(data),nrow(data))
 for(i in 1:nrow(data)){
   for(j in 1:nrow(data)){
@@ -221,5 +221,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_committee_weighted.RData")
+save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_committee_binary.RData")
 

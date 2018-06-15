@@ -55,7 +55,7 @@ get.similarity <- function(x, y){
   return((2-abs(x-y))/2)
 }
 
-load("CoppockJEPS.rdata") #BD
+load("./Original archival/CoppockJEPS.rdata") #BD
 
 dwnom_scores <- CoppockJEPS$dwnom_scores
 
@@ -71,20 +71,9 @@ for (i in 1:70){
 diag(S.ideo) <- 0
 S.ideo[is.na(S.ideo)==T] <- 0
 
-# Limit to 30% most similar
-threshold <- quantile(c(S.ideo),0.70)
-S.ideo <- S.ideo*(S.ideo>=threshold)
+load("cohort_copart_network_weighted.RData")
 
-committee.net <- 1*(as.matrix(read.csv("committee.number.shared.csv")[,-1])>0)
-copartisan <- matrix(0,nrow(data),nrow(data))
-for(i in 1:nrow(data)){
-  for(j in 1:nrow(data)){
-    copartisan[i,j] <- 1*(data$party[i]==data$party[j])
-  }
-}
-diag(copartisan) <- 0
-
-S.ideo <- committee.net*copartisan
+S.ideo <- cohort_copart_amat_weighted
 
 #### Generate expected exposure
 perm <- replicate(perms, permute.within.categories(data$match_category,z))
@@ -123,6 +112,7 @@ expected.exp1.low <- expected.exp1.low/num_treat
 expected.exp0.low <- expected.exp0.low/num_control
 expected.exp1.high <- expected.exp1.high/num_treat
 expected.exp0.high <- expected.exp0.high/num_control
+
 
 #### Generate expected and net exposure
 #### This is the spillover effect model
@@ -221,5 +211,5 @@ BFP.results <- foreach(i=1:nrow(parameters)) %dopar% {
 
 stopImplicitCluster()
 
-save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_committee_binary.RData")
+save(list=c("BFP.results","parameters"),file="CoppockSPPQRRresults_copartisan_cohort_weighted.RData")
 

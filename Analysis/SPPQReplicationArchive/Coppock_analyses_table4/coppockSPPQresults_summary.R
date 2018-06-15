@@ -1,5 +1,6 @@
 library(xtable)
 
+
 # read in results
 load("CoppockSPPQRRresults_copartisan_committee_binary.RData")
 copartisan_committee_binary_results <- do.call('rbind',BFP.results)[,1]
