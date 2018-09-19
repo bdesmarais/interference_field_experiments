@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 SEP 2018 05:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 SEP 2018 05:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1035,7 +1035,7 @@ Overfull \hbox (2.14723pt too wide) in paragraph at lines 296--314
  []
 
 [13] [14] [15] [16]
-<./images/effect_constant_twohops.pdf, id=343, 1445.4pt x 722.7pt>
+<./images/effect_constant_twohops.pdf, id=342, 1445.4pt x 722.7pt>
 File: ./images/effect_constant_twohops.pdf Graphic file (type pdf)
 
 <use ./images/effect_constant_twohops.pdf>
@@ -1047,7 +1047,7 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 335--335
  []|[]| 
  []
 
-<./images/effect_constant_threehops.pdf, id=345, 1445.4pt x 722.7pt>
+<./images/effect_constant_threehops.pdf, id=344, 1445.4pt x 722.7pt>
 File: ./images/effect_constant_threehops.pdf Graphic file (type pdf)
 
 <use ./images/effect_constant_threehops.pdf>
@@ -1059,7 +1059,7 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 335--335
  []|[]| 
  []
 
-<./images/effect_decay_twohops.pdf, id=347, 1445.4pt x 722.7pt>
+<./images/effect_decay_twohops.pdf, id=346, 1445.4pt x 722.7pt>
 File: ./images/effect_decay_twohops.pdf Graphic file (type pdf)
 
 <use ./images/effect_decay_twohops.pdf>
@@ -1071,7 +1071,7 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 336--336
  []|[]| 
  []
 
-<./images/effect_decay_threehops.pdf, id=349, 1445.4pt x 722.7pt>
+<./images/effect_decay_threehops.pdf, id=348, 1445.4pt x 722.7pt>
 File: ./images/effect_decay_threehops.pdf Graphic file (type pdf)
 
 <use ./images/effect_decay_threehops.pdf>
@@ -1259,7 +1259,7 @@ ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (39 pages, 213293 bytes
+Output written on Interference_in_Field_Experiments.pdf (39 pages, 213580 bytes
 ).
 PDF statistics:
  628 PDF objects out of 1000 (max. 8388607)
