@@ -1,0 +1,918 @@
+\documentclass[12pt]{article}
+
+%==============Packages & Commands==============
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+%%%<
+\usepackage{listings}
+%\usepackage[active,tightpage]{preview}
+%\PreviewEnvironment{tikzpicture}
+%\setlength\PreviewBorder{5pt}%
+
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ...
+%\geometry{landscape}                		% Activat\usetikzlibrary{arrows}e for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use epFs in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%\usepackage[ruled,vlined]{algorithm2e}
+\usetikzlibrary{arrows}
+\usepackage{alltt}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage[longnamesfirst]{natbib} % For references
+\bibpunct{(}{)}{;}{a}{}{,} % Reference punctuation
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{booktabs} % For tables
+\usepackage{floatrow}
+\usepackage{rotating} % For sideways tables/figures
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\usepackage{dcolumn}
+\usepackage{comment}
+%\usepackage{fullwidth}
+\newcolumntype{d}[1]{D{.}{\cdot}{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{3}{D{.}{.}{3}}
+\newcolumntype{4}{D{.}{.}{4}}
+\newcolumntype{5}{D{.}{.}{5}}
+\usepackage{float}
+\usepackage[hyphens]{url}
+%\usepackage[margin = 1.25in]{geometry}
+%\usepackage[nolists,figuresfirst]{endfloat} % Figures and tables at the end
+\usepackage{subfig}
+\captionsetup[subfloat]{position = top, font = normalsize} % For sub-figure captions
+\usepackage{fancyhdr}
+%\makeatletter
+%\def\url@leostyle{%
+%  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+%\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{same}	
+\usepackage{times}
+\usepackage{mathptmx}
+%\usepackage[colorlinks = true,
+%						bookmarksopen = true,
+%						pagebackref = true,
+%						linkcolor = black,
+%						citecolor = black,
+% 					urlcolor = black]{hyperref}
+%\usepackage[all]{hypcap}
+%\urlstyle{same}
+\newcommand{\fnote}[1]{\footnote{\normalsize{#1}}} % 12 pt, double spaced footnotes
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+\def\citeaposs#1{\citeauthor{#1}' (\citeyear{#1})}
+\newcommand{\bm}[1]{\boldsymbol{#1}} %makes bold math symbols easier
+\newcommand{\R}{\textsf{R}\space} %R in textsf font
+\newcommand{\netinf}{\texttt{NetInf}\space} %R in textsf font
+\newcommand{\iid}{i.i.d} %shorthand for iid
+\newcommand{\cites}{{\bf \textcolor{red}{CITES}}} %shorthand for iid
+%\usepackage[compact]{titlesec}
+%\titlespacing{\section}{0pt}{*0}{*0}
+%\titlespacing{\subsection}{0pt}{*0}{*0}
+%\titlespacing{\subsubsection}{0pt}{*0}{*0}
+%\setlength{\parskip}{0pt}
+%\setlength{\parsep}{0pt}
+%\setlength{\bibsep}{2pt}
+%\renewcommand{\headrulewidth}{0pt}
+
+%\renewcommand{\figureplace}{ % This places [Insert Table X here] and [Insert Figure Y here] in the text
+%\begin{center}
+%[Insert \figurename~\thepostfig\ here]
+%\end{center}}
+%\renewcommand{\tableplace}{%
+%\begin{center}
+%[Insert \tablename~\theposttbl\ here]
+%\end{center}}
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Y}{\bm{\mathcal{Y}}}
+\newcommand{\bZ}{\bm{Z}}
+
+\usepackage[colorlinks = TRUE, urlcolor = black, linkcolor = black, citecolor = black, pdfstartview = FitV]{hyperref}
+
+
+%============Article Title, Authors==================
+\title{\vspace{-2cm} Considering Network Effects in the Design and Analysis of Field Experiments on State Legislatures } 
+
+
+\author{Sayali Phadke \thanks{\footnotesize{PhD Student, Departments of Statistics, Pennsylvania State University, sayalip@psu.edu.}} \and Bruce A. Desmarais \thanks{\footnotesize{Associate Professor, Department of Political Science, Pennsylvania State University, bdesmarais@psu.edu.}}} \date{\today}
+
+
+
+%===================Startup=======================
+\begin{document}
+\maketitle
+
+
+
+%=============Abstract & Keywords==================
+
+\begin{abstract} 
+\vspace{.3cm}
+\vspace{.3cm}
+
+\noindent  Recent work on legislative politics has documented complex patterns of interaction and collaboration through the lens of network analysis. In a largely separate vein of research, the field experiment---with many applications in state legislatures---has emerged as an important approach in establishing causal identification in the study of legislative politics. The stable unit treatment value assumption (SUTVA)---the assumption that a unit's outcome is unaffected by other units' treatment statuses---is required in conventional approaches to causal inference with experiments. When SUTVA is violated via networked social interaction, treatment effects spread to control units through the network structure. We review recently developed methods that can be used to account for interference in the analysis of data from field experiments on state legislatures. The methods we review require the researcher to specify a spillover model, according to which legislators influence each other, and specify the network through which spillover occurs. We discuss these and other specification steps in detail. We find moderate evidence for spillover effects in data from two previously published field experiments. Our replication analyses illustrate how researchers can use recently developed methods to test for interference effects, and support the case for considering interference effects in experiments on state legislatures. %\footnote{Presented at the 2016 Political Networks Conference, Washington University, St. Louis. Work supported in part by National Science Foundation grants SES-1558661, SES-1619644, CISE-1320219, and IGERT Grant DGE-1144860, Big Data Social Science. Any opinions, findings, and conclusions or recommendations are those of the authors and do not necessarily reflect those of the sponsor.} 
+\\~\\~\\
+\end{abstract}
+
+\thispagestyle{empty}
+\doublespacing
+
+
+
+%%%%
+% Description of the possible challenges
+\section{Introduction}
+%%%%
+
+Two recent streams of innovative research in legislative politics include the study of legislative networks and field experiments on legislatures----state legislatures in particular. These two emerging approaches have evolved largely separate from one another, but we argue that they should be integrated due to the interdependence that arises between legislators based on processes such as cue-taking.  In a study of cue-taking in roll call votes in the California Assembly, \citet{masket2008you} aptly summarizes the importance of understanding sources of interdependence between legislators in accounting for legislative outcomes. Masket (p. 302) notes that, 
+\begin{quotation}
+\noindent ``[..] there is a great deal of cue-taking in a legislature. Members defer in their judgment to trusted colleagues with expertise in particular issue areas.''
+\end{quotation}
+ \citet{masket2008you} finds that a connection as informal as two legislators being desk mates in the legislative chamber increases the rate at which two legislators vote in agreement. Legislative networks research, which has grown significantly in recent years, has documented complex forms of interconnectedness that can be observed in patterns of cosponsorship \citep{kirkland2013hypothesis,kirkland2011relational,fowler2006connecting}, shared campaign staff \citep{nyhan2015connecting}, collaborative press events \citep{desmarais2015measuring}, and caucus co-membership \citep{victor2009social}. Any of these networks, and other forms of connections discussed below, could serve as conduits of interdependence between legislators. What the legislative networks literature has been lacking is an approach to research design that its causally valid. Legislative networks literature provides theoretical justification for testing for interdependence, but the extent of interdependence between legislators is still an open question due to the challenges in identifying influence in networks with observational data \citep{Shalizi:2011}. 
+
+
+Field experiments on state legislatures have emerged as a standard approach to causally valid research design in the study of legislators.  \citet[p. 331]{bergan2009does} notes the value of experimentation for exactly this case, "Random assignment of legislators to treatment and control can eliminate the potential bias that results from groups strategically choosing whom to lobby." Field experiments have explored the relationship between constituency opinion and roll call voting \citep{butler2011can}, racial conditioning in legislator communications \citep{broockman2013black}, and the effects of lobbying on roll call voting \citep{bergan2015call}. 
+
+Despite the separate insights offered by legislative networks scholarship and legislative field experiments, there is a degree of incompatibility in the assumptions underlying approaches in these two literatures. The interdependence between actors that represents a central concept in legislative networks research poses a challenge to the use of field experiments to identify causal effects. Network-based interdependence (i.e., influence, contagion) violates the stable unit treatment value assumption (SUTVA)--- the assumption that a unit's outcome is unaffected by other units' treatment statuses. SUTVA is a bedrock assumption in the conventional approach to causal identification via randomized experiments \citep{sekhon2008}.  If we take recent research on the role of networks in legislative decision-making seriously, simple randomization of treatment is likely not a robust method, as networked interdependence between legislators poses a high likelihood of interference.  As \citet[p. 5]{sekhon2008} notes, ``When SUTVA is violated, an experiment will not yield unbiased estimates of the causal effect of interest.''  
+
+Virtually all research on legislative networks is based on observational data, lacking in design-based causal identification strategies (see \citet{rogowski2012estimating} for an exception). Due to the interconnectedness of actors, observational research on social networks presents myriad confounding problems, that place considerable limits on the feasibility of causal identification \citep{Shalizi:2011}. As such, confronting interference in legislative field experiments presents two related research opportunities. First, accounting for interference is a vital step in producing unbiased estimates of treatment effects in the presence of SUTVA violations. Second, studying interference in field experiments on legislators represents an approach to studying networked interdependence in legislatures with a more credible identification strategy than that which is attainable in observational research. A growing body of research seeks to study interference through experimental interventions on networks \citep[e.g., ][]{gerber2008,paluck2011,Bond:2012,muchnik2013,aral2014,bapna2015,Ben-AaronPAR}. These studies follow a variety of approaches to designing the interventions and testing for interference effects. However, it is clear that the field has not, as of yet, converged upon a consistent methodological framework for testing for causal effects in the presence of interference. 
+
+In this paper we review and illustrate a recently developed method that can be used to test for both direct and interference effects in experiments. This methodology, developed by \citet{bowers2012reasoning}, allows the researcher to test for causal effects in experiments while relaxing SUTVA. Beyond the review of this methodology, we offer three contributions in this paper. First, we provide a typology of theoretical considerations that researchers can draw upon when formulating hypotheses regarding interference. Second, we provide a focused review of the networks through which scholars of legislative politics should consider specifying tests for interference. Third, we apply this methodology by analyzing data from past studies that involved field experiments on state legislatures. 
+
+
+
+%\section{Background}
+
+%\begin{itemize}
+%\item Paragraph on each category of papers that serve as relevant background (SP)
+%\item Interference models (diffusion, propagation) (SP--Review)
+%\item  Experiments on networks (applications) (SP--Review)
+%\item Approaches to inference or estimation with propagation (SP--Review) 
+%\item Potential outcomes framework (SP -- find papers \& Review)
+%\item Review of political networks (SP--Review)
+%\item Review of field experiments (SP--Review)
+%\begin{itemize}
+%\item \citep{Gottlieb:2015,Alatas:2012,Kalla:2015, Malesky:2012,Ichino:2012,Nyhan:2014}
+%\end{itemize}
+%\end{itemize}
+
+
+%%%%
+\section{A Design-Based Test for Network Effects Models}
+%%%%
+
+In this section, we review the methodology introduced by \citet{bowers2012reasoning} (BFP), which enables the researcher to test for both direct and interference effects, represented by models of effects. The five components required to test hypotheses using the BFP methodology include (1) a model of effects, (2) a network, (3) a randomization design, (4) a test statistic for evaluating the model of effects, and (5) a set of parameter values to evaluate. The model of effects describes how the treatment statuses assigned to subjects affect the direct recipients of treatment and any or everyone else in the experiment (e.g., a legislator assigned to treatment changes their behavior and that of their two closest neighbors in the network). The network provides the precise representation of the ties between units (e.g., a legislator's two closest neighbors include those with whom they have co-sponsored most frequently over the past two years). The randomization design gives the distribution according to which the treatment is assigned (e.g., each half of the Democrats and half of the Republicans are randomly assigned to receive a call from a constituent). The test statistic is a quantity that represents the difference between the outcome observed and the outcome that would have been expected under the hypothesized parameter values and model of effects (e.g., if the treatment effect increased the directly treated legislators by 2 and their neighbors by 1, we could average the absolute values of the t-statistics calculated in comparing isolated legislators, directly treated legislators, and those who had treated neighbors). The test statistic should have a monotonic relationship to the presence of differences across experimental conditions (e.g., as a t-statistic increases in absolute value the differences between the samples increase). The set of parameter values is a large grid of values that reflects the bounds of what the researcher thinks the effects could have been (e.g., the treatment had an effect between reducing support for a bill by 30\% and increasing support by 30\%). 
+
+The BFP test is a randomization test \citep{basu2011randomization}. The uncertainty in the outcomes in the experiment is attributed to the randomization distribution (i.e., the observed outcomes would have been different if and only if a different set of treatment assignments had been drawn from the randomization distribution). Given the components described above, the process for carrying out the BFP test follows these steps.
+\begin{enumerate}
+\item Remove the hypothesized effects from the observed outcomes (e.g., deduct 2 from the outcomes for all directly treated legislators and 1 from their neighbors' outcomes) to calculate observed adjusted outcomes.
+\item Calculate the test statistic on the observed adjusted outcomes---call this the observed test statistic.
+\item Draw a set of treatment assignments from the randomization distribution (e.g., take a random sample of half the Democrats and half the Republicans and synthetically assign treatment).
+\item Remove the hypothesized effects, using the re-randomized treatment assignments, from the observed outcomes to calculate the randomized adjusted outcomes.
+\item Calculate the test statistic on the randomized adjusted outcomes---call this the randomized test statistic and store it.
+\item Repeat Steps 3 and 4 many (e.g., 1,000) times.
+\item Calculate the $p$-value associated with the hypothesized parameter values as the proportion of randomized test statistics that are larger than the observed test statistics, assuming that large test statistics indicate greater differences across experimental conditions.
+\end{enumerate} 
+The higher the $p$-value associated with a parameter value, the greater the evidence for that parameter value. The intuition for this is that, if a parameter value is close to the truth, we should be able to use it to remove differences in outcomes that are attributable to the treatment assignments. Re-calculating the test statistics on randomized treatment vectors provides a distribution of the test statistics under the condition in which we know that the re-randomized treatment did not affect the observed outcomes. 
+
+
+We illustrate the BFP test with a simple toy example. Consider an experiment in which the population under study is a legislature of nine legislators, connected through a legislative collaboration network. The collaboration network is depicted in Figure \ref{fig:ninenet}. The outcome under study in the experiment is the percentage of the legislation sponsored by a legislator that focuses on a particular policy issue (e.g., auto emissions limits). The treatment in the experiment is a well-studied advocacy campaign that is designed to shift a legislator's attention towards this issue. Suppose we know, through past experimental research, that the direct effect of this treatment is an increase by ten percentage points in the percentage of sponsored legislation that focuses on this issue. We are only interested in studying the interference effects, and so we only randomize one legislator to the treatment to assure that there are some legislators who are isolated from the treatment (i.e., have no neighbors who are treated). 
+
+\begin{figure}[htp]
+\includegraphics[scale=.5,clip=true,trim = 2cm 6cm 2cm 6cm]{./images/BFPIllustration}
+\caption{Toy network of nine legislators.}
+\label{fig:ninenet}
+\end{figure}
+
+We represent the indirect effect as a change in the percentage of sponsored legislation focusing on the issue that is induced when a neighboring legislator is assigned to treatment. We will set the true indirect effect to be a five percentage point increase in the percent of sponsored legislation focusing on the issue. Assume that Legislator 5 is assigned to treatment. Legislator 5 is tied to legislators 4, 2, 8, and 6. We present the effects of the experiment in the first few columns of Table \ref{tab:ninenet}. The column Y({\bf 0}) gives the hypothetical outcome that we would observe if the treatment was not administered; we created this by drawing a 0 or 10 uniformly at random. Y({\bf Z}) gives the outcome observed under the assignment of treatment to Legislator 5. The other columns give the implied values that would have been observed if the treatment were not administered, given the hypothesized indirect and known direct effect, and the legislator indicated in the subscript being assigned to treatment. 
+
+In terms of the test statistic, in the current example we will use the absolute value of a $t$-statistic calculated by testing the difference between legislators that were in the control condition and isolated from (i.e., not connected to) the treated legislator, and legislators that were in the control condition and exposed to the treated legislator. The vector of outcomes used to calculate the test statistic is the vector of outcomes that results after removing the hypothesized effect of the experiment. To give an example of this implied control outcome, consider Legislator 2 and a hypothesized indirect effect of -6 (i.e., a six percentage point reduction in the percent of sponsored legislation focusing on the issue). Legislator 2's true control/baseline value is 10. Legislator 2 was exposed to the treated legislator in the experiment, and we therefore observed the outcome (i.e., Y({\bf Z})) of 15 since the true indirect effect is 5. However, if we hypothesize that the indirect effect is -6, this implies that Legislator 2's control outcome is 21, which we arrive at by subtracting the hypothesized indirect effect (-6) from Legislator 2's observed value (15). 
+
+Using the BFP method, if the hypothesized parameter/effect value is close to the true value, the implied control outcomes will be similar across experimental conditions, since removing the hypothesized effects will adjust the outcomes accurately according to how they were affected by the experiment. The test statistic is calculated for each re-randomized treatment regime, and reported in the last row of the table. The evidence for a parameter value is given by the proportion of absolute $t$-statistics calculated on the randomized treatment regimes that are larger than the absolute $t$-statistic calculated on the observed data. The higher this proportion, the greater the evidence for the hypothesized parameter value. Furthermore, any parameter value for which this proportion is greater than $\alpha$ is included in the 100$\times(1-\alpha)\%$ confidence interval (e.g., parameter values with $p > 0.05$ are included in the 95\% CI). 
+
+\begin{table}[ht]
+\centering
+\scalebox{.85}{
+\begin{tabular}{rrrrrrrrrrrr}
+\hline \hline
+\multicolumn{12}{c}{Hypothesized Indirect Effect = -6} \\
+  \hline
+Legislator & Y({\bf 0}) & Y({\bf Z}) & Y$_5$({\bf 0}) & Y$_1$({\bf 0})  & Y$_2$({\bf 0})& Y$_3$({\bf 0})& Y$_4$({\bf 0})& Y$_6$({\bf 0})& Y$_7$({\bf 0})& Y$_8$({\bf 0})&Y$_9$({\bf 0})\\ 
+  \hline
+1 & 0.00 & 0.00 & 0.00 & -10.00 & 6.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  2 & 10.00 & 15.00 & 21.00 & 21.00 & 5.00 & 15.00 & 21.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  3 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -10.00 & 6.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  4 & 10.00 & 15.00 & 21.00 & 15.00 & 21.00 & 21.00 & 5.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  5 & 10.00 & 20.00 & 10.00 & 20.00 & 26.00 & 20.00 & 26.00 & 26.00 & 20.00 & 26.00 & 20.00 \\ 
+  6 & 0.00 & 5.00 & 11.00 & 5.00 & 5.00 & 5.00 & 5.00 & -5.00 & 11.00 & 11.00 & 5.00 \\ 
+  7 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 16.00 & 0.00 & 10.00 & 10.00 \\ 
+  8 & 10.00 & 15.00 & 21.00 & 15.00 & 15.00 & 15.00 & 15.00 & 21.00 & 15.00 & 5.00 & 21.00 \\ 
+  9 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 16.00 & 0.00 \\ 
+  \hline
+  \multicolumn{3}{r}{abs($t$-stat)} & {\bf 3.54} & 1.43 & 1.74 & 1.43 & 1.74 & 2.61 & 0.03 & 1.74 & 1.39 \\ 
+
+   \hline
+
+\multicolumn{12}{c}{Hypothesized Indirect Effect = 6} \\
+   
+   \hline
+Legislator & Y({\bf 0}) & Y({\bf Z}) & Y$_5$({\bf 0}) & Y$_1$({\bf 0})  & Y$_2$({\bf 0})& Y$_3$({\bf 0})& Y$_4$({\bf 0})& Y$_6$({\bf 0})& Y$_7$({\bf 0})& Y$_8$({\bf 0})&Y$_9$({\bf 0})\\ 
+  \hline
+1 & 0.00 & 0.00 & 0.00 & -10.00 & -6.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  2 & 10.00 & 15.00 & 9.00 & 9.00 & 5.00 & 15.00 & 9.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  3 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & -10.00 & -6.00 & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+  4 & 10.00 & 15.00 & 9.00 & 15.00 & 9.00 & 9.00 & 5.00 & 15.00 & 15.00 & 15.00 & 15.00 \\ 
+  5 & 10.00 & 20.00 & 10.00 & 20.00 & 14.00 & 20.00 & 14.00 & 14.00 & 20.00 & 14.00 & 20.00 \\ 
+  6 & 0.00 & 5.00 & -1.00 & 5.00 & 5.00 & 5.00 & 5.00 & -5.00 & -1.00 & -1.00 & 5.00 \\ 
+  7 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 4.00 & 0.00 & 10.00 & 10.00 \\ 
+  8 & 10.00 & 15.00 & 9.00 & 15.00 & 15.00 & 15.00 & 15.00 & 9.00 & 15.00 & 5.00 & 9.00 \\ 
+  9 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 10.00 & 4.00 & 0.00 \\ \hline 
+   \multicolumn{3}{r}{abs($t$-stat)}  & {\bf 0.39} & 0.24 & 0.42 & 0.24 & 0.42 & 0.20 & 1.39 & 0.42 & 0.03 \\ 
+\hline \hline
+
+\end{tabular}
+}
+\caption{Data from toy example experiment.  Y({\bf 0}) gives the hypothetical outcome that we would observe if the treatment was not administered. Y({\bf Z}) gives the outcome observed under the treatment (i.e., Legislator 5 was treated). Y$_X$({\bf 0}) gives the hypothesized value of Y({\bf 0}) if treatment was assigned to legislator X.}
+\label{tab:ninenet}
+\end{table}
+
+Considering the example data presented in Table \ref{tab:ninenet}, we see that there is very little evidence for the hypothesized effect value of -6. As seen in the Y$_5$({\bf 0}) column, and indicated by the absolute $t$-statistic value of 3.54, removing the hypothesized indirect effect does not remove differences between control legislators who were exposed to the treated legislator and those who were not. The observed test statistic value is not smaller than any of the values calculated when treatment is artificially re-assigned to any of the other nodes, meaning that there is effectively zero evidence for an indirect effect of -6, and that the value -6 would not be included in the confidence interval at any level less than 100\%. This should be re-assuring, as the true parameter value is 5. On the other hand, the evidence for an indirect effect value of 6 is quite strong. At this value, the test statistic calculated on the observed data is 0.39---less than the values calculated on half of the outcome columns that result from artificially re-assigning treatment to the other legislators. The parameter value 6 would be included in confidence intervals with levels greater than 50\%. Real-world application of the BFP methodology, which we illustrate below, is much more complicated than in this toy example (e.g., we typically do not know the values of any parameters, and test many more than two parameter values), but this toy example illustrates the steps of hypothesizing models of effects and assessing their evidence. 
+
+
+
+%%%%
+\section{Considerations in Testing for Interference}
+%%%%
+
+In this section, we offer a novel set of recommendations regarding theoretical considerations that can be drawn upon by researchers when they design experiments in which they plan to test for interference and/or specify tests to be conducted on data from field experiments that have already been conducted on legislatures. One of the virtues of controlled experiments, in which treatment allocation is randomized, is that the randomization design can be used as the basis for inference in statistical tests (i.e., design-based or randomization-based inference) \citep{little2000causal}. Testing using the Bowers et al. framework still relies on design-based inference, as the stochastic nature of the outcomes is assumed to arise from the distribution based on which the treatment was randomized. However, the hypothesis being tested is formulated as a model of causal direct and spillover effects. As these models of effects are more complicated than the conventional form of effects considered in experiments, researchers must put more thought into the functional forms that describe the relationship between the treatment and outcome vectors. It is not possible to enumerate all of the choices available in specifying the model of effects, but we discuss a few salient dimensions below. 
+
+
+
+ \subsection{Network selection}
+The methodology introduced by \citet{bowers2012reasoning} is applicable in any domain of experimental political science research in which interference is suspected, and the networks through which interference might occur can be measured.  There are two features of legislative politics that render methodology for testing interference particularly useful. First, since legislatures operate according to explicitly majoritarian reward systems, and it is feasible for any legislator to bargain with his or her colleagues to achieve a legislative goal, legislators face particularly strong incentives to influence each other \citep{matthews1959folkways,ferejohn1986logrolling,bernhard2013commitment}. Second, we have an active literature on legislative networks that offers several options to consider when testing for interference effects \citep{kirkland2014measurement,desmarais2015measuring}. Example legislative networks that have been studied include similarity in roll call voting \citep{kim2012comparing}, bill cosponsorship \citep{fowler2006connecting}, overlapping committee membership \citep{porter2005network}, collaboration in press events \citep{desmarais2015measuring}, co-membership in caucuses \citep{victor2009social}, the proximity of members of Congress' DC offices \citep{rogowski2012estimating}, follower-followee connections among members of Congress on Twitter \citep{peng2016follower}, the similarity of campaign contributions received by candidates for state legislature \citep{masket2015polarization}, a survey to measure collaboration and social networks among members of the Brazilian national legislature \citep{wojcik2017legislative}, demographic similarity between legislators' constituencies \citep{bratton2011networks}, and connections between legislative staffers \citep{ringe2013keeping}.  In Table \ref{tab:legislative.nets}, we list the different networks that researchers might consider when investigating interference in legislative networks. This list is drawn directly from the literature. Given a set of prospective networks, such as these, researchers must consider through which single network, or combination of networks, spillover will occur. 
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l}
+\hline \hline
+ Networks in Legislative Politics\\
+\hline
+Roll call voting similarity\\
+Bill cosponsorship\\
+Overlapping committee membership\\
+Collaboration in press events\\
+Ideal point similarity \\
+Co-membership in legislative caucuses\\
+Legislative staff sharing \\
+Spatial proximity of legislative offices \\
+Relationships in online social networks (e.g., Twitter) \\
+Similarity in legislators' campaign contributions \\
+Social network surveys administered to legislators \\
+Similarity in constituency demographics \\
+\hline \hline
+\end{tabular}
+
+\caption{List of legislative networks drawn from past research.}
+\label{tab:legislative.nets}
+\end{table}
+
+The determination regarding which network(s) to consider in any particular application is, of course, best made by the researchers carrying out the application. Selecting which network(s) to test is much like selecting which variables to include when specifying a model---researchers should use a combination of theory and exploration. We discuss two dimensions of interference dynamics---exposure and uptake---that should help to inform this determination. Exposure refers to the degree to which the network governs legislators' awareness regarding each others' beliefs or behaviors. Uptake refers to the role of the network in determining which legislators' would adopt each others' beliefs or behaviors if exposed to them. Consider a legislator's position on a major policy issue. It is likely that each legislator in a chamber is aware of each other legislator's opinion on a major issue, so the network does not need to play a major role in exposure to govern interference. However, in order to influence each other on a major policy issue, legislators may need to see each other as closely aligned ideologically. For interference dynamics that do not require exposure through the network, but require uptake, researchers should look for networks that signal ideological similarity such as co-voting on bills. On the other hand, some interference dynamics for which uptake might be highly likely, such as re-use of issue framing in legislators' public statements \citep{lin2016uncovering}, or the adoption of strategies in responding to constituent requests \citep{grose2015explaining}, would require legislators to be exposed to each other through explicit communication channels.  In applications where the network needs to play an important role in signaling exposure, networks such as twitter follower networks and caucus co-membership may be more appropriate. We can also think of networks that would signal both ideological alignment and explicit communication ties, such as co-participation in press events and frequent bill co-sponsorship (especially early-stage, or original cosponsorships).  
+
+Note that there are two categories of processes through which interference can occur---spread of the treatment through a network (e.g., an influential lobbying communication is sent to a legislator, and that legislator forwards the communication to others in their network) and spillover of effects (e.g., a lobbying communication influences a legislator's vote, and others in that legislator's network take cues from their vote). A useful thought experiment in selecting networks to use in tests of interference would be to consider which networks would facilitate the spread of treatments, and which networks would facilitate the spillover of effects. It is, of course, entirely possible that the researcher either hypothesizes that more than one network plays a role in interference, and/or is uncertain regarding which network best represents potential interference relationships. In the case that the researcher hypothesizes that multiple networks serve as vectors for interference,  the researcher can either create a composite network (e.g., a network in which a tie indicates that two legislator serve on a committee together and frequently co-sponsor the same legislation) \citep[e.g.,][]{ansari2011modeling}, or include multiple networks in the interference model.  In the case that multiple models are evaluated that include different networks, the researcher should be cognizant of issues related to robustness and multiple testing bias (i.e., the increased likelihood of Type 2 inferential errors when running multiple tests of the same hypothesis). In future methodological research, it would be valuable to develop a Bonferroni-style adjustment \citep{cabin2000bonferroni} to avoid multiple testing bias with the BFP methodology.\footnote{The most basic form of Bonferonni adjustment could be used when testing with the BFP methodology, though the independent form of the Bonferonni adjustment is often overly conservative \citep{simes1986improved}. A method that accounts for the dependence across the tests using the BFP methodlogy would provide a more accurate and statistically powerful adjustment \citep{stevens2017comparison}.} 
+
+\subsection{Interference Model Formulation}
+
+Unlike the review of legislative networks we provided in the previous section, our discussion here is applicable to research outside of legislative politics. In this section we focus on the mathematical structure of the model that describes how interference flows through the network. The interference model is a function that takes as its input a treatment regime (i.e., a vector that indicates the control/treatment status of each node (e.g., legislator) in the network), a network structure, and the outcomes under the uniformity trial (i.e., the outcome values in the case where each node is assigned to control), and outputs a vector of node outcomes that are conditioned on the treatment regime via the network. In other words, the interference model transforms the uniformity trial into a vector of outcomes using the network and treatment regime. For a given focal node the two components of the model that shape the change that results from the experiment include (1) the set of other nodes whose treatment status could influence the focal node via the network, and (2) the mathematical form of the function through which those other nodes' treatment statuses affect the focal node. Given these two components, it is possible to calculate how any given treatment regime would affect a focal node's outcome. We discuss two important considerations in formulating the interference model to be tested. First, we discuss the specification of the neighborhood, as defined on the network structure, of nodes whose treatment status may affect a focal node (e.g., a node's outcome depends on the treatment statuses of all nodes that are at most two hops away). Second, we discuss the specification of the functional form through which neighbors affect a focal node (e.g., the outcome of a node is a linear function of the proportion of neighbors allocated to treatment).
+
+In Table \ref{tab:fourmodels} we illustrate how varying the interference model can result in different effects on a focal node. We depict two definitions of the neighborhood---one in which all nodes within two hops of the focal node affect the focal node, and one in which all nodes within three hops of a focal node affect the focal node. We also depict two definitions of the functional form of the interference effects. In one definition, all nodes in the neighborhood affect the node equally. In the other functional form, the effect of neighbors on the focal node decays with the neighbors' distance from the focal node. Combining these two dimensions results in four alternative interference models. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|>{\centering\arraybackslash}m{2.75cm}|>{\centering\arraybackslash}m{5.5cm}|>{\centering\arraybackslash}m{5.5cm}|}
+\hline 
+& Two-hop Neighborhood & Three-hop Neighborhood \\
+\hline
+Constant effect  & \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_constant_twohops} &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_constant_threehops} \\ \hline 
+Decaying effect &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_decay_twohops} &  \includegraphics[scale=.225,clip=true,trim = 13cm 10cm 13cm 10cm]{./images/effect_decay_threehops} \\
+\hline 
+\end{tabular}
+
+\caption{Alternative models of effects, focusing on a single focal node. The red triangle represents the focal node, on which the other nodes have various effects under each model. Square nodes are treated. The circle is a control node. The darker the node's shading, the larger the effect it has on the focal node.}
+\label{tab:fourmodels}
+\end{table}
+
+\subsubsection{Neighborhood selection}
+
+Once the researcher decides which network---or combination of networks---to use in analysis, it is important to determine the neighborhood within which the effects of the treatment can be transmitted. For example, \cite{Bond:2012} find that Facebook users' voter turnout, as expressed on their Facebook walls, influences not only their Facebook friends' turnout decisions, but also turnout of the friends of their friends. This means that the effects of a Facebook user's turnout decision spread within a neighborhood of two hops through the friendship network. This specification decision becomes more complicated when the network is weighted (i.e., ties can take on many values rather than just being binary tie/no tie), as in the legislative networks that we consider in our applications. In the weighted network case transmission is likely a function of connection strength, but may also disappear at some threshold (e.g., the level of ideological distance that indicates opposition between two legislators).  In our consideration of state legislative networks, we specify the neighborhood in two ways when using the ideological similarity networks:
+\begin{itemize}
+\item Entire network: Treatment effect can propagate through the entire network---proportional to ideological similarity---to affect the outcome of control units. 
+\item K-nearest neighbors: Treatment effects can spread to control units from their K nearest neighbors, varying the value of K.
+\end{itemize}
+
+The definition of neighborhood depends on substantive knowledge about the interaction in a certain network. For example, a state legislature is a relatively small and internally familiar community. As such, everyone may potentially communicate with everyone else regarding major legislative tasks and actions. However in looking at interpersonal political communication networks among regular citizens, even the closest of friends may fail to communicate about an election or other major political event.
+
+
+\subsubsection{Interference effect specification}
+The above two specification steps---selecting the network and the neighborhood---determine which units play a role in the interference reflected in the hypothesized model. Diffusion model specification involves defining how the treatment effect spreads through the network. We highlight two considerations---the way in which treated and untreated neighbors factor into the interference effects, and the linearity of the interference model. 
+
+The first consideration regards whether a control unit influenced by the number of treated units with which it interacts (e.g., as in an epidemic network), or by the balance or proportion of its neighbors that are treated (e.g., as we would assume in a voting or opinion-spreading network). \citet{bowers2012reasoning} specification assumes treatment spreads as a function of the number of treated neighbors. Alternatively, the Voter Model---a classic mode of opinion dynamics in networks---assumes that the proportion of treated neighbors is the relevant quantity \citep{valentini2014self}. This specification choice likely comes down to whether the researcher assumes that the treatment and the lack of it are equally powerful forces, or whether change in the outcome can only result from exposure to treated units. If untreated neighbors can offset the effects of treated neighbors, it is likely the proportion that matters. If units are influenced only by treated neighbors, it is likely the raw count of treated neighbors that is relevant. 
+
+Though a very familiar consideration in quantitative social science, functional form assumptions are also relevant in the specification of a model of network effects. It is important to determine whether the functional form of the propagation of treatment effect should be linear or non-linear. Does the second treated neighbor have the same effect on a node's outcome as the first treated neighbor, or does the effect diminish? Or, alternatively, is it a threshold effect that only manifests when the number of treated neighbors reaches a critical level (e.g., a model in which a unit adopts the majority opinion among its neighbors)? \citet{coppock2014information} adopts a linear functional form in specifying the way in which legislators learning about their districts' opinions affects the votes of ideologically similar legislators. Alternatively, the classic susceptible-infected-recovered (SIR) model in epidemiology assumes a model in which the probability of transmission increases at a decreasing rate with the number of exposed neighbors to which a unit is exposed \citep{dodds2004universal}.
+
+
+%\item \textbf{Test statistics selection}: To evaluate differences across experimental conditions using the framework of \citet{bowers2012reasoning}, the researcher must select a test statistic to evaluate the differences in terms of the hypothesized model of effects. As discussed earlier, \citet{bowers2012reasoning} uses the KS test statistics, which is problematic for categorical responses, especially those with three or more experimental categories. The test statistic used by  \citet{coppock2014information}---the sum of squared errors from a linear probability model of the binary outcome---is an option for managing categorical outcomes. The Anderson-Darling test is an alternative to the KS test with multiple experimental categories \citep{anderson1954test}. Other possible tests include the Mann-Whitney U and Control Median tests \citep{rosenbaum2012interference}.
+
+
+
+
+
+
+%%%%
+\section{Replication Analyses: Testing for Network Effects}
+%%%%
+
+To illustrate the BFP methodology, we re-analyze results from two field experiments on state legislatures---\citet{butler2011can} and \citet{bergan2015call}. The replication of  \citet{butler2011can} builds directly off the work of \citet{coppock2014information}. In each of the replications, we test causal models that include network effects. In order to test these models, we must specify their functional forms and select the data to use in measuring the network. For each replication, we consider two definitions of both the network through which and the functional form according to which network effects are transmitted, as we do not have strong prior expectations regarding exactly which network or neighborhood should be included in the models of effects.  Note, our replications are not intended to serve as a meta analysis of interference in legislative field experiments, or to provide evidence regarding whether there is or is not interference in state legislatures, generally speaking. Rather, the purpose of the replications is to illustrate the considerations, steps, and process of testing for interference using the data produced by the experiments we replicate.
+
+We present each replication in a separate section below. For each analysis, we present point estimates from the BFP method (i.e., the vector of parameters with the highest $p$-value), the 95\% confidence interval (i.e., the minimum and maximum parameter values that correspond to a $p$-value over 0.05), and the 90\% confidence interval. 
+
+\subsection{\citet{butler2011can}}
+
+Butler and Nickerson conducted an experiment on New Mexico legislators to study the effect on legislators' votes of their constituents' opinions regarding the votes. In 2008, a special session of the New Mexico Legislature was called to vote on a bill regarding proposed spending plans for a budget surplus---a tax rebate. Butler and Nickerson conducted a large-scale phone survey to gather constituent opinions from across the state. Using matched-pair randomization---matching in terms of political party, 35 out of 70 legislators were assigned to the treatment group. Legislators in the treatment group were sent a letter containing the district-specific support for the proposed spending plan in their own districts. Butler and Nickerson find that the effects of the treatment on legislators' votes were conditioned by the level of support for the measure indicated in the treatment message. In districts with high support for the tax rebate, the treatment had little effect. This is because legislators generally assumed that the tax rebate would be popular, and that constituents would support the measure. In districts with low support for the tax rebate (defined as districts with levels of support below the median district in percent supporting the bill), the treatment had a negative effect on the likelihood of voting in support for the measure, as legislators in low support districts were presumably surprised and affected by the information that the plan was unpopular in their districts.
+
+\citet{coppock2014information} applied the BFP methodology to test for propagation of treatment in this experiment. The indirect effect estimates were not statistically significant \citep{coppock2016information}, even when separating the sample into low and high support districts. In the network that Coppock analyzed, the tie between legislators was given by their ideological similarity.  Using this network, each legislator's outcome is affected by every other legislator's treatment status, but with varying weight based on ideological similarity. Coppock used a linear model to represent the direct and indirect effects of the treatment on the outcome. Under the model assumed by Coppock, $$y_{i,z} = y_{i,0}+\beta_1z_i+\beta_2h_i(G,z),$$ where $y_{i,z}$ is the observed outcome (i.e., 0/1 indicating vote against/for the bill), $y_{i,0}$ is the outcome for $i$ that would have been observed if each legislator were assigned to the control, $\beta_1$ is the direct effect of the treatment, $\beta_2$ is the indirect/interference effect, and $h_i(G,z)$ is a function of the network $G$ and the vector of treatment assignments ($z$). Coppock defines $h_i(G,z)$ as the excess or beyond-expected sum of ideological similarities of legislator $i$ to legislators who were assigned to treatment. The steps used in calculating this ``excess exposure'' to the treatment are as follows.
+
+\begin{enumerate}
+\item Calculate W-NOMINATE ideology score ($ideo$) for each legislator using roll call vote data
+
+\item Calculate ideological similarity as $Similarity_{i,j} = \frac{2 - |ideo_i - ideo_j|}{2}$
+
+\item Calculate raw exposure as $Raw\; exposure_i =  \sum_{j=1}^{n}Similarity_{i,j} * z_j, \; j \neq i$. 
+
+\item Coppock introduces an adjustment for the expected exposures of legislators. Adjusting for expected exposure removes endogeneity in the network exposure function ($h_i(G,z)$).  Exposures are simulated under a large number of re-randomizations of the treatment (10,000 in both Coppock's and our application), and the average exposure value for each legislator is subtracted from the raw exposure value to give the excess exposure value (i.e., $h_i(G,z) = Raw\; exposure_i - Expected\; exposure_i$).
+
+\end{enumerate}
+
+
+We follow Coppock in the adjustment of the exposure function for expected exposure. We extend the model of effects used by \citet{coppock2014information} to incorporate differential effects of low and high support treatment in one model, rather than running the analysis for the two separate sub-populations. We take this approach since we assume that treatment of legislators in low support districts can influence the outcomes of legislators in high support districts and vice-versa---a dynamic that is lost when splitting the sample into low and high support districts.  The model of effects we use is 
+
+$$y_{i,z} = y_{i,0}+\beta_1z_il_i+\beta_2z_i(1-l_i)+\beta_3h_i(G,z\times l)+\beta_4h_i(G,z\times (1-l)),$$
+
+where $l_i$ is an indicator (0/1) of whether legislator $i$ is in a low-support district. This model form separates the direct and indirect effects based on whether the treatment delivered to the legislators incident to the treatment were in low or high support districts. We hypothesize that exposure to low support treatment (either direct or indirect) will reduce support for the bill and exposure to high support treatment (either direct or indirect) will increase support for the bill.
+
+
+In part to build on what Coppock has already contributed with this replication, and also to focus more closely on networks that indicate a higher likelihood of contact/communication between legislators, we depart from Coppock in the definition of the networks. For each network we consider both binary and weighted forms of the interference effect. First, we analyze a network in which two legislators are connected based on co-partisanship and co-committee membership. In the binary version, legislator $i$ is exposed to legislator $j$'s treatment status if legislator $i$ is of the same party as legislator $j$ and serves on at least one standing committee with legislator $j$ during the session preceding the special session on the budget surplus. In the weighted version, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to the number of committees on which they served together if they are co-partisans. We used the committee network based on the assumptions that (1) legislators will consider the preferences of constituents of their co-partisans as relevant to their own votes, and (2) they are likely to be in contact with legislators with whom they regularly collaborate through committee assignments.\footnote{Records of standing committee membership in the 16 standing committees in place during the 2008 regular session was obtained by email correspondence with the New Mexico Legislative Council Service Librarian.}  The second network we consider is defined by the cohorts in which two legislators arrived in the legislature. In the binary version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status if they are co-partisans and were elected in the same year. In the weighted version of the cohort network, legislator $i$ is exposed to legislator $j$'s treatment status in proportion to $1/(1+|c_i-c_j|)$, where $c_i$ is the year in which legislator $i$ was elected. The weighted cohort analysis reflects a different network neighborhood than the co-committee membership network. If two legislators are co-partisans, they are assumed to influence each other through cohort similarity (albeit at a rate that decreases with the difference between the two legislators' cohorts). Cohort membership is used to proxy social ties between legislators.\footnote{Information about the cohort in which every legislator joined the chamber of legislature they were serving on at the time of the experiment, was collected from \url{https://www.nmlegis.gov}.}
+
+
+
+The next detail we need to fill in when it comes to applying the BFP methodology is the test statistic used in the analysis. To refresh, the test statistic should be designed to quantify the degree to which the outcome is unrelated to the experimental conditions once the hypothesized effects have been removed from the observed outcome. We follow Coppock and \citet{bowers2016research}, and use the following steps to calculate the test statistic.
+\begin{enumerate}
+\item Estimate the outcome under control for each observation as \\ $\hat{y_{i,0} } = y_{i,z} - \left[ \beta_1z_il_i+\beta_2z_i(1-l_i)+\beta_3h_i(G,z\times l)+\beta_4h_i(G,z\times (1-l)) \right],$ where the $\beta$'s are given by their hypothesized values.
+\item Fit the regression equation  \\ $ \hat{y_{i,0} } = \gamma_0 + \gamma_1z_il_i+\gamma_2z_i(1-l_i)+\gamma_3h_i(G,z\times l)+\gamma_4h_i(G,z\times (1-l)$, estimating the $\gamma$'s by ordinary least squares. 
+\item Set the test statistic equal to the residual sum of squares \\ $ RSS =  \sum_i \left[ \hat{y_{i,0} }-  \gamma_0 - \gamma_1z_il_i-\gamma_2z_i(1-l_i)-\gamma_3h_i(G,z\times l)-\gamma_4h_i(G,z\times (1-l) ) \right]^2$
+\end{enumerate}
+The intuition behind using the RSS is that, if the hypothesized parameter values remove the effect of the experiment from $y_{i,z}$, the RSS from regressing $\hat{y_{i,0} } $ on variables defined by the model of effects will be high, as the effects of the experiment were removed from the dependent variable prior to running the regression on which the RSS is based. 
+
+The last detail of implementing the BFP framework regards the grid of hypothesized parameters over which p-values are calculated. Since the testing process does not involve an optimization routine, there is no way for the parameter values to be selected automatically. However, standard optimization methods can be used to approximate point estimates around which to expand the grid of hypothesized values. In our applications, the model of effects has a linear form, and we can use linear regression to find the estimates around which to expand the grid. In terms of how far to expand the grid----there should be enough grid points that none of the point estimates are close to the boundaries of the grid.
+
+\subsubsection{Results for \citet{butler2011can} data}
+
+The results of the \citet{butler2011can} replication are presented in Table \ref{tab:butlernickerson}.  The first notable result is that each confidence interval in each model includes zero. None of the parameter estimates are statistically significantly different from zero at the 0.05 level. However, in most of the models most of the parameters are of the expected sign. In each model the effects of both low support effects are negative, and the indirect high support effect is positive. With the co-partisan cohort network, in both the binary and weighted specifications, the indirect low support effect is statistically significant at the 0.10 level.  To interpret our results, we look to the estimates from the binary network of same cohort co-partisans. The low support effect of -0.20 indicates that, for a legislator in a low support district, being assigned to treatment reduces the probability of a legislator voting in favor of the bill by 0.20. Similarly, having a co-partisan who was elected in the same cohort who is in a low support district assigned to treatment, reduces the probability of voting in favor of the bill by 0.20. We note two central take-aways from this analysis. First, they represent moderate evidence of interference---especially via exposure to treated neighbors in low support districts. Second, the BFP methodology exhibits relatively low statistical power, as the direct effects that are statistically significant in the original analyses by Butler and Nickerson are not significant in our analysis. This suggests that field experiments on legislatures in which the researcher is interested in studying interference may require larger sample sizes (e.g., via administering treatment in multiple states, on multiple legislative proposals, and/or across both chambers).
+
+
+\begin{table}[ht]
+\centering
+\scalebox{.925}{
+\begin{tabular}{|r|rrrrr|rrrrr|}
+  \hline 
+ & \multicolumn{10}{c|}{Results for Committee Co-partisans Network} \\ \hline
+ & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
+  & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
+  \hline
+Direct (L) & -0.25 & -0.50 & 0.03 & -0.50 & 0.00 & -0.30 & -0.50 & 0.05 & -0.50 & 0.01 \\ 
+Direct (H) & 0.00 & -0.25 & 0.45 & -0.20 & 0.35 & 0.00 & -0.30 & 0.40 & -0.30 & 0.35 \\ 
+Indirect (L) & -0.05 & -0.15 & 0.10 & -0.10 & 0.05 & -0.03 & -0.10 & 0.10 & -0.10 & 0.05 \\ 
+  Indirect (H) & 0.10 & -0.05 & 0.20 & -0.03 & 0.20 & 0.05 & -0.10 & 0.15 & -0.05 & 0.10 \\  \hline
+   & \multicolumn{10}{c|}{Results for Cohort Co-partisans Network} \\ \hline
+ & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
+  & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
+  \hline
+Direct (L) & -0.20 & -0.50 & 0.10 & -0.50 & 0.05 & -0.20 & -0.50 & 0.05 & -0.50 & 0.03 \\ 
+  Direct (H) & -0.10 & -0.40 & 0.30 & -0.35 & 0.25 & -0.15 & -0.40 & 0.15 & -0.35 & 0.15 \\ 
+  Indirect (L) & -0.20 & -0.50 & 0.01 & -0.50 & -0.02 & -0.20 & -0.45 & 0.05 & -0.45 & -0.02 \\ 
+  Indirect (H) & 0.05 & -0.15 & 0.35 & -0.10 & 0.35 & 0.10 & -0.10 & 0.35 & -0.05 & 0.30 \\
+   \hline 
+\end{tabular}
+}
+%
+\caption{Results from applying the BFP methodology to the replication of Butler and Nickerson (2011). (L) indicates the effect of low support treatment, and (H) indicates the effect of high support treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the proposal to create a tax rebate to distribute a budget surplus (voted on in the New Mexico Legislature, 2008). $p$-values calculated using 1,000 randomization iterations. There are 70 legislators in this dataset/network.}
+\label{tab:butlernickerson}
+\end{table}
+
+
+
+
+\subsection{\citet{bergan2015call}}
+
+The second dataset we work with comes from an experiment on the Michigan Legislature. This experiment was conducted on legislators from both chambers, in the context of anti-bullying legislation. Legislators were stratified based on six background variables. The treatments were calls from constituents expressing their support for the proposed bill. Treatment was given in three different doses, which differed in the number of calls placed to the given legislator. The results were that this treatment had a significant effect on the final vote on the bill. They observed a 12 percentage point increase in the likelihood of voting in favor of the anti-bullying bill for those treated. 
+
+This data has not been analyzed for indirect effects previously. However, since legislators consider legislation in the context of open communication and debate, and for supporters to assure that legislation passes they need the votes of their colleagues, we expect treatment effects of roll call votes to be characterized by interference. In our replication of  \citet{bergan2015call}, we use a very similar model of interference, except the indicators for low support and high support are replaced by indicators for Democrat (D) and Republican (R).   \citet{bergan2015call} tested for, but did not find evidence that partisanship or ideology moderated the effect of the treatment, but we incorporate partisan moderators into our model to allow for different effects of the advocacy treatment by party. Our model for the 
+\citet{bergan2015call} replication takes the form $$y_{i,z} = y_{i,0}+\beta_1z_id_i+\beta_2z_i(1-d_i)+\beta_3h_i(G,z\times d)+\beta_4h_i(G,z\times (1-d)),$$  where $d_i$ is a 0/1 indicator of whether legislator $i$ is a Democrat. We use the same test statistic as in the \citet{butler2011can} replication.
+
+As in the \citet{butler2011can} replication, we consider two different networks and functional forms. We again test the co-partisan cohort network.\footnote{Data on cohort membership was gathered from \url{https://ballotpedia.org/Main_Page}.} For the \citet{bergan2015call} replication, we use cosponsorship instead of co-committee membership to measure formal legislative connection between legislators. In the binary form of the cosponsorship network, we include a tie between any two legislators who cosponsored two or more of the same bills.\footnote{Data on cosponsorship was gathered from \url{https://www.quorum.us/}.} In the weighted form of the cosponsorship network, the effect of $j$'s treatment status on $i$ is proportional to the number of bills that were cosponsored by both $i$ and $j$. We do not have theoretical expectations regarding the different effects of committee co-membership and cosponsorship in New Mexico and Michigan, the difference is driven by data availability. 
+
+
+\subsubsection{Results for \citet{bergan2015call} data}
+
+The results of the \citet{bergan2015call} replication are presented in Table \ref{tab:berganmichigan}. In this application we find one statistically significant (at the 0.10 level) interference effect---a reduction in the probability of voting for the bill by 0.10 from indirect exposure to treated Democrats in the co-partisan binary cohort network. The signs of the interference effects are mostly negative, which is counterintuitive, but could arise if exposure to other legislators who received the advocacy call resulted in awareness that the call was part of an advocacy campaign and not an independent contact from a constituent. The signs of the direct effect estimates are consistently positive, as was found in the original analysis. However, the statistical significance of the direct effect estimates is not robust to the choice of network used to model the interference effects. The direct effects for both Democrats and Republicans are statistically significant at the 0.05 level in the co-partisan cohort network, but not significant with the cosponsorship network.  To draw a conclusion regarding the direct effects in the current analysis, we need to either make a theoretical argument that the model based on the co-partisan cohort network is more valid, or note the lack of robustness and need for further replication of the experiment to draw firm conclusions. The lack of robustness regarding direct effects in the current application provides further indication that, in experiments that may be subject to interference, we require larger samples in order to make sufficiently powerful inferences. Larger samples could be achieved by including more votes and/or legislatures in the experiment.
+
+
+
+\begin{table}[ht]
+\centering
+\scalebox{.925}{
+\begin{tabular}{|r|rrrrr|rrrrr|}
+  \hline 
+ & \multicolumn{10}{c|}{Results for Cosponsorship Network} \\ \hline
+ & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
+  & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
+  \hline
+Direct (D) & 0.15 & -0.15 & 0.40 & -0.10 & 0.35 & 0.10 & -0.15 & 0.40 & -0.10 & 0.40 \\ 
+Direct (R) & 0.00 & -0.10 & 0.40 & -0.10 & 0.40 & 0.10 & -0.05 & 0.45 & -0.03 & 0.40 \\ 
+Indirect (D) & 0.00 & -0.10 & 0.20 & -0.10 & 0.15 & 0.05 & -0.03 & 0.20 & -0.03 & 0.20 \\ 
+  Indirect (R) & -0.05 & -0.10 & 0.10 & -0.10 & 0.10 & -0.15 & -0.20 & 0.05 & -0.20 & 0.05 \\  \hline
+   & \multicolumn{10}{c|}{Results for Cohort Co-partisans Network} \\ \hline
+ & \multicolumn{5}{c|}{Binary Ties} & \multicolumn{5}{c|}{Weighted Ties} \\  \hline
+  & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} & Estimate & \multicolumn{2}{c}{95\% CI} & \multicolumn{2}{c|}{90\% CI} \\ 
+  \hline
+Direct (D) & 0.40 & 0.10 & 0.50 & 0.10 & 0.50 & 0.20 & 0.05 & 0.50 & 0.10 & 0.50 \\ 
+  Direct (R) & 0.20 & -0.03 & 0.45 & 0.00 & 0.40 & 0.50 & 0.40 & 0.50 & 0.45 & 0.50 \\ 
+  Indirect (D) & -0.10 & -0.20 & 0.00 & -0.15 & -0.01 &-0.10 & -0.15 & 0.03 & -0.10 & 0.01 \\ 
+  Indirect (R) & -0.05 & -0.10 & 0.05 & -0.10 & 0.05 & -0.20 & -0.20 & 0.03 & -0.20 & 0.03  \\
+   \hline 
+\end{tabular}
+}
+\caption{Results from applying the BFP methodology to the replication of \citet{bergan2015call}. (D) indicates the effect of Democrat treatment, and (R) indicates the effect of Republican treatment. The outcome variable is 0/1, where 1 indicates a vote in favor of the anti-bullying bill (voted on in both chambers of the Michigan Legislature, 2011). $p$-values calculated using 1,000 randomization iterations. There are 144 legislators in the dataset/network.}
+\label{tab:berganmichigan}
+\end{table}
+
+
+
+
+\section{Conclusion}
+%%%%
+
+
+% What we have demonstrated
+In this paper we have made the case that scholars who run field experiments on state legislatures should consider testing for interference. We provide guidance in specifying these tests using the methods developed by  \citet{bowers2012reasoning}. Specifically, we discuss options for specifying the network(s) through which interference occurs, selecting the neighborhood of legislators who affect the legislator through the network(s), and specifying the functional form according to which the interference effects manifest. We illustrate this approach with two in-depth replications. We do not find universal evidence for interference effects in our replications. Our mixed findings regarding interference effects are attributable to an actual lack of interference in some contexts, a misspecification of the model of effects (which could include using the wrong network(s)), or sample sizes that are too small.  Nonetheless, these replications serve to illustrate the variety of choices researchers have to make when testing for interference effects in experiments on state legislatures. 
+
+The results from our replication of field experiments on legislatures underscore the importance and complexity of accounting for interference. The replication and extension of \citet{butler2011can} exhibited moderate evidence for interference---through the co-partisan cohort network, particularly.  We also observed some evidence for interference through the co-partisan cohort network in the re-analysis of data from \citet{bergan2015call}.  One consistent finding from these two replications is that the co-partisan cohort network exhibits exhibits the greatest evidence as a vector for interference. Our replication study is not intended to provide definitive evidence regarding whether or not state legislative field experiments are subject to interference effects. Rather, we illustrate a broad array of network and neighborhood definitions, and provide evidence that some experiments on state legislatures are characterized by interference effects, and some are not. Given that tools are now available for testing interference effects, researchers have little reason to assume SUTVA in legislative field experiments. In the replication materials for this article, we include an R package that implements functions for carrying out the testing methodology developed by \citet{bowers2012reasoning}.
+
+% Implications for future research
+Despite providing preliminary evidence that some state legislative field experiments are characterized by interference, one shortcoming of our replication analyses is that the experiments were designed and data collected with a focus on direct effects, assuming SUTVA. We retrospectively constructed networks to use in testing for interference, relaxing SUTVA, which is not ideal since there are likely to be more appropriate networks for each individual application. In future state legislative field experiments, researchers should consider collecting network data that characterizes the patterns of interdependence between legislators that are most relevant to their experiments. Furthermore, in each of the studies we consider, half of the observations were allocated to treatment, and treatment allocation was uniform-at-random (within blocks). This is not be the optimal randomization design if the researcher is interested in testing for and identifying interference effects. In experiments designed for testing interference effects, the optimal proportion assigned to treatment is typically much lower than 50\% \citep{bowers2016models}. Furthermore, researchers can use the networks through which they think interference occurs to design higher powered experiments that incorporate the network structure \citep{bowers2016models}.  Higher powered experiments can, of course, also be achieved through an expanded sample size. As we have noted above, when testing for interference it may be advisable for the researcher to design an experiment that is applicable to multiple legislative actions and/or multiple legislatures in order to expand the sample.
+
+%\clearpage
+\bibliographystyle{apsr}
+\bibliography{interference}
+
+\end{document}
+
+
+%%%%
+\section{Network plots}
+%%%%
+
+\begin{figure}
+\centering
+\begin{tabular}{cc}
+{\bf Geographic Network} & {\bf Committee Network (>1 in common)}\\
+\includegraphics[scale=.55, clip=true,trim =2cm 2cm 2cm 2cm ]{./images/coppock_geographic_net.pdf} & \includegraphics[scale=.55, clip=true,trim =2cm 2cm 2cm 2cm]{./images/nm_committee_net.pdf} \\ 
+\end{tabular}
+{\bf Ideological Network (top 5\%)} \\
+\includegraphics[scale=.55, clip=true,trim =2cm 2cm 2cm 2cm]{./images/coppock_ideological_net.pdf}
+\caption{Different networks among New Mexico legislators. Colors denote outcome: black means voted with district, gray means abstained, white means voted against. Shape denotes treatment status. Triangles are treated. Squares are adjacent to treated. Circles are isolated from treatment}
+\label{figure: nh-nets}
+\end{figure}
+
+
+%%%%
+\section{Appendix}
+%%%%
+
+\subsection{Appendix 1A}
+
+In this section, we will look at user-defined R-functions that replicate the \citet{bowers2012reasoning} methodology. This contains four steps:
+
+\begin{itemize}
+\item A function to transform the observed outcomes into potential outcomes for any treatment assignment w
+\item A function to separate the hypothesized treatment effect
+\item A function to calculate test statistic
+\item A function to calculate the p-value.
+\end{itemize}
+
+The results from the ks.test function in R for calculating Kolmogorov-Smirnoff test statistic are verified with that in Footnote 12 of the paper.
+
+
+\textbf{Function 1: calculating potential outcomes}
+
+\begin{lstlisting}[language=R]
+set.seed(132)
+
+library(doParallel)
+library(foreach)
+library(kSamples)
+library(network)
+library(permute)
+
+#### Potential outcomes ####
+
+#### Transform uniformity trial outcome into observed outcome
+unif.to.z <- function(z, S, y.0, beta, tau){
+  # z: observed treatment assignment
+  # S: adjacency matrix
+  # y.0: outcome vector for uniformity trial
+  # beta: growth curve parameter
+  # tau: rate of growth parameter  
+  scalar <- as.vector(t(z)%*%S)
+  spillover <- rep(NA, n)  
+  spillover <- beta + ((1-z) * (1-beta) * exp(-tau^2 * scalar))  
+  # This is equation 4
+  h.y0.z <- spillover*y.0
+}
+
+#### Transform observed outcome into uniformity trial outcome
+z.to.unif <- function(z, S, y.z, beta, tau){
+  # z: initial treatment assignment
+  # S: adjacency matrix
+  # y.z: observed outcome vector
+  # beta: growth curve parameter
+  # tau: rate of growth parameter
+  scalar <- as.vector(t(z)%*%S)
+  spillover <- rep(NA, n)  
+  # Equation (3) from paper
+  spillover <- beta + ((1-z) * (1-beta) * exp(-tau^2 * scalar))
+  # Equation (5) from paper
+  h.yz.0 <- (1/spillover)*y.z
+}
+
+#### Transform observed outcome into outcome for ANY other assignment w
+z.to.w <- function(z, S, w, y.z, beta, tau){
+  # z: initial treatment assignment
+  # S: adjacency matrix
+  # w: new treatment assignment
+  # y.z: vector of outcomes for z
+  # beta: growth curve parameter
+  # tau: rate of growth parameter
+  scalar.z <- as.vector(t(z)%*%S)
+  scalar.w <- as.vector(t(w)%*%S)
+  
+  spillover.z <- rep(NA, n)
+  spillover.z <- beta + ((1-z) * (1-beta) * exp(-tau^2 * scalar.z))
+  
+  spillover.w <- rep(NA, n)
+  spillover.w <- beta + ((1-w) * (1-beta) * exp(-tau^2 * scalar.w))
+  
+  # Equation (6) from paper
+  h.z.to.w <- (spillover.w / spillover.z) * y.z
+}
+
+#### Testing and p-value calculation ####
+p.val <- function(z, y.z){
+  
+  cl <- makeCluster(4) #Setup for parallel computing
+  registerDoParallel(cl)
+    
+  # Calculate the outcome vector after taking away the effect of treatment
+  y.0 <- z.to.unif(z=z, S=S, y.z=y.z, beta=beta, tau=tau)
+  
+  # Calculate test statistic
+  test.stat <- ks.test(y.0[z==1], y.0[z==0],
+                       alternative = "g")$statistic
+  sign <- noquote(strsplit(names(test.stat), NULL)[[1]])[3]
+  if(sign=="+"){
+    test.stat <- test.stat
+  }else{
+    test.stat <- test.stat*-1
+  }  
+  
+  # Calculate a vector of test statistic using permutations
+  results <- foreach (i = 1:perms) %dopar%{
+    require(permute)
+    perm.z <- z[sample(1:length(z),length(z),rep=F)]
+    perm.test.stat <- ks.test(y.0[perm.z==1], y.0[perm.z==0],
+                              alternative = "g")$statistic
+    sign <- noquote(strsplit(names(perm.test.stat), NULL)[[1]])[3]
+    
+    if(sign=="+"){
+      return(perm.test.stat)
+    }else{
+      return(perm.test.stat*-1)
+    }
+  }
+  stopCluster(cl)
+  
+  # A vector of test statistics
+  all.test.stat.vals <- unlist(results)
+  
+  # Calculating p-value
+  pval <- sum(all.test.stat.vals > test.stat)/perms
+  return(pval)
+}
+\end{lstlisting}
+
+
+\subsection{Appendix 1B}
+
+Below code replicates the \citet{coppock2014information} results using the framework setup in the Bowers replication code
+
+\begin{lstlisting}[language=R]
+
+set.seed(231)
+library(doParallel)
+library(fields)
+library(foreach)
+library(kSamples)
+library(network)
+library(permute)
+library(wnominate)
+
+permute.within.categories <- function(categories,z){
+	ucategories <- unique(categories)
+	perm.z <- rep(NA,length(z))
+	for(c in ucategories){
+		z.c <- z[which(categories==c)]
+		perm.z.c <- sample(z.c,length(z.c),rep=F)
+		perm.z[which(categories==c)] <- perm.z.c
+	}
+	perm.z
+}
+
+#### Read the original Butler and Nickerson data
+data <- read.table("nm.replication.tab", sep="\t", header=TRUE)
+z <- data$treatment #observed treatment
+y.z <- data$sb24 #observed outcome
+n <- length(y.z) #number of observations
+t <- length(z[z==1]) #number of treated units
+perms <- 10000 #number of permutations to use in generating expected exposure
+perms.test <- 5000 #number of permutations used in testing
+
+# Function to generate adjacency matrix using similarity scores
+get.similarity <- function(x, y){
+  return((2-abs(x-y))/2)
+}
+
+load("CoppockJEPS.rdata")
+dwnom_scores <- CoppockJEPS$dwnom_scores
+
+## Create an adjacency/similarity matrix using ideology
+S.ideo <- matrix(NA, ncol=70, nrow=70)
+for (i in 1:70){
+  for (j in 1:70){
+    S.ideo[i,j] <- get.similarity(dwnom_scores[i], dwnom_scores[j])
+  }
+}
+diag(S.ideo) <- 0
+S.ideo[is.na(S.ideo)==T] <- 0
+
+
+#### Generate expected exposure
+perm <- replicate(perms, permute.within.categories(data$match_category,z))
+expected.exp0 <- rep(0, n)
+expected.exp1 <- rep(0, n)
+for(p in 1:ncol(perm)){
+  zp <- perm[,p]
+	for(i in 1:n){
+		if (zp[i] == 1){
+				expected.exp1[i] <- expected.exp1[i] + sum(S.ideo[i,]*zp)
+			}
+			else{
+				expected.exp0[i] <- expected.exp0[i] + sum(S.ideo[i,]*zp)
+			}
+	}
+}
+num_treat <- apply(perm,1,sum)
+num_control <- apply(1-perm,1,sum)
+expected.exp1 <- expected.exp1/num_treat
+expected.exp0 <- expected.exp0/num_control
+
+#### Generate expected and net exposure
+#### This is the spillover effect model
+indirect.treatment <- function(permutation, adj.mat){ #any treatment assignment vector and adjacency matrix can be used
+ # permutation: can be the initial treatment assignment or a permutation
+ raw.exp <- rep(NA, n)
+ for (i in 1:n){
+   raw.exp[i] <- sum(adj.mat[i,]*permutation)
+   }
+ net.exp <- raw.exp - (permutation*expected.exp1 + (1-permutation)*expected.exp0)
+ standard.exp <- (net.exp - mean(net.exp))/sd(net.exp) #this is the spillover or indirect effect
+ return(standard.exp)
+}
+
+#### We now model the uniformity trial transformation
+z.to.unif <- function(outcome, beta1, beta2, permutation, adj.mat){
+  # outcome: vector of direct treatment outcomes
+  # beta1: direct treatment effect parameter
+  # beta2: indirect treatment effect parameter
+  # permutation: vector of a permutation of z (can be z itself)
+  # adj.mat: adjacency matrix
+  exposure <- indirect.treatment(permutation, adj.mat)
+  # This is equation 5
+  h.yz.0 <- outcome - (beta1*permutation) - (beta2*exposure)
+  return(h.yz.0)
+}
+
+#### Testing and p-value calculation
+beta1s <- seq(from=-0.5, to=0.5, by=.025)
+beta2s <- seq(from=-0.5, to=0.5, by=.025)
+pvals <- matrix(NA, length(beta1s), length(beta2s))
+
+cl <- makeCluster(8) #Setup for parallel computing
+registerDoParallel(cl)
+pvalues.ideology <- foreach (i = 1:length(beta1s)) %do% {
+  abc <- foreach (j = 1:length(beta2s)) %do% {
+    # Calculate observed test statistic
+    exposure <- indirect.treatment(permutation = z, adj.mat = S.ideo)
+    test.stat <- sum((lm(y.z ~ z + exposure, na.action = na.omit)$resid)^2)
+    
+    # Calculate a vector of test statistic using permutations
+    results <- foreach (k = 1:perms.test) %dopar% {
+      require(permute)
+      perm.z <- perm[,sample(1:perms, 1)]
+      perm.exposure <- indirect.treatment(permutation = perm.z, adj.mat = S.ideo)  
+      perm.y.0 <- y.z + (-1 * beta2s[j] * indirect.treatment(permutation = z, adj.mat = S.ideo))
+      perm.y.0[z==1] <- perm.y.0[z==1] - beta1s[i]  
+      y.sim <- perm.y.0 + beta1s[i]*perm.z + beta2s[j]*perm.exposure
+      perm.test.stat <- sum((lm(y.sim ~ perm.z + perm.exposure, na.action = na.omit)$resid)^2)
+      }
+    # A vector of test statistics
+    all.test.stat.vals <- as.numeric(unlist(results))
+    # Calculating p-value
+    pval <- sum(all.test.stat.vals < test.stat)/perms.test
+  }
+  as.numeric(unlist(abc))
+}
+stopCluster(cl)
+
+for (i in 1:length(beta1s)){
+  pvals[i,] <- unlist(pvalues.ideology[i])
+}
+
+pvals #rows are direct effects, columns indirect
+
+# Saving results
+high.p.value <- max(pvals)
+highest.p.indices <- which(pvals==max(pvals), arr.ind = TRUE)
+direct.effect.PI <- beta1s[which(pvals==max(pvals), arr.ind = TRUE)[1]]
+indirect.effect.PI <- beta2s[which(pvals==max(pvals), arr.ind = TRUE)[2]]
+direct.effect.CI.high <- beta1s[max(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]
+direct.effect.CI.low <- beta1s[min(which(pvals[,which(beta2s==indirect.effect.PI)] >= 0.05))]
+indirect.effect.CI.high <- beta2s[max(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
+indirect.effect.CI.low <- beta2s[min(which(pvals[which(beta1s==direct.effect.PI),] >= 0.05))]
+
+## Creating a plot
+image.plot(beta1s, beta2s, pvals,
+           main = "Plot of p-values",
+           xlab = "Direct effects", ylab = "Indirect effects")
+
+# Lines for point estimate
+lines(beta1s, rep(indirect.effect.PI, nrow(pvals)),
+      type = "l", col = "yellow", lty = 1) #indirect
+lines(rep(direct.effect.PI, nrow(pvals)), beta2s,
+      type = "l", col = "yellow", lty = 1) #direct
+
+# Lines for 95% CI
+lines(beta1s, rep(indirect.effect.CI.low, nrow(pvals)),
+      type = "l", col = "yellow", lty = 2) #indirect low
+lines(beta1s, rep(indirect.effect.CI.high, nrow(pvals)),
+      type = "l", col = "yellow", lty = 2) #indirect high
+lines(rep(direct.effect.CI.high, nrow(pvals)), beta2s,
+      type = "l", col = "yellow", lty = 2) #direct high
+lines(rep(direct.effect.CI.low, nrow(pvals)), beta2s,
+      type = "l", col = "yellow", lty = 2) #direct low
+
+\end{lstlisting}
+
+
+%===================References======================
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{\citet{broockman2013black} }
+
+The final dataset is from a study that aimed to understand whether politicians behave differently based on the expected electoral incentive. The question of whether there exists differential intrinsic motivation to help a constituent based on his or her race is addressed by studying all state legislators in the US serving in mid-November 2010. These 6,928 legislators received an email from an alias---Tyrone Washington---who was seeking help filing for unemployment benefits. Treatment in this case was an indication that Tyrone was from outside the legislator's district. Legislators were block-randomized based on state, party, and race. Analysis of the experiment resulted in an estimate of a 15--30 18.5 percentage point increase in the likelihood of responding to the email when Tyrone was within the legislator's district. The paper also concluded that extrinsic motivation guided response rates from non-black legislators, and the actions of black legislators were less affected by the treatment. We introduce interference effects in the analysis of this experiment by setting up a model similar to the one in \citet{coppock2014information}, where three separate networks are considered.\footnote{We assume that legislators can only be effected by other legislators in the same chamber.}
+
+The Broockman replication presents a tradeoff in terms of the available data. First, the legislators were anonymized in the replication dataset, which means we cannot match them with other legislative data such as ideal point estimates, committee membership, or cosponsorship. On the other hand, the Broockman dataset is by far the largest among our applications---two orders of magnitude larger than our other datasets. We must therefore use what is available in the replication dataset to construct plausible networks among legislators. We stipulate three possible networks through which interference may occur. These depend on two key covariates; Percentage of Democratic vote for president in the district, and Percentage of black population in the district. We create one network for each of the two covariates and a third combining the two. In networks based on individual variables, the similarity score for legislators $i$ and $j$ based on variable $X$ is defined as in Equation (1).
+
+\begin{equation}
+Similarity_{(i,j)} = \frac{2 - |x_i - x_j|}{2}
+\end{equation}
+
+For the network based on two covariates, the network is defined as the Euclidean distance between legislators $i$ and $j$ where the two variables---$X$ and $Y$---are equally weighted, as shown in Equation (2).
+
+\begin{equation}
+Similarity_{(i,j)} = \sqrt{{(x_i - x_j)}^2 + {(y_i - y_j)}^2}
+\end{equation}
+
+In these block-diagonal networks, the neighborhood of any legislator consists of all other legislators in his/her state. The closer any two units are on values of one of these variables, the stronger the tie, and higher the exposure to receiving indirect treatment. Figures 6 and 7 depict results of analyzing the \citet{broockman2013black} data under the combined network and the individual networks respectively. We see that two of these three specifications show evidence of spillover effect. The estimate for the percentage black is negative and marginally statistically significant, indicating that legislators further reduce their responsiveness to a constituent outside their district if other legislators from districts similar in racial composition also receive an outside-the-district contact. The direct effect estimates are robust, and follow the original study. The results are further detailed in Table 5.
+
+
+\begin{figure}
+	\centering
+	\begin{tabular}{cc}
+	\includegraphics[scale=0.45]{./images/pval_plot_broockman_demvotepct.pdf} &
+	\includegraphics[scale=0.45]{./images/pval_plot_broockman_blackpct.pdf} \\ 
+	\end{tabular}
+	\caption{p-values for \citet{broockman2013black} data. Percent democratic vote is on the left, and percent black is on the right.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.45]{./images/pval_plot_broockman_demvotepct_blackpct.pdf}
+\caption{p-values for \citet{broockman2013black} data: Combined network}
+\end{figure}
+
+
+
+\floatsetup[table]{objectset=centering,capposition=top}
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\multirow{2}{*}{Model} & \multicolumn{2}{c}{Direct effect} & \multicolumn{2}{c}{Indirect effect} \\
+\cmidrule(l){2-3} \cmidrule(l){4-5}
+ & Estimate & 95\% CI & Estimate & 95\% CI \\
+\midrule
+Democratic vote percentage & -0.26 & (-0.3, -0.23) &  0 & (-0.01, 0.02)\\
+Percentage black & -0.27 & (-0.31, -0.22) &  -0.02 & (-0.04, 0)\\
+Mixture network & -0.26 & (-0.33, -0.2) &  0.03 & (-0.01, 0.06)\\
+\bottomrule
+\end{tabular}
+\caption{Results from \citet{broockman2013black} data}
+\end{table}
+
+

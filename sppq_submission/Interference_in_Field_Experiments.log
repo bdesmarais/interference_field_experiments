@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 MAR 2018 19:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 SEP 2018 05:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -961,9 +961,27 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 143.
 
 
-LaTeX Warning: No \author given.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 143.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 143.
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 143.
+
+Underfull \hbox (badness 3954) in paragraph at lines 143--143
+[][]\T1/ptm/m/n/10 Associate Pro-fes-sor, De-part-ment of Po-lit-i-cal Sci-ence
+, Penn-syl-va-nia State Uni-ver-sity, bdes-
+ []
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 148.
@@ -994,8 +1012,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 213.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 213.
-
-<./images/BFPIllustration.pdf, id=174, 505.89pt x 505.89pt>
+ [7]
+<./images/BFPIllustration.pdf, id=185, 505.89pt x 505.89pt>
 File: ./images/BFPIllustration.pdf Graphic file (type pdf)
 
 <use ./images/BFPIllustration.pdf>
@@ -1003,23 +1021,21 @@ Package pdftex.def Info: ./images/BFPIllustration.pdf used on input line 221.
 (pdftex.def)             Requested size: 196.03902pt x 82.22827pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 226.
- [7] [8 <./images/BFPIllustration.pdf>]
+ [8 <./images/BFPIllustration.pdf>]
 Overfull \hbox (1.85152pt too wide) in paragraph at lines 273--274
  [][] 
  []
 
-[9] [10]
+[9] [10] [11]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 290.
- [11] [12] [13]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 321.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 321.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 321.
- [14] [15]
-<./images/effect_constant_twohops.pdf, id=305, 1445.4pt x 722.7pt>
+ [12]
+Overfull \hbox (2.14723pt too wide) in paragraph at lines 296--314
+ [][] 
+ []
+
+[13] [14] [15] [16]
+<./images/effect_constant_twohops.pdf, id=343, 1445.4pt x 722.7pt>
 File: ./images/effect_constant_twohops.pdf Graphic file (type pdf)
 
 <use ./images/effect_constant_twohops.pdf>
@@ -1031,7 +1047,7 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 335--335
  []|[]| 
  []
 
-<./images/effect_constant_threehops.pdf, id=307, 1445.4pt x 722.7pt>
+<./images/effect_constant_threehops.pdf, id=345, 1445.4pt x 722.7pt>
 File: ./images/effect_constant_threehops.pdf Graphic file (type pdf)
 
 <use ./images/effect_constant_threehops.pdf>
@@ -1043,7 +1059,7 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 335--335
  []|[]| 
  []
 
-<./images/effect_decay_twohops.pdf, id=309, 1445.4pt x 722.7pt>
+<./images/effect_decay_twohops.pdf, id=347, 1445.4pt x 722.7pt>
 File: ./images/effect_decay_twohops.pdf Graphic file (type pdf)
 
 <use ./images/effect_decay_twohops.pdf>
@@ -1055,7 +1071,7 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 336--336
  []|[]| 
  []
 
-<./images/effect_decay_threehops.pdf, id=311, 1445.4pt x 722.7pt>
+<./images/effect_decay_threehops.pdf, id=349, 1445.4pt x 722.7pt>
 File: ./images/effect_decay_threehops.pdf Graphic file (type pdf)
 
 <use ./images/effect_decay_threehops.pdf>
@@ -1067,15 +1083,8 @@ Overfull \hbox (2.28017pt too wide) in paragraph at lines 336--337
  []|[]| 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[16]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 348.
-
- (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
+[17 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
+pdf> <./images/effect_decay_twohops.pdf> <./images/effect_decay_threehops.pdf>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 348.
 
@@ -1084,9 +1093,7 @@ Overfull \hbox (22.51039pt too wide) in paragraph at lines 348--349
 e en-tire network---proportional
  []
 
-[17 <./images/effect_constant_twohops.pdf> <./images/effect_constant_threehops.
-pdf> <./images/effect_decay_twohops.pdf> <./images/effect_decay_threehops.pdf>]
-[18] [19]
+[18] [19] [20]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\begingroup' on input line 378.
@@ -1115,7 +1122,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 378.
 
-[20] [21] [22] [23] [24]
+[21] [22] [23] [24] [25]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\begingroup' on input line 417.
@@ -1144,7 +1151,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 417.
 
-[25]
+[26]
 Overfull \hbox (7.10513pt too wide) in paragraph at lines 445--447
  [][] 
  []
@@ -1177,7 +1184,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 454.
 
-[26] [27] [28]
+[27] [28]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\begingroup' on input line 464.
@@ -1206,19 +1213,19 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\new@ifnextchar' on input line 464.
 
-
+[29]
 Overfull \hbox (3.40887pt too wide) in paragraph at lines 493--494
  [][] 
  []
 
-[29] [30] [31] (./Interference_in_Field_Experiments.bbl [32] [33] [34] [35]
-[36]
-Underfull \hbox (badness 1152) in paragraph at lines 224--228
+[30] [31] (./Interference_in_Field_Experiments.bbl [32] [33] [34] [35] [36]
+[37]
+Underfull \hbox (badness 1152) in paragraph at lines 229--233
 []\T1/ptm/m/n/12 Peng, Tai-Quan, Mengchen Liu, Ying-cai Wu and Shixia Liu. 2016
 .  ``Follower-
  []
 
-[37] [38])
+[38])
 
 Package caption Warning: Unused \captionsetup[subfloat] on input line 79.
 See the caption package documentation for explanation.
@@ -1235,27 +1242,28 @@ ot changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 517.
  ) 
 Here is how much of TeX's memory you used:
- 21621 strings out of 492995
- 393807 string characters out of 6132704
- 485320 words of memory out of 5000000
- 24630 multiletter control sequences out of 15000+600000
- 74860 words of font info for 132 fonts, out of 8000000 for 9000
+ 21632 strings out of 492995
+ 394006 string characters out of 6132704
+ 486568 words of memory out of 5000000
+ 24639 multiletter control sequences out of 15000+600000
+ 75117 words of font info for 133 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,2579b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,2600b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
 ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texmf-dist/fon
-ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/u
-rw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/u
-tmri8a.pfb>
-Output written on Interference_in_Field_Experiments.pdf (39 pages, 203119 bytes
+ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texmf
+-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2017/texmf-dist/fonts
+/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw
+/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utm
+ri8a.pfb>
+Output written on Interference_in_Field_Experiments.pdf (39 pages, 213293 bytes
 ).
 PDF statistics:
- 593 PDF objects out of 1000 (max. 8388607)
- 521 compressed objects within 6 object streams
- 126 named destinations out of 1000 (max. 500000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 555 compressed objects within 6 object streams
+ 128 named destinations out of 1000 (max. 500000)
  172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
