@@ -1,0 +1,16 @@
+% latex table generated in R 3.1.3 by xtable 1.8-0 package
+% Tue Nov 03 11:50:16 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & Coefficients & SEs \\ 
+  \hline
+Constant & 0.76 & 0.33 \\ 
+  Treatment & 0.16 & 0.49 \\ 
+  Low support for spending & 0.70 & 0.60 \\ 
+  Low support*Treatment & -1.49 & 0.76 \\ 
+   \hline
+\end{tabular}
+\caption{Table 2A: Regression results without controls} 
+\end{table}

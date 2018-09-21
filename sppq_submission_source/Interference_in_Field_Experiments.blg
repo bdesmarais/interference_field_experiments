@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Interference_in_Field_Experiments.aux
+The style file: apsr.bst
+Database file #1: interference.bib
+Repeated entry---line 1302 of file interference.bib
+ : @article{fowler2006connecting
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1324 of file interference.bib
+ : @article{victor2009social
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1874 of file interference.bib
+ : @article{coppock2016information
+ :                                ,
+I'm skipping whatever remains of this entry
+You've used 48 entries,
+            2874 wiz_defined-function locations,
+            944 strings with 14126 characters,
+and the built_in function-call counts, 213721 in all, are:
+= -- 35009
+> -- 2600
+< -- 1
++ -- 16457
+- -- 914
+* -- 18380
+:= -- 42557
+add.period$ -- 195
+call.type$ -- 48
+change.case$ -- 624
+chr.to.int$ -- 48
+cite$ -- 48
+duplicate$ -- 797
+empty$ -- 1742
+format.name$ -- 962
+if$ -- 38503
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 48
+newline$ -- 199
+num.names$ -- 560
+pop$ -- 157
+preamble$ -- 1
+purify$ -- 720
+quote$ -- 0
+skip$ -- 740
+stack$ -- 0
+substring$ -- 49541
+swap$ -- 166
+text.length$ -- 673
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 192
+warning$ -- 0
+while$ -- 1165
+width$ -- 0
+write$ -- 669
+(There were 3 error messages)
